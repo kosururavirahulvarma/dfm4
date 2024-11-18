@@ -35,3 +35,10 @@ body {  font-family: Roboto, "Helvetica Neue", sans-serif; }
     overflow-y: scroll; /* Enables vertical scrolling */
     background-color: #ffffff;
   }
+
+
+  .scrollable{
+    /* flex: 1; /* Takes the remaining space */
+    /* overflow-y: scroll; /* Enables vertical scrolling */
+    /* background-color: #ffffff; */ 
+  }
