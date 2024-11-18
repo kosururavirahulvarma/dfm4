@@ -1,0 +1,82 @@
+<!-- <mat-sidenav-container class="example-sidenav-container" [style.marginTop.px]="mobileQuery.matches ? 56 : 0"
+cdkDropListGroup>
+  <mat-sidenav #snav [mode]="mobileQuery.matches ? 'over' : 'side'" [fixedInViewport]="mobileQuery.matches"
+  fixedTopGap="56" style="padding-left: 8px; background-color:#FFF2D7;">
+
+    <h6 style="font-size: large; display: inline-flex;margin-left: 15px; align-items: center;">Form Elements</h6>
+    <mat-nav-list class="nav-list" cdkDropList [cdkDropListData]="fillerNav">
+      @for (nav of fillerNav; track $index ) {
+      <div cdkDrag (click)="onItemClick(nav)">
+        <a mat-list-item>{{ nav.label }}</a>
+      </div>
+      }
+
+    </mat-nav-list>
+  </mat-sidenav>
+
+  <mat-sidenav-content>
+    @if(!opened){
+    <mat-button-toggle style="padding: 3px;"  (click)="snav.toggle()"><span style="margin-right: 5px;">Add Element</span><mat-icon aria-hidden="false" aria-label="add_circle" fontIcon="add_circle"></mat-icon></mat-button-toggle> 
+    }
+    <div class="form-content">
+      <div cdkDropList [cdkDropListData]="mainContentItems" class="main-content-drop"
+        (cdkDropListDropped)="drop($event)">
+        @for (item of mainContentItems ; track $index) {
+        <div class="example-box" cdkDrag>{{ item.label }}</div>
+        }
+
+      </div>
+    </div>
+  </mat-sidenav-content>
+</mat-sidenav-container> -->
+<mat-sidenav-container class="example-sidenav-container" cdkDropListGroup>
+  <mat-sidenav mode="side" opened [ngClass]="{ 'sidenav1': opened }">
+    @if(!opened){
+      <mat-button-toggle style="padding: 3px;"  (click)="onSidenavToggle()"><span style="margin-right: 5px;">Add Element</span><mat-icon aria-hidden="false" aria-label="add_circle" fontIcon="add_circle"></mat-icon></mat-button-toggle> 
+      }
+      @if(opened){
+    <h6 style="font-size: large; display: inline-flex;margin-left: 15px; margin-top: 10px; align-items: center;">Form Elements</h6>
+     <mat-icon style="position: absolute; right: 50px; top:12px" aria-hidden="false"  (click)="onSidenavToggle()" aria-label="close" fontIcon="close"></mat-icon>
+    
+     <mat-nav-list class="nav-list" cdkDropList [cdkDropListData]="fillerNav">
+      @for (nav of fillerNav; track $index ) {
+      <div cdkDrag (click)="onItemClick(nav)">
+        <a mat-list-item>{{ nav.label }}</a>
+      </div>
+      }
+    </mat-nav-list>
+  }
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <div class="main-content">
+      <h3>Build Your Form</h3>
+      <!-- Drop Zone for Items Dragged from Sidenav -->
+      <div cdkDropList [cdkDropListData]="mainContentItems" class="main-content-drop"
+        (cdkDropListDropped)="drop($event)" >
+        @for (item of mainContentItems ; track $index) {
+          
+            @if (item.label === 'Drag Here or Click from the Sidenav to add Elements') {
+              <div  [ngStyle]="$index === 0 ? {'border-radius': '15px'} : {}"class="example-box" style="padding-left: 160px;" cdkDrag>
+                <div [innerHTML]="sanitizeHtml(item.value)"></div>
+              </div>
+            }@else{
+              <div class="example-box"   [ngStyle]="{
+                'border-top-left-radius': $index === 0 ? '15px' : '',
+                'border-top-right-radius': $index === 0 ? '15px' : '',
+                'border-bottom-left-radius': $index === mainContentItems.length - 1 ? '15px' : '',
+                'border-bottom-right-radius': $index === mainContentItems.length - 1 ? '15px' : ''
+              }" cdkDrag>
+                <div [innerHTML]="sanitizeHtml(item.value)"></div>
+              <div class="buttons-container">
+                <button class="button" (click)="onEdit(item)" matTooltip="edit" matTooltipPosition="right"><mat-icon>edit</mat-icon></button>
+                <button class="button" (click)="onDelete(item)" matTooltip="delete" matTooltipPosition="right"><mat-icon>delete</mat-icon></button>
+                <button class="button" (click)="onDuplicate(item)" matTooltip="duplicate" matTooltipPosition="right"><mat-icon>cached</mat-icon></button>
+              </div>
+            </div>
+            }
+        }
+
+      </div>
+    </div>
+  </mat-sidenav-content>
+</mat-sidenav-container>

@@ -1,0 +1,21 @@
+.container {
+    background-color: rgb(233, 232, 241);
+    overflow-y: auto; /* Enable vertical scrolling */
+    overflow-x: hidden; /* Prevent horizontal scrolling */
+    min-height: 100%; /* Ensure it covers the viewport */
+    padding-bottom: 20px; /* Optional: Add space for the bottom of the content */
+  }
+  
+  .preview-content {
+    background-color: white;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    width: 38%;
+    position: relative; /* Use relative to adjust positioning without affecting scrolling */
+    margin: 70px auto; /* Center it horizontally */
+    border-radius: 20px;
+    padding: 20px; /* Add padding for content spacing */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Optional: Add shadow for better visibility */
+  }
+  

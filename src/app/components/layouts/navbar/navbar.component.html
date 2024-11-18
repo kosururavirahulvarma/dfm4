@@ -1,0 +1,29 @@
+<div class="app-container">
+<div class="example-container"  [class.example-is-mobile]="mobileQuery.matches">
+  <mat-toolbar-row>
+    <span>LOGO</span>
+    <span class="spacer-main"></span>
+    <span>FORM BUILDER</span>
+  </mat-toolbar-row>
+  <mat-toolbar class="primary-bg-color">
+    <span class="spacer"></span>
+    <button *ngIf="currentUrl != '/home/preview'" mat-button class="example-icon favorite-icon" aria-label="Example icon-button with heart icon" routerLink="build">
+      <span class="white-color" >BUILD</span>
+    </button>
+    <button *ngIf="currentUrl != '/home/preview'" mat-button class="example-icon" aria-label="Example icon-button with share icon" routerLink="rules">
+      <span class="white-color">RULES</span>
+    </button>
+    <button *ngIf="currentUrl != '/home/preview'" mat-button class="example-icon" aria-label="Example icon-button with share icon" routerLink="publish">
+      <span class="white-color">PUBLISH</span>
+    </button>
+    <span class="spacer-toggle"></span>
+    <mat-slide-toggle style="position: absolute; right:75px" labelPosition="before"  (change)="onToggleChange($event)">Preview Form</mat-slide-toggle>
+  </mat-toolbar>
+</div>
+<div class="scrollable-content">
+<router-outlet></router-outlet>
+</div>
+<footer class="footer">
+  <span>&copy; 2024 My Website</span>
+</footer>
+</div>

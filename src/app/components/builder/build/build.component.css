@@ -1,0 +1,98 @@
+
+
+.example-events {
+  width: 300px;
+  height: 200px;
+  overflow: auto;
+  border: 1px solid #555;
+}
+.mat-button-toggle{
+  border-top-left-radius: 0% !important;
+  border-bottom-left-radius: 0% !important;
+  margin-top: 60px;
+  background-color: rgba(0, 0, 0, 0.736);
+  color: white;
+}
+.example-list {
+  border: solid 1px #ccc;
+  min-height: 60px;
+  background: white;
+  border-radius: 4px;
+  overflow: hidden;
+  display: block;
+}
+
+.example-box {
+  padding: 20px 10px;
+  color: rgba(0, 0, 0, 0.87);
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  box-sizing: border-box;
+  cursor: move;
+  background: white;
+  font-size: 14px;
+}
+.example-sidenav-container {
+  position: absolute !important;
+  height: 80%;
+  width: 100%;
+
+}
+.side-nav-close{
+position: relative;
+top:7px;
+}
+
+.sidenav1{
+  padding-left: 8px;
+  background-color:#FFF2D7;
+}
+.main-content {
+  display: flex;
+  justify-content: flex-start;; /* Horizontally centers the content */
+  align-items: center; /* Vertically centers the content */
+  flex-direction: column;
+  height: calc(100vh - 112px); /* Adjust based on navbar height */
+  padding: 16px;
+  box-sizing: border-box;
+}
+/* new changes */
+
+.example-box {
+  position: relative;
+}
+
+.example-box:hover {
+  background-color: #f0f0f0; /* Highlight color */
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1); /* Optional shadow effect */
+}
+
+.buttons-container {
+  position: absolute;
+  top: 50%;
+  right: -50px; /* Adjust to the desired position */
+  transform: translateY(-50%);
+  display: flex;
+  flex-direction: column;
+  opacity: 0;
+  transition: opacity 0.3s ease-in-out;
+}
+
+.example-box:hover .buttons-container {
+  opacity: 1; /* Show buttons when hovered */
+}
+
+.button {
+  background-color: #fff;
+  border: 1px solid #ccc;
+  padding: 5px 10px;
+  margin: 5px 0;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+.mat-sidenav-content{
+  margin-left: 0!important;
+}

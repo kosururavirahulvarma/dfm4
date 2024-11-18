@@ -1,0 +1,69 @@
+@switch (elementName) {
+    @case ("Input Box") {
+        <div style="display: flex; flex-direction: column; width: 100%; max-width: 400px; margin-bottom: 15px;">
+            <label for="inputBox" style=" margin-bottom: 5px; font-size: 14px;">Label:</label>
+            <input type="text" id="inputBox" name="inputBox" style="width: 100%; padding: 8px; font-size: 14px; border: 1px solid #ccc; border-radius: 4px; box-sizing: border-box;" />
+        </div>
+    }
+    @case ("Text Box") {
+        <div style="display: flex; flex-direction: column; width: 100%; max-width: 400px; margin-bottom: 15px;">
+            <label for="textBox" style=" margin-bottom: 5px; font-size: 14px;">Text Box:</label>
+            <input type="text" id="textBox" name="textBox" style="width: 100%; padding: 8px; font-size: 14px; border: 1px solid #ccc; border-radius: 4px; box-sizing: border-box;" />
+        </div>
+    }
+    @case ("Radio Button") {
+        <div style="display: flex; flex-direction: column; width: 100%; max-width: 400px; margin-bottom: 15px;">
+            <label style=" margin-bottom: 5px; font-size: 14px;">Select an option:</label>
+            <div style="display: flex; align-items: center; margin-bottom: 5px;">
+                <input type="radio" id="radioYes" name="radioChoice" value="yes" />
+                <label for="radioYes" style="margin-left: 5px;">Yes</label>
+            </div>
+            <div style="display: flex; align-items: center;">
+                <input type="radio" id="radioNo" name="radioChoice" value="no" />
+                <label for="radioNo" style="margin-left: 5px;">No</label>
+            </div>
+        </div>
+    }
+    @case ("Check Box") {
+        <div style="display: flex; flex-direction: column; width: 100%; max-width: 400px; margin-bottom: 15px;">
+            <label style=" margin-bottom: 5px; font-size: 14px;">Select your preferences:</label>
+            <div style="display: flex; align-items: center; margin-bottom: 5px;">
+                <input type="checkbox" id="checkboxOption1" name="checkboxOptions" value="option1" />
+                <label for="checkboxOption1" style="margin-left: 5px;">Option 1</label>
+            </div>
+            <div style="display: flex; align-items: center;">
+                <input type="checkbox" id="checkboxOption2" name="checkboxOptions" value="option2" />
+                <label for="checkboxOption2" style="margin-left: 5px;">Option 2</label>
+            </div>
+        </div>
+    }
+    @case ("Email") {
+        <div style="display: flex; flex-direction: column; width: 100%; max-width: 400px; margin-bottom: 15px;">
+            <label for="email" style=" margin-bottom: 5px; font-size: 14px;">Email:</label>
+            <input type="email" id="email" name="email" style="width: 100%; padding: 8px; font-size: 14px; border: 1px solid #ccc; border-radius: 4px; box-sizing: border-box;" />
+        </div>
+    }
+    @case ("Phone Number") {
+        <div style="display: flex; flex-direction: column; width: 100%; max-width: 400px; margin-bottom: 15px;">
+            <label for="phoneNumber" style=" margin-bottom: 5px; font-size: 14px;">Phone Number:</label>
+            <input type="tel" id="phoneNumber" name="phoneNumber" style="width: 100%; padding: 8px; font-size: 14px; border: 1px solid #ccc; border-radius: 4px; box-sizing: border-box;" />
+        </div>
+    }
+    @case ("Dropdown") {
+        <div style="display: flex; flex-direction: column; width: 100%; max-width: 400px; margin-bottom: 15px;">
+            <label for="dropdown" style=" margin-bottom: 5px; font-size: 14px;">Dropdown:</label>
+            <select id="dropdown" name="dropdown" style="width: 100%; padding: 8px; font-size: 14px; border: 1px solid #ccc; border-radius: 4px; box-sizing: border-box;">
+                <option value="option1">Option 1</option>
+                <option value="option2">Option 2</option>
+                <option value="option3">Option 3</option>
+            </select>
+        </div>
+    }
+    @case ("Drag Here or Click from the Sidenav to add Elements") {
+        <div style="display: flex; flex-direction: column; width: 100%; max-width: 400px; margin-bottom: 15px;">
+            <label for="dropdown" style=" margin-bottom: 5px; font-size: 14px;">Drop elements here or click from the Sidenav to add!</label>
+            
+        </div>
+    }
+    
+}

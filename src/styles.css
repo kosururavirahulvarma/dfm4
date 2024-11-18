@@ -1,0 +1,37 @@
+/* You can add global styles to this file, and also import other style files */
+
+html, body { height: 100%;   overflow: hidden; margin: 0;}
+body {  font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+.white-color{
+    color:white;
+}
+.primary-bg-color{
+    background-color:  #F98866!important
+}
+.main-content-drop {
+    /* display: flex; */
+    justify-content: center; /* Ensures the drop area is centered */
+    align-items: center;
+    width: 100%;
+    max-width: 700px; /* Optional: Set a max width for the drop area */
+    background-color: #f4f4f4;
+    border: 1px dashed #ccc;
+    padding: 20px;
+    border-radius: 15px;
+    box-sizing: border-box;
+    flex-direction: column;
+  }
+  .app-container {
+    display: flex;
+    flex-direction: column; /* Change to row if you want a sidebar layout */
+    height: 100vh; /* Full viewport height */
+    width: 100vw; /* Full viewport width */
+  }
+  
+  /* Scrollable content area */
+  .scrollable-content {
+    flex: 1; /* Takes the remaining space */
+    overflow-y: scroll; /* Enables vertical scrolling */
+    background-color: #ffffff;
+  }
