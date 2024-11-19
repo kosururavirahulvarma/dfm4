@@ -1,0 +1,65 @@
+
+  <br>
+  @if(!opened){
+  <mat-card class="cart-container" *ngFor="let item of cardList" (click)="onCardClick(item.title)" appearance="outlined">
+    <mat-card-header>
+      <mat-card-title>{{item.title}}</mat-card-title>
+      <mat-card-subtitle>{{item.subtitle}}</mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-actions align="end">
+    <mat-icon aria-hidden="false" class="arrow-icon" aria-label="chevron_right" fontIcon="chevron_right"></mat-icon>
+    </mat-card-actions>
+  </mat-card>
+}@else if(currentPage === "IFRAME"){
+    <div class="back-button-container">
+        <!-- Back Button Icon -->
+        <button mat-icon-button (click)="goBack()">
+          <mat-icon>arrow_back</mat-icon>
+        </button>
+        <span>Back</span>
+      </div>
+    <h6 style="padding-left: 65px;">{{currentPage}}</h6>
+<br>
+<!-- Download Button with Icon -->
+ <div class="download-button-container">
+<button  mat-raised-button color="primary">
+    <mat-icon>download</mat-icon>  Download
+  </button>
+  </div>
+  
+}@else if(currentPage === "Source Code"){
+    <div class="back-button-container">
+        <!-- Back Button Icon -->
+        <button mat-icon-button (click)="goBack()">
+          <mat-icon>arrow_back</mat-icon>
+        </button>
+        <span>Back</span>
+      </div>
+    <h6 style="padding-left: 65px;">{{currentPage}}</h6>
+<br>
+<!-- Download Button with Icon -->
+ <div class="download-button-container">
+<button  mat-raised-button color="primary" >
+    <mat-icon>download</mat-icon>  Download
+  </button>
+  </div>
+  
+}
+@else if(currentPage === "HTMLFile"){
+    <div class="back-button-container">
+        <!-- Back Button Icon -->
+        <button mat-icon-button (click)="goBack()">
+          <mat-icon>arrow_back</mat-icon>
+        </button>
+        <span>Back</span>
+      </div>
+    <h6 style="padding-left: 65px;">{{currentPage}}</h6>
+<br>
+<!-- Download Button with Icon -->
+ <div class="download-button-container">
+<button  mat-raised-button color="primary" (click)="downloadFile()">
+    <mat-icon>download</mat-icon>  Download
+  </button>
+  </div>
+  
+}

@@ -1,0 +1,55 @@
+.arrow-icon{
+position: relative;
+bottom:50px;
+}
+.mat-mdc-card {
+    left: 110px;
+    width: 40%;
+    top:30px;
+    margin-top: 10px;
+}
+.mat-mdc-card-title{
+    font-size: medium;
+}
+
+.mat-mdc-card-subtitle {
+  font-size: smaller;
+  color: rgb(101, 101, 109);
+}
+
+.cart-container {
+    height: 12%;
+    min-height: 12%;
+    cursor: pointer;
+    background-color: white;
+    transition: box-shadow 0.3s, transform 0.3s;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Hover Effects */
+.cart-container:hover {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2); /* Elevates the shadow */
+    transform: translateY(-3px); /* Slight lift on hover */
+    background-color: #f7f7f7; /* Light grey background on hover */
+}
+.back-button-container {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    margin-bottom: 15px;
+    cursor: pointer;
+  }
+  
+  .back-button-container button {
+    margin-right: 8px;
+  }
+  
+  .back-button-container span {
+    font-size: 16px;
+    color: #333;
+  }
+  .download-button-container{
+    position: relative;
+    left: 50px;
+  }

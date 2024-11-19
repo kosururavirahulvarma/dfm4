@@ -1,1 +1,15 @@
-<p>publish works!</p>
+<mat-sidenav-container class="example-sidenav-container">
+    <mat-sidenav mode="side" opened  class="sidenav1">
+       <mat-nav-list class="nav-list">
+        @for (nav of publishSideNavList; track $index ) {
+            <div>
+              <a mat-list-item [routerLink]="nav.routerLink">{{ nav.label }}</a>
+            </div>
+            }
+      </mat-nav-list>
+
+    </mat-sidenav>
+    <mat-sidenav-content>
+      <router-outlet></router-outlet>
+    </mat-sidenav-content>
+  </mat-sidenav-container>
