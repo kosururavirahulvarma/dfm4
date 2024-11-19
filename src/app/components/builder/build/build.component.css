@@ -96,3 +96,7 @@ top:7px;
 .mat-sidenav-content{
   margin-left: 0!important;
 }
+
+.righsidenavwidth {
+  --mat-sidenav-container-width: 25rem;
+}

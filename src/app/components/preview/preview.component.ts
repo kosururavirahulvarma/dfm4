@@ -1,39 +1,50 @@
+import { JsonPipe } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
+import { Element } from '../../models/elements.model';
 
 @Component({
   selector: 'app-preview',
   standalone: true,
-  imports: [],
+  imports: [JsonPipe],
   templateUrl: './preview.component.html',
-  styleUrl: './preview.component.css'
+  styleUrls: ['./preview.component.css']
 })
-export class PreviewComponent {
+export class PreviewComponent implements OnInit {
   combinedHtml: SafeHtml = '';
+  storedData: any[] = [];
+  mainContentItems: Element[] = [];
+
   constructor(private sanitizer: DomSanitizer) {}
 
-  ngOnInit() {
-    this.combineHtmlValues();
-  }
-
-  // Method to combine all HTML values into one and sanitize
-  combineHtmlValues() {
-
-    const storedData = localStorage.getItem('mainContentItems');
-    if (storedData) {
-      try {
-        const jsonData: { label: string; value: string }[] = JSON.parse(storedData);
-
-        // Combine all HTML values
-        const htmlContent = jsonData.map(item => item.value).join('');
-
-        // Sanitize and store the combined HTML
-        this.combinedHtml = this.sanitizer.bypassSecurityTrustHtml(htmlContent);
-      } catch (error) {
-        console.error('Error parsing JSON from localStorage:', error);
-      }
+  ngOnInit(): void {
+    if (typeof window !== 'undefined' && typeof localStorage !== 'undefined') {
+      // Access localStorage only in the browser
+      const savedItems = localStorage.getItem('mainContentItems');
+      this.mainContentItems = savedItems
+        ? JSON.parse(savedItems)
+        : [
+            {
+              label: 'Drag Here or Click from the Sidenav to add Elements',
+              value: `<div style="display: flex; flex-direction: column; width: 100%; max-width: 400px; margin-bottom: 15px;">
+                        <label for="dropdown" style="margin-bottom: 5px; font-size: 14px;">
+                          Drop elements here or click from the Sidenav to add!
+                        </label>
+                      </div>`
+            }
+          ];
     } else {
-      console.warn('No formFields data found in localStorage.');
+      // Default value when localStorage is unavailable
+      // this.mainContentItems = [
+      //   {
+      //     // label: 'Drag Here or Click from the Sidenav to add Elements',
+          // value: `<div style="display: flex; flex-direction: column; width: 100%; max-width: 400px; margin-bottom: 15px;">
+          //           <label for="dropdown" style="margin-bottom: 5px; font-size: 14px;">
+          //             Drop elements here or click from the Sidenav to add!
+          //           </label>
+          //         </div>`
+      //   }
+      // ];
     }
   }
 }
