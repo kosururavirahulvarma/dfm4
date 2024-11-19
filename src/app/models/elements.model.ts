@@ -12,6 +12,8 @@ export interface RootElement {
     styles?: Styles
     validation?: Validation
     options?: Option[]
+    innerLabelStyle : string
+    innerDivStyle : string
   }
   
   export interface Styles {
@@ -30,4 +32,5 @@ export interface RootElement {
   export interface Option {
     value: string
     label: string
+    style : string
   }

@@ -64,8 +64,8 @@ cdkDropListGroup>
      
       <!-- Drop Zone for Items Dragged from Sidenav -->
       <div cdkDropList [cdkDropListData]="mainContentItems" class="main-content-drop"
-        (cdkDropListDropped)="drop($event)" >
-        <form>
+        (cdkDropListDropped)="drop($event)"  >
+        <form  >
         @for (element of mainContentItems ; track $index) {
          
             @if (element.label === 'Drag Here or Click from the Sidenav to add Elements') {
@@ -89,78 +89,125 @@ cdkDropListGroup>
             </div> -->
             
               <div >
-                <div [style]="element.styles?.divStyle" cdkDrag class="example-box">
+                <div style="width:100%; " cdkDrag class="example-box">
+                  <!-- radio   divstyle == > style="display: flex; margin-bottom: 8px; font-size: 14px; color: #333; justify-content: start;"-->
               
                   <div class="buttons-container">
                     <button class="button" (click)="onRightSidenavToggle(element)"   matTooltip="edit" matTooltipPosition="right"><mat-icon>edit</mat-icon></button>
                     <button class="button" (click)="onDelete(element)" matTooltip="delete" matTooltipPosition="right"><mat-icon>delete</mat-icon></button>
                     <button class="button" (click)="onDuplicate(element)" matTooltip="duplicate" matTooltipPosition="right"><mat-icon>cached</mat-icon></button>
                   </div>
-                  <!-- Label -->
-                  <label *ngIf="element.label" [style]="element.styles?.labelStyle" [for]="element.name">
-                    {{ element.label }}
-                  </label>
-                  
-                  <!-- Input element -->
-                  <input *ngIf="element.type === 'input'" 
-                         [id]="element.id"
-                         [name]="element.name"
-                         [placeholder]="element.placeholder"
-                         [style]="element.styles?.inputStyle"
-                         [required]="element.validation?.required"
-                         [minLength]="element.validation?.minLength"
-                         [maxLength]="element.validation?.maxLength" />
+                  <div [style]="element.styles?.divStyle" id="maindiv"  >
+                    <!-- <h6>{{element.styles?.divStyle}}</h6>
+                    <h6>{{element.type}}</h6> -->
+                    <!-- Label -->
+                    @if (element.label) {
+                      <label
+                        [for]="element.name"
+                        [style]="element.styles?.labelStyle">
+                        {{ element.label }}
+                      </label>
+                    }
             
-                  <!-- Textbox element -->
-                  <textarea *ngIf="element.type === 'textbox'"
-                            [id]="element.id"
-                            [name]="element.name"
+                    <!-- Input Element -->
+                    @if (element.type === 'input') {
+                      <input
+                        type="text"
+                        [id]="element.id"
+                        [name]="element.name"
+                        [placeholder]="element.placeholder"
+                        [style]="element.styles?.inputStyle" />
+                    }
 
-                            [placeholder]="element.placeholder"
-                            [style]="element.styles?.inputStyle"></textarea>
+                    <!-- Textbox element -->
+                    @if (element.type === 'textbox') {
+                      <textarea 
+                        [id]="element.id"
+                        [name]="element.name"
+                        [placeholder]="element.placeholder"
+                        [style]="element.styles?.inputStyle"
+                        ></textarea>
+                    }
             
-                  <!-- Radio button element -->
-                  <div *ngIf="element.type === 'radio'">
-                    <label *ngFor="let option of element.options">
-                      <input type="radio" [name]="element.name" [value]="option.value" />
-                      {{ option.label }}
-                    </label>
-                  </div>
-            
-                  <!-- Checkbox element -->
-                  <div *ngIf="element.type === 'checkbox'">
-                    <label *ngFor="let option of element.options">
-                      <input type="checkbox" [name]="element.name" [value]="option.value" />
-                      {{ option.label }}
-                    </label>
-                  </div>
-            
-                  <!-- Email element -->
-                  <input *ngIf="element.type === 'email'" 
-                         [id]="element.id"
-                         [name]="element.name"
-                         [placeholder]="element.placeholder"
-                         [style]="element.styles?.inputStyle"
-                         [required]="element.validation?.required" 
-                         type="email" />
-            
-                  <!-- Phone number element -->
-                  <input *ngIf="element.type === 'phone'" 
-                         [id]="element.id"
-                         [name]="element.name"
-                         [placeholder]="element.placeholder"
-                         [style]="element.styles?.inputStyle"
-                         [required]="element.validation?.required" 
-                         type="tel" />
-            
-                  <!-- Dropdown element -->
-                  <div *ngIf="element.type === 'dropdown'">
+                    <!-- Number Element -->
+                    @if (element.type === 'number') {
+                      <input
+                        type="number"
+                        [id]="element.id"
+                        [name]="element.name"
+                        [placeholder]="element.placeholder"
+                        [style]="element.styles?.inputStyle" />
+                    }
+
+                    <!-- Email element -->
+                    @if (element.type === 'email') {
+                      <input  
+                        [id]="element.id"
+                        [name]="element.name"
+                        [placeholder]="element.placeholder"
+                        [style]="element.styles?.inputStyle"
+                        [required]="element.validation?.required" 
+                        type="email"
+                         />
+                    }
                     
-                    <select [id]="element.id" [name]="element.name" [style]="element.styles?.selectStyle">
-                      <option *ngFor="let option of element.options" [value]="option.value">
-                        {{ option.label }}
-                      </option>
-                    </select>
+                    <!-- Phone number element -->
+                    @if (element.type === 'phone') {
+                      <input  
+                        [id]="element.id"
+                        [name]="element.name"
+                        [placeholder]="element.placeholder"
+                        [style]="element.styles?.inputStyle"
+                        [required]="element.validation?.required" 
+                        type="tel"
+                         />
+                    }
+
+                    <!-- Radio button element -->
+                    @if (element.type === 'radio') {
+                      <div [style]="element.innerDivStyle">
+                        @for (option of element.options; track $index) {
+                          <label [style]="element.innerLabelStyle">
+                            <input
+                              type="radio"
+                              [name]="element.name"
+                              [value]="option.value"
+                              [style]="option.style" />
+                            {{ option.label }}
+                          </label>
+                        }
+                      </div>
+                    }
+            
+                    <!-- Checkbox Element -->
+                    @if (element.type === 'checkbox') {
+                      <div [style]="element.innerDivStyle">
+                        @for (option of element.options; track $index) {
+                          <label [style]="element.innerLabelStyle">
+                            <input
+                              type="checkbox"
+                              [name]="element.name"
+                              [value]="option.value"
+                              [style]="option.style" />
+                            {{ option.label }}
+                          </label>
+                        }
+                      </div>
+                    }
+            
+                    <!-- Dropdown Element -->
+                    @if (element.type === 'dropdown') {
+                      <select
+                        [id]="element.id"
+                        [name]="element.name"
+                        [style]="element.styles?.selectStyle">
+                        @for (option of element.options; track $index) {
+                          <option [value]="option.value">
+                            {{ option.label }}
+                          </option>
+                        }
+                      </select>
+                    }
                   </div>
                   
                 </div>

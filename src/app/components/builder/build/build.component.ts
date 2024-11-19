@@ -46,9 +46,9 @@ export class BuildComponent implements OnDestroy{
         "id": "name",
         "placeholder": "please fill this field",
         "styles": {
-          "inputStyle": "color:red;",
-          "labelStyle": "color:red;",
-          "divStyle": ""
+          "inputStyle": "width: 97%; padding: 10px; border: 1px solid #ccc; border-radius: 4px;",
+          "labelStyle": "display: flex; margin-bottom: 8px; font-size: 14px; color: #333;justify-content: start;",
+          "divStyle": "width: 100%; margin-bottom: 20px;"
         },
         "validation": {
           "required": true,
@@ -63,7 +63,7 @@ export class BuildComponent implements OnDestroy{
         "placeholder": "please fill this field",
         "name": "textBox",
         "styles": {
-          "inputStyle": "width: 100%; padding: 8px; font-size: 14px; border: 1px solid #ccc; border-radius: 4px; box-sizing: border-box;",
+          "inputStyle": "width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 4px;",
           "labelStyle": "margin-bottom: 5px; font-size: 14px;",
           "divStyle": "display: flex; flex-direction: column; width: 100%; max-width: 400px; margin-bottom: 15px;"
         }
@@ -74,9 +74,16 @@ export class BuildComponent implements OnDestroy{
         "label": "Radio Button",
         "name": "radioChoice",
         "options": [
-          { "value": "yes", "label": "Yes" },
-          { "value": "no", "label": "No" }
-        ]
+          { "value": "yes", "label": "Yes" , "style": "margin-right: 8px;" },
+          { "value": "no", "label": "No" ,"style": "margin-right: 8px;" }
+        ],
+        "styles": {
+          "inputStyle": "width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 4px;",
+          "labelStyle": "margin-bottom: 5px; font-size: 14px;",
+          "divStyle": "display: flex; margin-bottom: 8px; font-size: 14px; color: #333; width: 100%;justify-content: space-between; ",
+          "innerDivStyle": "display: flex; margin-top: 10px;width: 100%; justify-content: space-between;",
+          "innerLabelStyle": "margin-bottom: 5px;"
+        }
       },
       {
         "index": 4,
@@ -84,9 +91,17 @@ export class BuildComponent implements OnDestroy{
         "label": "Check Box",
         "name": "checkboxOptions",
         "options": [
-          { "value": "option1", "label": "Option 1" },
-          { "value": "option2", "label": "Option 2" }
-        ]
+          { "value": "option1", "label": "Option 1", "style": "margin-right: 8px;" },
+          { "value": "option2", "label": "Option 2", "style": "margin-right: 8px;" }
+        ],
+        "styles": {
+        "inputStyle": "width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 4px; ",
+        "labelStyle": "margin-bottom: 5px; font-size: 14px;",
+        "divStyle": "display: flex; margin-bottom: 8px; font-size: 14px; color: #333; width: 100%;justify-content: space-between; ",
+        "innerDivStyle": "display: flex; margin-top: 10px;width: 100%; justify-content: space-between;",
+        "innerLabelStyle": "margin-bottom: 5px; font-size: 14px; color: #555;"
+        }
+
       },
       {
         "index": 5,
@@ -95,7 +110,7 @@ export class BuildComponent implements OnDestroy{
         "placeholder": "please fill this field",
         "name": "email",
         "styles": {
-          "inputStyle": "width: 100%; padding: 8px; font-size: 14px; border: 1px solid #ccc; border-radius: 4px; box-sizing: border-box;",
+          "inputStyle": "width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 4px;",
           "labelStyle": "margin-bottom: 5px; font-size: 14px;",
           "divStyle": "display: flex; flex-direction: column; width: 100%; max-width: 400px; margin-bottom: 15px;"
         }
@@ -107,7 +122,7 @@ export class BuildComponent implements OnDestroy{
         "placeholder": "please fill this field",
         "name": "phoneNumber",
         "styles": {
-          "inputStyle": "width: 100%; padding: 8px; font-size: 14px; border: 1px solid #ccc; border-radius: 4px; box-sizing: border-box;",
+          "inputStyle": "width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 4px;",
           "labelStyle": "margin-bottom: 5px; font-size: 14px;",
           "divStyle": "display: flex; flex-direction: column; width: 100%; max-width: 400px; margin-bottom: 15px;"
         }
@@ -123,7 +138,7 @@ export class BuildComponent implements OnDestroy{
           { "value": "option3", "label": "Option 3" }
         ],
         "styles": {
-          "selectStyle": "width: 100%; padding: 8px; font-size: 14px; border: 1px solid #ccc; border-radius: 4px; box-sizing: border-box;",
+          "selectStyle": "width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 4px;",
           "labelStyle": "margin-bottom: 5px; font-size: 14px;",
           "divStyle": "display: flex; flex-direction: column; width: 100%; max-width: 400px; margin-bottom: 15px;"
         }
@@ -248,10 +263,12 @@ export class BuildComponent implements OnDestroy{
           minLength: 0,
           maxLength: 0
         },
-        options: []
+        options: [],
+        innerLabelStyle : '',
+        innerDivStyle : ''
       }
     
-  
+ 
 
   onRightSidenavToggle(item: any){
     console.log('Duplicate clicked for item:', item);
