@@ -6,7 +6,7 @@ export interface SectionList{
 export interface Section {
     selectionName : string
     elements: Element[]
-  }
+  } 
   
   export interface Element {
     index: number

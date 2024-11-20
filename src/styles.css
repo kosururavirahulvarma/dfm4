@@ -9,6 +9,15 @@ body {  font-family: Roboto, "Helvetica Neue", sans-serif; }
 .primary-bg-color{
     background-color:  #F98866!important
 }
+.primarycolor{
+   color:  #F98866!important
+}
+.secondarycolor-bg{
+  background-color: #FFF2D7!important
+}
+.secondarycolor{
+  color:  #FFF2D7!important
+}
 .main-content-drop {
     /* display: flex; */
     justify-content: center; /* Ensures the drop area is centered */

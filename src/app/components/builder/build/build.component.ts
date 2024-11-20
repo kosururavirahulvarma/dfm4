@@ -12,7 +12,7 @@ import { NavbarComponent } from "../../layouts/navbar/navbar.component";
 import {MatSidenavModule} from '@angular/material/sidenav';
 import {MatButtonToggleModule} from '@angular/material/button-toggle';
 import {MatIconModule} from '@angular/material/icon';
-import { NavigationEnd, Router } from '@angular/router';
+import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import { MediaMatcher } from '@angular/cdk/layout';
 import { ChangeDetectorRef } from '@angular/core';
 import { MatListModule } from '@angular/material/list';
@@ -147,12 +147,18 @@ export class BuildComponent implements OnDestroy{
   }
   
 
-
+  selectedSection: string = '';
   private _mobileQueryListener: () => void;
 
-  constructor(private router: Router,private sanitizer: DomSanitizer) {
+  constructor(private router: Router,private sanitizer: DomSanitizer ,private route: ActivatedRoute) {
     const changeDetectorRef = inject(ChangeDetectorRef);
     const media = inject(MediaMatcher);
+
+   // Subscribe to the query parameter changes
+   this.route.queryParamMap.subscribe(params => {
+    this.selectedSection = params.get('selectedSection') || '';
+    console.log('Received section:', this.selectedSection);
+  });
 
     this.mobileQuery = media.matchMedia('(max-width: 600px)');
     this._mobileQueryListener = () => changeDetectorRef.detectChanges();
@@ -163,6 +169,14 @@ export class BuildComponent implements OnDestroy{
   ? JSON.parse(localStorage.getItem("mainContentItems") as string)
   : [{ label: 'Drag Here or Click from the Sidenav to add Elements',value:`<div style="display: flex; flex-direction: column; width: 100%; max-width: 400px; margin-bottom: 15px;"><label for="dropdown" style=" margin-bottom: 5px; font-size: 14px;">Drop elements here or click from the Sidenav to add!</label></div>`}];
 
+  
+
+  sectionList: any[] = localStorage.getItem("selectionList") 
+  ? JSON.parse(localStorage.getItem("selectionList") as string)
+  : [{ label: 'Drag Here or Click from the Sidenav to add Elements',value:`<div style="display: flex; flex-direction: column; width: 100%; max-width: 400px; margin-bottom: 15px;"><label for="dropdown" style=" margin-bottom: 5px; font-size: 14px;">Drop elements here or click from the Sidenav to add!</label></div>`}];
+
+
+
   // Drop event handler to move a single item to the main content area
   drop(event: CdkDragDrop<any[]>) {
     if (event.previousContainer !== event.container) {
@@ -171,8 +185,12 @@ export class BuildComponent implements OnDestroy{
   
       // Insert the dragged item at the dragged index in the main content items array
       const draggedIndex = event.currentIndex;
-      this.mainContentItems.splice(draggedIndex, 0, { ...draggedItem }); // Insert the item at the dragged index
-  
+
+
+      const indexNumber : number  = this.getIndexOfSelection(this.sectionList);
+        console.log('indexNumber');
+        console.log(indexNumber)
+      this.sectionList[indexNumber].elements.splice(draggedIndex, 0, { ...draggedItem }); // Insert the item at the dragged index
       // Optionally, remove the default first item if it is a placeholder
       const index = this.mainContentItems.findIndex(item => item.label === 'Drag Here or Click from the Sidenav to add Elements');
     if (index !== -1) {
@@ -186,7 +204,7 @@ export class BuildComponent implements OnDestroy{
         event.currentIndex
       );
     }
-    localStorage.setItem("mainContentItems",JSON.stringify(this.mainContentItems));
+    localStorage.setItem("selectionList",JSON.stringify(this.sectionList));
   }
   onItemClick(navItem: any) {
     if (this.mainContentItems && this.mainContentItems.length > 0) {
@@ -201,14 +219,29 @@ export class BuildComponent implements OnDestroy{
       // const itemExists = this.mainContentItems.some(item => item.label === navItem.label);
       // if (!itemExists) {
         // Add the clicked item to mainContentItems if it doesn't already exist
+
+        const indexNumber : number  = this.getIndexOfSelection(this.sectionList);
+        console.log(indexNumber);
+        if (indexNumber >= 0) {
+          console.log(indexNumber)
+          console.log(this.sectionList)
+          // Ensure that the selected section has an 'elements' array
+          this.sectionList[indexNumber].elements.push({ ...navItem });
+          console.log(this.sectionList)
+        }
         this.mainContentItems.push({ ...navItem });
+
       // }
     // } else {
     //   console.log('mainContentItems is empty or not defined');
     }
-    localStorage.setItem("mainContentItems", JSON.stringify(this.mainContentItems));
+    localStorage.setItem("selectionList", JSON.stringify(this.sectionList));
   }
-  
+
+
+  getIndexOfSelection(list: any) : number{
+   return list.findIndex((item: any) => item.selectionName === this.selectedSection);
+  }
   
   ngOnDestroy(): void {
     this.mobileQuery.removeListener(this._mobileQueryListener);
@@ -274,6 +307,10 @@ export class BuildComponent implements OnDestroy{
     console.log('Duplicate clicked for item:', item);
     this.selectedItem = item;
     this.rightSideNavOpened = !this.rightSideNavOpened;
+  }
+
+  addAnotherSection(){
+    this.router.navigate(['/home/section']);
   }
 }
 

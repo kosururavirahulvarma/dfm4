@@ -8,6 +8,7 @@ import { PreviewComponent } from './components/preview/preview.component';
 import { QuickshareComponent } from './components/builder/publish/quickshare/quickshare.component';
 import { DownloadComponent } from './components/builder/publish/download/download.component';
 import { AssignformsComponent } from './components/builder/publish/assignforms/assignforms.component';
+import { SectionsComponent } from './components/builder/sections/sections.component';
 
 export const routes: Routes = [
     {
@@ -23,6 +24,10 @@ export const routes: Routes = [
             {
                 path:"build",
                 component:BuildComponent
+            },
+            {
+                path:"section",
+                component:SectionsComponent
             },
             {
                 path:"rules",

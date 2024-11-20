@@ -1,0 +1,27 @@
+.mdc-text-field--filled:not(.mdc-text-field--disabled) {
+    background-color:#FFF2D7!important ;
+}
+
+.mat-mdc-unelevated-button:not(:disabled) {
+    color: var(--mdc-filled-button-label-text-color, var(--mat-app-on-primary));
+    background-color: #F98866!important
+}
+
+.mat-mdc-button:not(:disabled) {
+    color: #F98866!important;
+}
+
+.mat-mdc-text-field-wrapper:hover .mat-mdc-form-field-focus-overlay {
+    opacity :#FFF2D7!important ;
+}
+
+.mat-form-field.mat-form-field {
+    --mat-mdc-form-field-label-color: red; /* Change label color */
+  }
+
+.mat-form-field.mat-form-field {
+    --mat-mdc-form-field-focused-underline-color: red; /* Underline color on focus */
+    --mat-mdc-form-field-underline-color: green; /* Default underline color */
+}
+
+
