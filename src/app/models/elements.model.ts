@@ -1,4 +1,10 @@
-export interface RootElement {
+export interface SectionList{
+  
+  selectionList : Section[]
+}
+
+export interface Section {
+    selectionName : string
     elements: Element[]
   }
   
