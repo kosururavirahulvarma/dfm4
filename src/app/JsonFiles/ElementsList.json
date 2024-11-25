@@ -1,0 +1,266 @@
+[
+    {
+        "elements": [
+            {
+                "index": 0,
+                "type": "input",
+                "label": "Name",
+                "name": "name",
+                "id": "input_hwwvooeijaq",
+                "placeholder": "please fill this field",
+                "styles": {
+                    "inputStyle": "width: 97%; padding: 10px; border: 1px solid #ccc; border-radius: 4px;",
+                    "labelStyle": "display: flex; margin-bottom: 8px; font-size: 14px; color: #333;justify-content: start;",
+                    "divStyle": "width: 100%; margin-bottom: 20px;"
+                },
+                "validation": {
+                    "required": true,
+                    "minLength": 3,
+                    "maxLength": 10
+                }
+            },
+            {
+                "index": 3,
+                "type": "radio",
+                "label": "Radio Button",
+                "id": "radio_1bt3gnq4vga",
+                "name": "radioChoice",
+                "options": [
+                    {
+                        "value": "yes",
+                        "label": "Yes",
+                        "style": "margin-right: 8px;",
+                        "id": "radio_options_tyvcqktz3y"
+                    },
+                    {
+                        "value": "no",
+                        "label": "No",
+                        "style": "margin-right: 8px;",
+                        "id": "radio_options_0pe6hliypxrd"
+                    }
+                ],
+                "styles": {
+                    "inputStyle": "width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 4px;",
+                    "labelStyle": "margin-bottom: 5px; font-size: 14px;",
+                    "divStyle": "display: flex; margin-bottom: 8px; font-size: 14px; color: #333; width: 100%;justify-content: space-between; ",
+                    "innerDivStyle": "display: flex; margin-top: 10px;width: 100%; justify-content: space-between;",
+                    "innerLabelStyle": "margin-bottom: 5px;"
+                }
+            },
+            {
+                "index": 1,
+                "type": "textbox",
+                "label": "Text Box",
+                "placeholder": "please fill this field",
+                "id": "textbox_91e45pbiuai",
+                "name": "textBox",
+                "styles": {
+                    "inputStyle": "width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 4px;",
+                    "labelStyle": "margin-bottom: 5px; font-size: 14px;",
+                    "divStyle": "display: flex; flex-direction: column; width: 100%; max-width: 400px; margin-bottom: 15px;"
+                }
+            },
+            {
+                "index": 4,
+                "type": "checkbox",
+                "label": "Check Box",
+                "id": "checkbox_qt5xamb0nis",
+                "name": "checkboxOptions",
+                "options": [
+                    {
+                        "value": "option1",
+                        "label": "Option 1",
+                        "style": "margin-right: 8px;",
+                        "id": "checkbox_options_tdpwdrj3wej"
+                    },
+                    {
+                        "value": "option2",
+                        "label": "Option 2",
+                        "style": "margin-right: 8px;",
+                        "id": "checkbox_options_yrh3fpemu2f"
+                    }
+                ],
+                "styles": {
+                    "inputStyle": "width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 4px; ",
+                    "labelStyle": "margin-bottom: 5px; font-size: 14px;",
+                    "divStyle": "display: flex; margin-bottom: 8px; font-size: 14px; color: #333; width: 100%;justify-content: space-between; ",
+                    "innerDivStyle": "display: flex; margin-top: 10px;width: 100%; justify-content: space-between;",
+                    "innerLabelStyle": "margin-bottom: 5px; font-size: 14px; color: #555;"
+                }
+            },
+            {
+                "index": 6,
+                "type": "phone",
+                "label": "Phone Number",
+                "id": "phone_fo4y7ywqsls",
+                "placeholder": "please fill this field",
+                "name": "phoneNumber",
+                "styles": {
+                    "inputStyle": "width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 4px;",
+                    "labelStyle": "margin-bottom: 5px; font-size: 14px;",
+                    "divStyle": "display: flex; flex-direction: column; width: 100%; max-width: 400px; margin-bottom: 15px;"
+                }
+            },
+            {
+                "index": 7,
+                "type": "dropdown",
+                "label": "Dropdown",
+                "id": "dropdown_g9h3bxhp0p4",
+                "name": "dropdown",
+                "options": [
+                    {
+                        "value": "option1",
+                        "label": "Option 1"
+                    },
+                    {
+                        "value": "option2",
+                        "label": "Option 2"
+                    },
+                    {
+                        "value": "option3",
+                        "label": "Option 3"
+                    }
+                ],
+                "styles": {
+                    "selectStyle": "width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 4px;",
+                    "labelStyle": "margin-bottom: 5px; font-size: 14px;",
+                    "divStyle": "display: flex; flex-direction: column; width: 100%; max-width: 400px; margin-bottom: 15px;"
+                }
+            }
+        ],
+        "selectionName": "one"
+    },
+    {
+        "elements": [
+            {
+                "index": 1,
+                "type": "textbox",
+                "label": "Text Box",
+                "placeholder": "please fill this field",
+                "name": "textBox",
+                "styles": {
+                    "inputStyle": "width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 4px;",
+                    "labelStyle": "margin-bottom: 5px; font-size: 14px;",
+                    "divStyle": "display: flex; flex-direction: column; width: 100%; max-width: 400px; margin-bottom: 15px;"
+                }
+            },
+            {
+                "index": 3,
+                "type": "radio",
+                "label": "Radio Button",
+                "name": "radioChoice",
+                "options": [
+                    {
+                        "value": "yes",
+                        "label": "Yes",
+                        "style": "margin-right: 8px;"
+                    },
+                    {
+                        "value": "no",
+                        "label": "No",
+                        "style": "margin-right: 8px;"
+                    }
+                ],
+                "styles": {
+                    "inputStyle": "width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 4px;",
+                    "labelStyle": "margin-bottom: 5px; font-size: 14px;",
+                    "divStyle": "display: flex; margin-bottom: 8px; font-size: 14px; color: #333; width: 100%;justify-content: space-between; ",
+                    "innerDivStyle": "display: flex; margin-top: 10px;width: 100%; justify-content: space-between;",
+                    "innerLabelStyle": "margin-bottom: 5px;"
+                }
+            },
+            {
+                "index": 4,
+                "type": "checkbox",
+                "label": "Check Box",
+                "name": "checkboxOptions",
+                "options": [
+                    {
+                        "value": "option1",
+                        "label": "Option 1",
+                        "style": "margin-right: 8px;"
+                    },
+                    {
+                        "value": "option2",
+                        "label": "Option 2",
+                        "style": "margin-right: 8px;"
+                    }
+                ],
+                "styles": {
+                    "inputStyle": "width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 4px; ",
+                    "labelStyle": "margin-bottom: 5px; font-size: 14px;",
+                    "divStyle": "display: flex; margin-bottom: 8px; font-size: 14px; color: #333; width: 100%;justify-content: space-between; ",
+                    "innerDivStyle": "display: flex; margin-top: 10px;width: 100%; justify-content: space-between;",
+                    "innerLabelStyle": "margin-bottom: 5px; font-size: 14px; color: #555;"
+                }
+            }
+        ],
+        "selectionName": "two"
+    },
+    {
+        "elements": [
+            {
+                "index": 1,
+                "type": "textbox",
+                "label": "Text Box",
+                "placeholder": "please fill this field",
+                "name": "textBox",
+                "styles": {
+                    "inputStyle": "width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 4px;",
+                    "labelStyle": "margin-bottom: 5px; font-size: 14px;",
+                    "divStyle": "display: flex; flex-direction: column; width: 100%; max-width: 400px; margin-bottom: 15px;"
+                }
+            },
+            {
+                "index": 0,
+                "type": "input",
+                "label": "Name",
+                "name": "name",
+                "id": "name",
+                "placeholder": "please fill this field",
+                "styles": {
+                    "inputStyle": "width: 97%; padding: 10px; border: 1px solid #ccc; border-radius: 4px;",
+                    "labelStyle": "display: flex; margin-bottom: 8px; font-size: 14px; color: #333;justify-content: start;",
+                    "divStyle": "width: 100%; margin-bottom: 20px;"
+                },
+                "validation": {
+                    "required": true,
+                    "minLength": 3,
+                    "maxLength": 10
+                }
+            }
+        ],
+        "selectionName": "three"
+    },
+    {
+        "elements": [],
+        "selectionName": "four"
+    },
+    {
+        "elements": [
+            {
+                "index": 0,
+                "type": "input",
+                "label": "Name",
+                "name": "name",
+                "id": "input_y2qxxgm5hpg",
+                "placeholder": "please fill this field",
+                "styles": {
+                    "inputStyle": "width: 97%; padding: 10px; border: 1px solid #ccc; border-radius: 4px;",
+                    "labelStyle": "display: flex; margin-bottom: 8px; font-size: 14px; color: #333;justify-content: start;",
+                    "divStyle": "width: 100%; margin-bottom: 20px;"
+                },
+                "validation": {
+                    "required": true,
+                    "minLength": 3,
+                    "maxLength": 10
+                }
+            }
+        ],
+        "selectionName": "five"
+    },
+    {
+        "elements": [],
+        "selectionName": "six"
+    }
+]

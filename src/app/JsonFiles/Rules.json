@@ -1,0 +1,62 @@
+{
+    "conditions": [
+        {
+            "if": [
+                "input_gy5y1anrcas",
+                "textbox_k7fp5g9nbl",
+                "email_k6j95o4ppg",
+                "phone_82icuy48t1e",
+                "input_1ar661edmw4",
+                "dropdown_9aso1aeiaqn"
+            ],
+            "selectedIf": "input_gy5y1anrcas",
+            "state": [
+                "Is Equal To",
+                "Is Not Equal To",
+                "Is Greater Than",
+                "Is Greater Than or Equal To",
+                "Is Less Than",
+                "Is Less Than or Equal To",
+                "Contains",
+                "Does Not Contain"
+            ],
+            "selectedState": "Is Equal To",
+            "target": [
+                "Another Field",
+                "Value"
+            ],
+            "selectedTarget": "Another Field",
+            "anotherField": [
+                "input_gy5y1anrcas",
+                "textbox_k7fp5g9nbl",
+                "email_k6j95o4ppg",
+                "phone_82icuy48t1e",
+                "input_1ar661edmw4",
+                "dropdown_9aso1aeiaqn"
+            ],
+            "selectedAnotherField": "input_1ar661edmw4",
+            "value": ""
+        }
+    ],
+    "dos": [
+        {
+            "do": [
+                "Hide",
+                "Show",
+                "Hide Multiple",
+                "Show Multiple"
+            ],
+            "selectedDo": "Hide",
+            "field": [
+                "input_gy5y1anrcas",
+                "textbox_k7fp5g9nbl",
+                "email_k6j95o4ppg",
+                "phone_82icuy48t1e",
+                "input_1ar661edmw4",
+                "dropdown_9aso1aeiaqn"
+            ],
+            "selectedField": "dropdown_9aso1aeiaqn"
+        }
+    ],
+    "option": "All"
+}
