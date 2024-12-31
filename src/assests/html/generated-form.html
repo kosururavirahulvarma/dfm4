@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+      <html lang="en">
+      <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Generated HTML</title>
+      </head>
+      <body>
+      <div>
+        <form style="display: flex; flex-direction: column; justify-content: center; align-items: center; width: 100%; max-width: 500px; padding: 20px; border: 1px solid #ccc; border-radius: 8px; background-color: #fff;">
+          <div style="width: 100%; margin-bottom: 15px;">
+            <div style="width: 100%; margin-bottom: 20px;">
+              <label style="display: flex; margin-bottom: 8px; font-size: 14px; color: #333;justify-content: start;">Name</label>
+              <input type="text" id="input_gpqdko37gib" oninput="toggleInputFields('input_gpqdko37gib')" name="name" placeholder="please fill this field" style="width: 97%; padding: 10px; border: 1px solid #ccc; border-radius: 4px;" />
+            </div>
+          </div>  
+          <div style="width: 100%; margin-bottom: 15px;">
+            <div style="display: flex; flex-direction: column; width: 100%; max-width: 400px; margin-bottom: 15px;">
+              <label style="margin-bottom: 5px; font-size: 14px;">Text Box</label>
+              <textarea id="textbox_k7fp5g9nbl" name="textBox" placeholder="please fill this field" style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 4px;" required>
+              </textarea>
+            </div>
+          </div> 
+          <div style="width: 100%; margin-bottom: 15px;">
+            <div style="display: flex; flex-direction: column; width: 100%; max-width: 400px; margin-bottom: 15px;">
+              <label style="margin-bottom: 5px; font-size: 14px;">Email</label>
+              <input type="email" id="email_k6j95o4ppg" name="email" placeholder="please fill this field" style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 4px;" required />
+            </div>
+          </div>  
+          <div style="width: 100%; margin-bottom: 15px;">
+            <div style="display: flex; flex-direction: column; width: 100%; max-width: 400px; margin-bottom: 15px;">
+              <label style="margin-bottom: 5px; font-size: 14px;">Phone Number</label>
+              <input  
+                id="phone_82icuy48t1e"
+                name="phoneNumber"
+                placeholder="please fill this field"
+                style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 4px;"
+                required="undefined" 
+                type="tel"
+                style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 4px;" />
+            </div>
+          </div>  
+          <div style="width: 100%; margin-bottom: 15px;">
+            <div style="width: 100%; margin-bottom: 20px;">
+              <label style="display: flex; margin-bottom: 8px; font-size: 14px; color: #333;justify-content: start;">Name</label>
+              <input type="text" id="input_1ar661edmw4" oninput="toggleInputFields('input_1ar661edmw4')" name="name" placeholder="please fill this field" style="width: 97%; padding: 10px; border: 1px solid #ccc; border-radius: 4px;" />
+            </div>
+          </div>  
+          <div style="width: 100%; margin-bottom: 15px;">
+            <div style="display: flex; flex-direction: column; width: 100%; max-width: 400px; margin-bottom: 15px;">
+              <label style="margin-bottom: 5px; font-size: 14px;">Dropdown</label>
+              <div style="width: 100%;">
+                <select
+                  id="dropdown_2fheeqwag6t"
+                  name="dropdown"
+                  style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 4px;"
+                  style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 4px;"> 
+              </div>
+            </div>
+          </div>
+          <button type="submit" style="padding: 10px 20px; font-size: 16px; background-color: #007bff; color: #fff; border: none; border-radius: 5px; cursor: pointer; margin-top: 15px;">
+            Submit
+          </button>
+        </form>
+      </div>
+     <script>
+    function toggleInputFields(id) {
+      console.log(id);
+        const id1= document.getElementById('input_gpqdko37gib').value;
+          console.log(id1);
+          const id2= document.getElementById('input_1ar661edmw4').value;
+            console.log(id2);const field = document.getElementById('dropdown_2fheeqwag6t');
+              console.log(field);
+                const usStates = [
+      "Alabama", "Alaska", "Arizona", "Arkansas", "California",
+      "Colorado", "Connecticut", "Delaware", "Florida", "Georgia"
+    ];
+
+    const indianStates = [
+      "Andhra Pradesh", "Arunachal Pradesh", "Assam", "Bihar", "Chhattisgarh",
+      "Goa", "Gujarat", "Haryana", "Himachal Pradesh", "Jharkhand"
+    ];
+      if(id1 === "us"){
+                 for (let i = 0; i < usStates.length; i++) {
+        const option = document.createElement('option');
+        option.value = usStates[i];
+        option.textContent = usStates[i];
+        field.appendChild(option);
+        field.disabled = false;
+      }
+                }
+      if(id1 === "india") {
+                 for (let i = 0; i < indianStates.length; i++) {
+        const option = document.createElement('option');
+        option.value = indianStates[i];
+        option.textContent = indianStates[i];
+        field.appendChild(option);
+        field.disabled = false;
+                }}
+  if(id1 != "india" && id1 != "us"){
+      while (field.firstChild) {
+        field.removeChild(field.firstChild);
+      }
+      field.disabled = true;
+      }
+                if(id1 === id2){
+                          field.style.display = 'none';
+                }else{
+                          field.style.display = 'block';
+                }
+              
+    }
+     </script>
+      
+      </body>
+      </html>

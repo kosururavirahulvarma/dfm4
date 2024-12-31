@@ -1,0 +1,81 @@
+.conditions-content {
+    padding-top: 50px;
+    padding-left: 100px;
+    display: flex;
+    flex-direction: row;
+    align-items: start;  
+    justify-content: start;
+    gap: 15px;
+  }
+  
+  .panelHeader-iconSvg {
+    width: 32px;
+    height: 32px;
+    background-color: rgb(6, 6, 114);
+    color: white;
+    padding : 10px;
+  }
+  .conditions-heading{
+    display: flex;
+    flex-direction: column;
+    align-items: start;  
+    justify-content: start;
+    padding: 0%;
+    gap: 0px;
+  }
+  .example-button-row {
+    margin-top: 40px;
+    margin-left: 100px;
+  }
+  .mat-mdc-unelevated-button{
+    width: 40%; 
+    border-radius: 5px;
+  }
+  .hr{
+    width: 38%;
+    color: rgb(118, 96, 188);
+    position: relative;
+    right:387px ;
+    top: 10px;
+  }
+  .back{
+    position: absolute;
+    top: 50px;
+    width: 100px;
+    height: 100px;
+    font-size: -webkit-xxx-large
+  }
+  .grid-container {
+    display: grid;
+    grid-template-rows: repeat(auto-fill);
+    width: 35%;
+    margin-top: 35px;
+    margin-left:80px ;
+    gap: 10px;
+    padding: 5px;
+  }
+  
+  .grid-box {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); /* Adjust width as needed */
+    gap: 10px; /* Space between boxes */
+    background-color: #ffffff;
+    color: #000000;
+    text-align: start;
+    padding: 15px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 16px;
+    border-radius: 2px;
+    border: 1px solid gray;
+    transition: background-color 0.3s ease;
+  }
+  
+  .grid-box:hover {
+    background-color: #dddde3;
+  }
+
+  .list-icon{
+    justify-self: end;
+  }
+  

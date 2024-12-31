@@ -1,0 +1,10 @@
+.example-sidenav-container {
+    position: absolute !important;
+    height: 80%;
+    width: 100%;
+  
+  }
+  .sidenav1{
+    padding-left: 8px;
+    background-color:#FFF2D7;
+  }

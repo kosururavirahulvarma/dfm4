@@ -1,0 +1,85 @@
+<mat-icon *ngIf="showConditionTypes" (click)="back()"  class="back" aria-hidden="false" aria-label="Example keyboard_arrow_left icon" fontIcon="keyboard_arrow_left"></mat-icon>
+<div class="conditions-content">
+    <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24" class="panelHeader-iconSvg" width="24" height="24"><path fill-rule="evenodd" d="M16 5a4.001 4.001 0 0 1-2.5 3.71v2.79h4A1.5 1.5 0 0 1 19 13v4h2a1 1 0 0 1 1 1v4a1 1 0 0 1-1 1h-7a1 1 0 0 1-1-1v-4a1 1 0 0 1 1-1h2v-2.5H8V17h2a1 1 0 0 1 1 1v4a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1v-4a1 1 0 0 1 1-1h2v-4a1.5 1.5 0 0 1 1.5-1.5h4V8.71A4.001 4.001 0 0 1 12 1a4 4 0 0 1 4 4Z" clip-rule="evenodd"></path></svg>
+   @if(!showConditionTypes && currentConditionType === '' ){
+    <div class="conditions-heading">
+        <div style="font-size: medium;">CONDITIONS</div>
+        <div style="font-size: small;">Add conditional logic to your form.</div>
+    </div>
+}@else if(showConditionTypes && currentConditionType === ''){
+    <div class="conditions-heading">
+        <div style="font-size: medium;">NEW CONDITION</div>
+        <div style="font-size: small;">Automatically trigger an action if a condition is met</div>
+    </div>
+}@else if(showConditionTypes && currentConditionType === 'SHOW/HIDE FIELD'){
+    <div class="conditions-heading">
+        <div style="font-size: medium;">SHOW/HIDE FIELD</div>
+        <div style="font-size: small;">Change visibility of specific form fields</div>
+    </div>
+}
+</div>
+<div *ngIf="!showConditionTypes" class="example-button-row">
+    <button mat-flat-button (click)="addCondition()">Add Condition</button>
+</div>
+<hr class="hr" *ngIf="!showConditionTypes">
+<div class="grid-container" *ngIf="showConditionTypes && currentConditionType === '' ">
+    <div 
+      *ngFor="let item of formConditionTypes; let i = index" 
+      class="grid-box" 
+      (click)="onBoxClick(item)">
+      <div>{{ item }}</div> <mat-icon class="list-icon" *ngIf="showConditionTypes" aria-hidden="false" aria-label="Example keyboard_arrow_left icon" fontIcon="keyboard_arrow_right"></mat-icon>
+    </div>
+</div>
+
+<div class="grid-container" *ngIf="showConditionTypes && currentConditionType === 'SHOW/HIDE FIELD' ">
+    <div *ngFor="let condition of rule.conditions; let i = index" class="grid-box">
+        <div>
+          <label>If:</label>
+          <select [(ngModel)]="condition.selectedIf">
+            <option value="" disabled selected>Select Field</option> 
+            <option *ngFor="let option of condition.if" [value]="option.value">{{ option.label}}</option>
+          </select>
+        </div>
+        <div>
+          <label>State:</label>
+          <select  [(ngModel)]="condition.selectedState">
+            <option value="" disabled selected>Select Field State</option> 
+            <option *ngFor="let state of condition.state" [value]="state">{{ state }}</option>
+          </select>
+        </div>
+        <div>
+          <label>Target:</label>
+          <select  [(ngModel)]="condition.selectedTarget">
+            <option *ngFor="let target of condition.target" [value]="target">{{ target }}</option>
+          </select>
+        </div>
+        <div *ngIf="condition.selectedTarget === 'Another Field'">
+          <label>Field:</label>
+          <select  [(ngModel)]="condition.selectedAnotherField">
+            <option value="" disabled selected>Select Field</option> 
+            <option *ngFor="let anotherField of condition.anotherField" [value]="anotherField.value">{{ anotherField.label }}</option>
+          </select>
+        </div>
+        <div *ngIf="condition.selectedTarget === 'Value'">
+          <label>Value:</label>
+          <input type="text" [(ngModel)]="condition.value" placeholder="Enter value" />
+        </div>
+      </div>
+      
+      <div *ngFor="let action of rule.dos; let i = index" class="grid-box">
+        <div>
+          <label>Do:</label>
+          <select  [(ngModel)]="action.selectedDo">
+            <option *ngFor="let doOption of action.do" [value]="doOption">{{ doOption }}</option>
+          </select>
+        </div>
+        <div>
+          <label>Field:</label>
+          <select  [(ngModel)]="action.selectedField">
+            <option *ngFor="let field of action.field" [value]="field.value">{{ field.label }}</option>
+          </select>
+        </div>
+      </div>
+      <button mat-flat-button (click)="saveRule()">Save</button>
+</div>
+  
