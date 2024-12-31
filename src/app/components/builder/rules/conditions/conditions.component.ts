@@ -16,7 +16,7 @@ import { Element } from '../../../../models/elements.model';
 export class ConditionsComponent implements OnInit {
   mainContentItems:any;
  ngOnInit(): void {
-  const savedItems = localStorage.getItem('mainContentItems');
+  const savedItems = localStorage.getItem('selectionList');
   this.mainContentItems = savedItems
     ? JSON.parse(savedItems)
     : [];
@@ -79,7 +79,7 @@ console.log(condition.selectedIf);
         }
     })
   });
-  localStorage.setItem("mainContentItems",JSON.stringify(this.mainContentItems));
+  localStorage.setItem("selectionList",JSON.stringify(this.mainContentItems));
   localStorage.setItem("rules",JSON.stringify(this.rule));
  }
 }

@@ -56,7 +56,7 @@
         <div *ngIf="condition.selectedTarget === 'Another Field'">
           <label>Field:</label>
           <select  [(ngModel)]="condition.selectedAnotherField">
-            <option value="" disabled selected>Select Field</option> 
+            <option value="" disabled selected>Select Field</option>
             <option *ngFor="let anotherField of condition.anotherField" [value]="anotherField.value">{{ anotherField.label }}</option>
           </select>
         </div>
@@ -70,12 +70,14 @@
         <div>
           <label>Do:</label>
           <select  [(ngModel)]="action.selectedDo">
+            <option value="" disabled selected>Select Condition</option> 
             <option *ngFor="let doOption of action.do" [value]="doOption">{{ doOption }}</option>
           </select>
         </div>
         <div>
           <label>Field:</label>
           <select  [(ngModel)]="action.selectedField">
+            <option value="" disabled selected>Select Field</option> 
             <option *ngFor="let field of action.field" [value]="field.value">{{ field.label }}</option>
           </select>
         </div>

@@ -13,7 +13,7 @@ export interface Section {
     type: string
     label: string
     name: string
-    id: string
+    id?: string
     placeholder?: string
     hasRule:Boolean
     styles?: Styles

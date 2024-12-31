@@ -25,5 +25,5 @@ export interface Do {
 
 export interface IF {
   label: string;
-  value: string;
+  value?: string;
 }
