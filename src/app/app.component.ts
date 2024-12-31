@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { NavbarComponent } from './components/layouts/navbar/navbar.component';
 import { MatToolbarModule } from '@angular/material/toolbar';
+import { provideNativeDateAdapter } from '@angular/material/core';
 
 @Component({
   selector: 'app-root',

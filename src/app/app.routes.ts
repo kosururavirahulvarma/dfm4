@@ -9,6 +9,10 @@ import { QuickshareComponent } from './components/builder/publish/quickshare/qui
 import { DownloadComponent } from './components/builder/publish/download/download.component';
 import { AssignformsComponent } from './components/builder/publish/assignforms/assignforms.component';
 import { SectionsComponent } from './components/builder/sections/sections.component';
+import { EmailsComponent } from './components/builder/rules/emails/emails.component';
+import { ConditionsComponent } from './components/builder/rules/conditions/conditions.component';
+import { ThankyouComponent } from './components/builder/rules/thankyou/thankyou.component';
+
 
 export const routes: Routes = [
     {
@@ -31,7 +35,22 @@ export const routes: Routes = [
             },
             {
                 path:"rules",
-                component:RulesComponent
+                component:RulesComponent,
+                children:[
+                    {
+                        path:"emails",
+                        component:EmailsComponent
+                    },
+                    {
+                        path:"conditions",
+                        component:ConditionsComponent
+                    }
+                    ,
+                    {
+                        path:"thankyou",
+                        component:ThankyouComponent
+                    }
+                ]
             },
             {
                 path:"publish",

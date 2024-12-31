@@ -45,6 +45,7 @@ export class BuildComponent implements OnDestroy{
         "name": "name",
         "id": "name",
         "placeholder": "please fill this field",
+        "hasRule": false,
         "styles": {
           "inputStyle": "width: 97%; padding: 10px; border: 1px solid #ccc; border-radius: 4px;",
           "labelStyle": "display: flex; margin-bottom: 8px; font-size: 14px; color: #333;justify-content: start;",
@@ -62,6 +63,7 @@ export class BuildComponent implements OnDestroy{
         "label": "Text Box",
         "placeholder": "please fill this field",
         "name": "textBox",
+        "hasRule": false,
         "styles": {
           "inputStyle": "width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 4px;",
           "labelStyle": "margin-bottom: 5px; font-size: 14px;",
@@ -73,6 +75,7 @@ export class BuildComponent implements OnDestroy{
         "type": "radio",
         "label": "Radio Button",
         "name": "radioChoice",
+        "hasRule": false,
         "options": [
           { "value": "yes", "label": "Yes" , "style": "margin-right: 8px;" },
           { "value": "no", "label": "No" ,"style": "margin-right: 8px;" }
@@ -90,6 +93,7 @@ export class BuildComponent implements OnDestroy{
         "type": "checkbox",
         "label": "Check Box",
         "name": "checkboxOptions",
+        "hasRule": false,
         "options": [
           { "value": "option1", "label": "Option 1", "style": "margin-right: 8px;" },
           { "value": "option2", "label": "Option 2", "style": "margin-right: 8px;" }
@@ -109,6 +113,7 @@ export class BuildComponent implements OnDestroy{
         "label": "Email",
         "placeholder": "please fill this field",
         "name": "email",
+        "hasRule": false,
         "styles": {
           "inputStyle": "width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 4px;",
           "labelStyle": "margin-bottom: 5px; font-size: 14px;",
@@ -121,6 +126,7 @@ export class BuildComponent implements OnDestroy{
         "label": "Phone Number",
         "placeholder": "please fill this field",
         "name": "phoneNumber",
+        "hasRule": false,
         "styles": {
           "inputStyle": "width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 4px;",
           "labelStyle": "margin-bottom: 5px; font-size: 14px;",
@@ -132,6 +138,7 @@ export class BuildComponent implements OnDestroy{
         "type": "dropdown",
         "label": "Dropdown",
         "name": "dropdown",
+        "hasRule": false,
         "options": [
           { "value": "option1", "label": "Option 1" },
           { "value": "option2", "label": "Option 2" },
@@ -286,6 +293,7 @@ export class BuildComponent implements OnDestroy{
         type: '',
         label: '',
         name: '',
+        hasRule: false,
         styles: {
           labelStyle: '',
           divStyle: '',

@@ -120,16 +120,16 @@ cdkDropListGroup>
                       @if (element.type === 'input') {
                         <input
                           type="text"
-                          [id]="element.id"
+                          id="element.id"
                           [name]="element.name"
                           [placeholder]="element.placeholder"
-                          [style]="element.styles?.inputStyle" />
+                          [style]="element.styles?.inputStyle" oninput="formInput()" />
                       }
   
                       <!-- Textbox element -->
                       @if (element.type === 'textbox') {
-                        <textarea 
-                          [id]="element.id"
+                        <textarea rows="5" cols="200"
+                          id="element.id.Text"
                           [name]="element.name"
                           [placeholder]="element.placeholder"
                           [style]="element.styles?.inputStyle"
@@ -227,6 +227,7 @@ cdkDropListGroup>
             
           }
          </form>
+
        
         
         </div>

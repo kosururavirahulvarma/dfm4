@@ -4,6 +4,10 @@
     style="display: flex; flex-direction: column; justify-content: center; align-items: center; width: 100%; max-width: 500px; padding: 20px; border: 1px solid #ccc; border-radius: 8px; background-color: #fff;">
     
     @for (element of mainContentItems ; track $index) {
+      <h2>{{element.selectionName}}</h2>
+
+      @for (element of element.elements  ; track $index) {
+      
      
         @if (element.label === 'Drag Here or Click from the Sidenav to add Elements') {
           <!-- Add specific styles here if needed -->
@@ -77,10 +81,11 @@
 
               <!-- Radio button element -->
               @if (element.type === 'radio') {
-                <div [style]="element.innerDivStyle">
+                <div  [id]="element.id" [style]="element.innerDivStyle">
                   @for (option of element.options; track $index) {
                     <label [style]="element.innerLabelStyle">
                       <input
+                        [id]="option.id"
                         type="radio"
                         [name]="element.name"
                         [value]="option.value"
@@ -93,10 +98,11 @@
       
               <!-- Checkbox Element -->
               @if (element.type === 'checkbox') {
-                <div [style]="element.innerDivStyle">
+                <div  [id]="element.id" [style]="element.innerDivStyle">
                   @for (option of element.options; track $index) {
                     <label [style]="element.innerLabelStyle">
                       <input
+                        [id]="option.id"
                         type="checkbox"
                         [name]="element.name"
                         [value]="option.value"
@@ -114,7 +120,7 @@
                   [name]="element.name"
                   [style]="element.styles?.selectStyle">
                   @for (option of element.options; track $index) {
-                    <option [value]="option.value">
+                    <option  [id]="option.id" [value]="option.value">
                       {{ option.label }}
                     </option>
                   }
@@ -123,6 +129,7 @@
             </div>
           </div>
         }
-    }
+    } 
+  }
   </form>
 </div>

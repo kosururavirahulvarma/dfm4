@@ -1,8 +1,8 @@
 import { JsonPipe } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 import { Element } from '../../models/elements.model';
-
+import { rule } from '../../models/rules.model';
 @Component({
   selector: 'app-preview',
   standalone: true,
@@ -13,38 +13,28 @@ import { Element } from '../../models/elements.model';
 export class PreviewComponent implements OnInit {
   combinedHtml: SafeHtml = '';
   storedData: any[] = [];
-  mainContentItems: Element[] = [];
-
+  mainContentItems: any = [];
+  rules: rule = {conditions:[],dos:[],option:''}
   constructor(private sanitizer: DomSanitizer) {}
+
+
 
   ngOnInit(): void {
     if (typeof window !== 'undefined' && typeof localStorage !== 'undefined') {
       // Access localStorage only in the browser
-      const savedItems = localStorage.getItem('mainContentItems');
+      const savedRules = localStorage.getItem('rules');
+      this.rules = savedRules ? JSON.parse(savedRules) : {conditions:[],dos:[],option:''};
+      const savedItems = localStorage.getItem('selectionList');
       this.mainContentItems = savedItems
-        ? JSON.parse(savedItems)
-        : [
-            {
-              label: 'Drag Here or Click from the Sidenav to add Elements',
-              value: `<div style="display: flex; flex-direction: column; width: 100%; max-width: 400px; margin-bottom: 15px;">
-                        <label for="dropdown" style="margin-bottom: 5px; font-size: 14px;">
-                          Drop elements here or click from the Sidenav to add!
-                        </label>
-                      </div>`
-            }
-          ];
-    } else {
-      // Default value when localStorage is unavailable
-      // this.mainContentItems = [
-      //   {
-      //     // label: 'Drag Here or Click from the Sidenav to add Elements',
-          // value: `<div style="display: flex; flex-direction: column; width: 100%; max-width: 400px; margin-bottom: 15px;">
-          //           <label for="dropdown" style="margin-bottom: 5px; font-size: 14px;">
-          //             Drop elements here or click from the Sidenav to add!
-          //           </label>
-          //         </div>`
-      //   }
-      // ];
-    }
+        ? JSON.parse(savedItems): ''
+        // : this.defaultItems; // Use the constant defaultItems if no saved data exists
+    } 
+    // else {
+      // Fallback if localStorage is unavailable
+      // this.mainContentItems = this.defaultItems;
+    // }
+
+    console.log('this.mainContentItems  :: ' + JSON.stringify(this.mainContentItems));
   }
+
 }

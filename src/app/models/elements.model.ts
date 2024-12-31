@@ -7,14 +7,15 @@ export interface Section {
     selectionName : string
     elements: Element[]
   } 
-  
+
   export interface Element {
     index: number
     type: string
     label: string
     name: string
-    id?: string
+    id: string
     placeholder?: string
+    hasRule:Boolean
     styles?: Styles
     validation?: Validation
     options?: Option[]
@@ -39,4 +40,5 @@ export interface Section {
     value: string
     label: string
     style : string
+    id:string
   }
