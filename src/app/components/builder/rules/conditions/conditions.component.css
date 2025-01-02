@@ -48,7 +48,7 @@
   .grid-container {
     display: grid;
     grid-template-rows: repeat(auto-fill);
-    width: 35%;
+    width: 40%;
     margin-top: 35px;
     margin-left:80px ;
     gap: 10px;

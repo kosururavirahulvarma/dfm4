@@ -34,7 +34,7 @@ export class ConditionsComponent implements OnInit {
       if (section.elements != null && section.elements != undefined) {
         section.elements.forEach((element: Element) => {
           let conditionIf: IF = {
-            label: section.selectionName + ' : ' + element.name,
+            label: section.selectionName + ' : ' + element.label,
             value: element.id,
           };
           this.condition.if.push(conditionIf);
