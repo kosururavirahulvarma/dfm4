@@ -15,6 +15,7 @@ export class PreviewComponent implements OnInit {
   storedData: any[] = [];
   selectionList: any = [];
   rules: rule = {conditions:[],dos:[],option:''}
+  selectedItem : any = null;
   constructor(private sanitizer: DomSanitizer) {}
 
 
@@ -33,8 +34,26 @@ export class PreviewComponent implements OnInit {
       // Fallback if localStorage is unavailable
       // this.selectionList = this.defaultItems;
     // }
-
+    this.selectionList.forEach((element: any)  => {
+      console.log(element)
+      if(element.selectionName){
+        this.selectedItem  = element.elements;
+      }
+    });
     console.log('this.selectionList  :: ' + JSON.stringify(this.selectionList));
+  }
+
+  itemSelected(selectedItem : string){
+    console.log('selectedItem')
+    console.log(selectedItem)
+
+    this.selectionList.forEach((element: any)  => {
+      console.log(element)
+      if(element.selectionName === selectedItem){
+        this.selectedItem  = element.elements;
+      }
+    });
+    
   }
 
 }

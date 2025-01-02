@@ -1,12 +1,19 @@
 <div style="display: flex; justify-content: center; margin-top: 2%;"
   >
+  <div>
+    @for (item of selectionList; track $index) {
+      <ul style="list-style: none; margin: 0; padding: 0;">
+        <li (click)="itemSelected(item.selectionName)">{{item.selectionName}}</li>
+      </ul>
+    }
+  </div>
   <form
     style="display: flex; flex-direction: column; justify-content: center; align-items: center; width: 100%; max-width: 500px; padding: 20px; border: 1px solid #ccc; border-radius: 8px; background-color: #fff;">
     
-    @for (element of selectionList ; track $index) {
-      <h2>{{element.selectionName}}</h2>
+    <!-- @for (element of selectionList ; track $index) {
+      <h2>{{element.selectionName}}</h2> -->
 
-      @for (element of element.elements  ; track $index) {
+      @for (element of selectedItem  ; track $index) {
       
      
         @if (element.label === 'Drag Here or Click from the Sidenav to add Elements') {
@@ -130,6 +137,6 @@
           </div>
         }
     } 
-  }
+
   </form>
 </div>
