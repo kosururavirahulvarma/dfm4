@@ -3,7 +3,7 @@
   <form
     style="display: flex; flex-direction: column; justify-content: center; align-items: center; width: 100%; max-width: 500px; padding: 20px; border: 1px solid #ccc; border-radius: 8px; background-color: #fff;">
     
-    @for (element of mainContentItems ; track $index) {
+    @for (element of selectionList ; track $index) {
       <h2>{{element.selectionName}}</h2>
 
       @for (element of element.elements  ; track $index) {

@@ -13,7 +13,7 @@ import { rule } from '../../models/rules.model';
 export class PreviewComponent implements OnInit {
   combinedHtml: SafeHtml = '';
   storedData: any[] = [];
-  mainContentItems: any = [];
+  selectionList: any = [];
   rules: rule = {conditions:[],dos:[],option:''}
   constructor(private sanitizer: DomSanitizer) {}
 
@@ -25,16 +25,16 @@ export class PreviewComponent implements OnInit {
       const savedRules = localStorage.getItem('rules');
       this.rules = savedRules ? JSON.parse(savedRules) : {conditions:[],dos:[],option:''};
       const savedItems = localStorage.getItem('selectionList');
-      this.mainContentItems = savedItems
+      this.selectionList = savedItems
         ? JSON.parse(savedItems): ''
         // : this.defaultItems; // Use the constant defaultItems if no saved data exists
     } 
     // else {
       // Fallback if localStorage is unavailable
-      // this.mainContentItems = this.defaultItems;
+      // this.selectionList = this.defaultItems;
     // }
 
-    console.log('this.mainContentItems  :: ' + JSON.stringify(this.mainContentItems));
+    console.log('this.selectionList  :: ' + JSON.stringify(this.selectionList));
   }
 
 }

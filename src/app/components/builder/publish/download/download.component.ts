@@ -6,7 +6,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
 import { Router, RouterOutlet } from '@angular/router';
 import { DomSanitizer } from '@angular/platform-browser';
-import { Element, Option } from '../../../../models/elements.model';
+import { Element, Option, Section } from '../../../../models/elements.model';
 import { condition, Do, rule } from '../../../../models/rules.model';
 
 @Component({
@@ -35,7 +35,7 @@ export class DownloadComponent {
   currentPage: string = '';
   opened: Boolean = false;
   combinedHtml: any;
-  mainContentItems: any;
+  selectionList: any;
   rules: rule = { conditions: [], dos: [], option: '' };
   // Method to handle card click
   onCardClick(title: string) {
@@ -53,9 +53,9 @@ export class DownloadComponent {
     this.rules = savedRules
       ? JSON.parse(savedRules)
       : { conditions: [], dos: [], option: '' };
-    const savedItems = localStorage.getItem('mainContentItems');
-    this.mainContentItems = savedItems ? JSON.parse(savedItems) : [];
-    console.log(this.mainContentItems);
+    const savedItems = localStorage.getItem('selectionList');
+    this.selectionList = savedItems ? JSON.parse(savedItems) : [];
+    console.log(this.selectionList);
     this.combinedHtml = `<!DOCTYPE html>
       <html lang="en">
       <head>
@@ -68,33 +68,36 @@ export class DownloadComponent {
         <form style="display: flex; flex-direction: column; justify-content: center; align-items: center; width: 100%; max-width: 500px; padding: 20px; border: 1px solid #ccc; border-radius: 8px; background-color: #fff;">`;
 
     // Dynamically append form elements
-    this.mainContentItems.forEach((element: Element) => {
-      this.combinedHtml += `<div style="width: 100%; margin-bottom: 15px;"><div style="${element.styles?.divStyle}">`;
-      if (element.label) {
-        this.combinedHtml += `<label style="${element.styles?.labelStyle}">${element.label}</label>`;
-      }
-      if (element.type === 'input') {
-        if (element.hasRule) {
-          this.combinedHtml += `<input type="text" id="${element.id}" oninput="toggleInputFields('${element.id}')" name="${element.name}" placeholder="${element.placeholder}" style="${element.styles?.inputStyle}" />`;
-        } else {
-          this.combinedHtml += `<input type="text" id="${element.id}" name="${element.name}" placeholder="${element.placeholder}" style="${element.styles?.inputStyle}" />`;
-        }
-      } else if (element.type === 'email') {
-        if (element.hasRule) {
-          this.combinedHtml += `<input type="email" id="${element.id}" oninput="toggleInputFields(${element.id})" name="${element.name}" placeholder="${element.placeholder}" style="${element.styles?.inputStyle}" required />`;
-        } else {
-          this.combinedHtml += `<input type="email" id="${element.id}" name="${element.name}" placeholder="${element.placeholder}" style="${element.styles?.inputStyle}" required />`;
-        }
-      } else if (element.type === 'textbox') {
-        if (element.hasRule) {
-          this.combinedHtml += `<textarea id="${element.id}"  oninput="toggleInputFields(${element.id})" name="${element.name}" placeholder="${element.placeholder}" style="${element.styles?.inputStyle}" required></textarea>`;
-        } else {
-          this.combinedHtml += `<textarea id="${element.id}" name="${element.name}" placeholder="${element.placeholder}" style="${element.styles?.inputStyle}" required></textarea>`;
-        }
-      } else if (element.type === 'radio') {
-        this.combinedHtml += ` <div id="${element.id}"  style="display: flex; flex-direction: column; margin-top: 10px;">`;
-        element.options?.forEach((option: Option) => {
-          this.combinedHtml += ` <label style="margin-bottom: 5px;">
+    this.selectionList.forEach((section: Section) => {
+      if (section.elements != null && section.elements != undefined) {
+        this.combinedHtml += `<h2>${section.selectionName}</h2>`;
+        section.elements.forEach((element: Element) => {
+          this.combinedHtml += `<div style="width: 100%; margin-bottom: 15px;"><div style="${element.styles?.divStyle}">`;
+          if (element.label) {
+            this.combinedHtml += `<label style="${element.styles?.labelStyle}">${element.label}</label>`;
+          }
+          if (element.type === 'input') {
+            if (element.hasRule) {
+              this.combinedHtml += `<input type="text" id="${element.id}" oninput="toggleInputFields('${element.id}')" name="${element.name}" placeholder="${element.placeholder}" style="${element.styles?.inputStyle}" />`;
+            } else {
+              this.combinedHtml += `<input type="text" id="${element.id}" name="${element.name}" placeholder="${element.placeholder}" style="${element.styles?.inputStyle}" />`;
+            }
+          } else if (element.type === 'email') {
+            if (element.hasRule) {
+              this.combinedHtml += `<input type="email" id="${element.id}" oninput="toggleInputFields(${element.id})" name="${element.name}" placeholder="${element.placeholder}" style="${element.styles?.inputStyle}" required />`;
+            } else {
+              this.combinedHtml += `<input type="email" id="${element.id}" name="${element.name}" placeholder="${element.placeholder}" style="${element.styles?.inputStyle}" required />`;
+            }
+          } else if (element.type === 'textbox') {
+            if (element.hasRule) {
+              this.combinedHtml += `<textarea id="${element.id}"  oninput="toggleInputFields(${element.id})" name="${element.name}" placeholder="${element.placeholder}" style="${element.styles?.inputStyle}" required></textarea>`;
+            } else {
+              this.combinedHtml += `<textarea id="${element.id}" name="${element.name}" placeholder="${element.placeholder}" style="${element.styles?.inputStyle}" required></textarea>`;
+            }
+          } else if (element.type === 'radio') {
+            this.combinedHtml += ` <div id="${element.id}"  style="display: flex; flex-direction: column; margin-top: 10px;">`;
+            element.options?.forEach((option: Option) => {
+              this.combinedHtml += ` <label style="margin-bottom: 5px;">
                       <input
                         type="radio"
                         id="${option.id}"
@@ -103,12 +106,12 @@ export class DownloadComponent {
                         style="margin-right: 8px;" />
                       ${option.label}
                     </label>`;
-        });
-        this.combinedHtml += ` </div>`;
-      } else if (element.type === 'checkbox') {
-        this.combinedHtml += `<div id="${element.id}"  style="display: flex; flex-direction: column; margin-top: 10px;">`;
-        element.options?.forEach((option: Option) => {
-          this.combinedHtml += ` <label style="margin-bottom: 5px;">
+            });
+            this.combinedHtml += ` </div>`;
+          } else if (element.type === 'checkbox') {
+            this.combinedHtml += `<div id="${element.id}"  style="display: flex; flex-direction: column; margin-top: 10px;">`;
+            element.options?.forEach((option: Option) => {
+              this.combinedHtml += ` <label style="margin-bottom: 5px;">
                       <input
                         type="checkbox"
                         id="${option.id}"
@@ -117,11 +120,11 @@ export class DownloadComponent {
                         style="margin-right: 8px;" />
                       ${option.label}
                     </label>`;
-        });
-        this.combinedHtml += ` </div>`;
-      } else if (element.type === 'phone') {
-        if (element.hasRule) {
-          this.combinedHtml += `<input  
+            });
+            this.combinedHtml += ` </div>`;
+          } else if (element.type === 'phone') {
+            if (element.hasRule) {
+              this.combinedHtml += `<input  
             id="${element.id}"
             name="${element.name}"
             placeholder="${element.placeholder}"
@@ -130,8 +133,8 @@ export class DownloadComponent {
             required="${element.validation?.required}" 
             type="tel"
             style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 4px;" />`;
-        } else {
-          this.combinedHtml += `<input  
+            } else {
+              this.combinedHtml += `<input  
                   id="${element.id}"
                   name="${element.name}"
                   placeholder="${element.placeholder}"
@@ -139,23 +142,25 @@ export class DownloadComponent {
                   required="${element.validation?.required}" 
                   type="tel"
                   style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 4px;" />`;
-        }
-      } else if (element.type === 'dropdown') {
-        this.combinedHtml += `<div style="width: 100%;">
+            }
+          } else if (element.type === 'dropdown') {
+            this.combinedHtml += `<div style="width: 100%;">
            <select
                     id="${element.id}"
                     name="${element.name}"
                     style="${element.styles?.selectStyle}"
                     style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 4px;">`;
-        //   element.options?.forEach((option:Option) =>{
-        //     this.combinedHtml += `
-        //               <option   id="${option.id}" value="${option.value}">
-        //               ${ option.label }
-        //               </option>`;
-        // });
-        this.combinedHtml += ` </div>`;
+            //   element.options?.forEach((option:Option) =>{
+            //     this.combinedHtml += `
+            //               <option   id="${option.id}" value="${option.value}">
+            //               ${ option.label }
+            //               </option>`;
+            // });
+            this.combinedHtml += `</select> </div>`;
+          }
+          this.combinedHtml += `</div></div>`;
+        });
       }
-      this.combinedHtml += `</div>`;
     });
     this.combinedHtml += `
       <button type="submit" style="padding: 10px 20px; font-size: 16px; background-color: #007bff; color: #fff; border: none; border-radius: 5px; cursor: pointer; margin-top: 15px;">
