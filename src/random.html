@@ -3,9 +3,9 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>SideNav with Forms and DB Integration</title>
+  <title>SideNav with Forms</title>
   <style>
-    /* Styling remains the same as before */
+    /* Styling remains the same */
     body {
       display: flex;
       margin: 0;
@@ -45,7 +45,7 @@
     form label {
       font-weight: bold;
     }
-    form input, form button {
+    form input, form select, form textarea, form button {
       padding: 10px;
       font-size: 16px;
     }
@@ -63,8 +63,8 @@
 </head>
 <body>
   <div class="sidenav">
-    <a onclick="fetchAndLoadForm('form1')">Open Form 1</a>
-    <a onclick="fetchAndLoadForm('form2')">Open Form 2</a>
+    <a onclick="loadForm('form1', { name : 'varun' })">Open Form 1</a>
+    <a onclick="loadForm('form2', {  })">Open Form 2</a>
   </div>
 
   <div class="main-content" id="mainContent">
@@ -74,49 +74,49 @@
 
   <script>
     const forms = {
-      form1: (data = {}) => `
+      form1: (data) => `
         <h2>Form 1</h2>
         <form onsubmit="submitForm(event, 'form1')">
           <label for="name">Name:</label>
           <input type="text" id="name" name="name" placeholder="Enter your name" value="${data.name || ''}">
           <label for="email">Email:</label>
           <input type="email" id="email" name="email" placeholder="Enter your email" value="${data.email || ''}">
+          <label for="gender">Gender:</label>
+          <select id="gender" name="gender">
+            <option value="male" ${data.gender === 'male' ? 'selected' : ''}>Male</option>
+            <option value="female" ${data.gender === 'female' ? 'selected' : ''}>Female</option>
+          </select>
+          <label for="newsletter">Subscribe to Newsletter:</label>
+          <input type="checkbox" id="newsletter" name="newsletter" ${data.newsletter ? 'checked' : ''}>
+          <label for="comments">Comments:</label>
+          <textarea id="comments" name="comments" placeholder="Enter your comments">${data.comments || ''}</textarea>
           <button type="submit">Submit</button>
         </form>
       `,
-      form2: (data = {}) => `
+      form2: (data) => `
         <h2>Form 2</h2>
         <form onsubmit="submitForm(event, 'form2')">
           <label for="username">Username:</label>
           <input type="text" id="username" name="username" placeholder="Enter your username" value="${data.username || ''}">
           <label for="password">Password:</label>
           <input type="password" id="password" name="password" placeholder="Enter your password" value="${data.password || ''}">
+          <label for="age">Age:</label>
+          <input type="number" id="age" name="age" placeholder="Enter your age" value="${data.age || ''}">
+          <label>Preferred Contact Method:</label>
+          <label><input type="radio" name="contact" value="phone" ${data.contact === 'phone' ? 'checked' : ''}> Phone</label>
+          <label><input type="radio" name="contact" value="email" ${data.contact === 'email' ? 'checked' : ''}> Email</label>
           <button type="submit">Submit</button>
         </form>
       `
     };
 
-    // Function to load form dynamically
+    // Function to load form dynamically with optional prefill data
     function loadForm(formId, prefillData = {}) {
       const mainContent = document.getElementById('mainContent');
       if (forms[formId]) {
         mainContent.innerHTML = forms[formId](prefillData);
       } else {
         mainContent.innerHTML = '<p>Form not found.</p>';
-      }
-    }
-
-    // Fetch data from backend and load form
-    async function fetchAndLoadForm(formId) {
-      try {
-        const response = await fetch(`/api/form-data/${formId}`); // Replace with your backend API endpoint
-        if (!response.ok) throw new Error('Failed to fetch form data');
-        
-        const result = await response.json(); // Parse JSON response
-        loadForm(formId, result.data); // Pass data to loadForm
-      } catch (error) {
-        console.error('Error fetching form data:', error);
-        alert('Failed to load form data.');
       }
     }
 
@@ -127,12 +127,17 @@
       if (formId === 'form1') {
         formData = {
           name: document.getElementById('name').value,
-          email: document.getElementById('email').value
+          email: document.getElementById('email').value,
+          gender: document.getElementById('gender').value,
+          newsletter: document.getElementById('newsletter').checked,
+          comments: document.getElementById('comments').value
         };
       } else if (formId === 'form2') {
         formData = {
           username: document.getElementById('username').value,
-          password: document.getElementById('password').value
+          password: document.getElementById('password').value,
+          age: document.getElementById('age').value,
+          contact: document.querySelector('input[name="contact"]:checked')?.value || ''
         };
       }
 
