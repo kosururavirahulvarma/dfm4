@@ -42,7 +42,8 @@ export class SectionsComponent {
         // Create a new section object
         const newSection: Section = {
           elements: [], // Initialize with an empty array of elements
-          selectionName : result
+          selectionName: result,
+          sectionId: "section"+Math.random().toString(36).substring(2, 2 + 10),
         };
 
 

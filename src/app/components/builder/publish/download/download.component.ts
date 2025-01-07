@@ -61,16 +61,87 @@ export class DownloadComponent {
       <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Generated HTML</title>
+        <title>DFM Generated HTML</title>
+         <style>
+    /* Styling remains the same */
+    body {
+      display: flex;
+      margin: 0;
+      font-family: Arial, sans-serif;
+    }
+    .sidenav {
+      width: 250px;
+      height: 100vh;
+      background-color: #333;
+      color: white;
+      padding: 10px;
+      display: flex;
+      flex-direction: column;
+    }
+    .sidenav a {
+      text-decoration: none;
+      color: white;
+      padding: 10px;
+      margin: 5px 0;
+      background-color: #444;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    .sidenav a:hover {
+      background-color: #555;
+    }
+    .main-content {
+      flex-grow: 1;
+      padding: 20px;
+      background-color: #f4f4f4;
+    }
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    form label {
+      font-weight: bold;
+    }
+    form input, form select, form textarea, form button {
+      padding: 10px;
+      font-size: 16px;
+    }
+    form button {
+      background-color: #007BFF;
+      color: white;
+      border: none;
+      cursor: pointer;
+      border-radius: 5px;
+    }
+    form button:hover {
+      background-color: #0056b3;
+    }
+  </style>
       </head>
-      <body>
-      <div>
-        <form style="display: flex; flex-direction: column; justify-content: center; align-items: center; width: 100%; max-width: 500px; padding: 20px; border: 1px solid #ccc; border-radius: 8px; background-color: #fff;">`;
-
+      <body>`;
+  this.combinedHtml += ` <div class="sidenav">`
     // Dynamically append form elements
     this.selectionList.forEach((section: Section) => {
       if (section.elements != null && section.elements != undefined) {
-        this.combinedHtml += `<h2>${section.selectionName}</h2>`;
+        this.combinedHtml += `<a onclick="loadForm('${section.sectionId}')">${section.selectionName}</a>`;
+      }
+    });
+    this.combinedHtml += `
+     </div>
+     <div class="main-content" id="mainContent">
+    <h2>Welcome</h2>
+    <p>Select an item from the sidenav to display a form.</p>
+  </div>`;
+    this.combinedHtml += `
+     <script>
+     const forms = {`;
+    this.selectionList.forEach((section: Section) => {
+      if (section.elements != null && section.elements != undefined) {
+        this.combinedHtml += `${section.sectionId}:(data) => `;
+        this.combinedHtml += "`";
+        this.combinedHtml +=` <h2>${section.selectionName}</h2>
+        <form onsubmit="submitForm(event, '${section.sectionId}')">`;
         section.elements.forEach((element: Element) => {
           this.combinedHtml += `<div style="width: 100%; margin-bottom: 15px;"><div style="${element.styles?.divStyle}">`;
           if (element.label) {
@@ -78,21 +149,21 @@ export class DownloadComponent {
           }
           if (element.type === 'input') {
             if (element.hasRule) {
-              this.combinedHtml += `<input type="text" id="${element.id}" oninput="toggleInputFields('${element.id}')" name="${element.name}" placeholder="${element.placeholder}" style="${element.styles?.inputStyle}" />`;
+              this.combinedHtml += `<input type="text" value="`+"${data."+`${element.id}`+` || ''}"`+`id="${element.id}" oninput="toggleInputFields('${element.id}')" name="${element.name}" placeholder="${element.placeholder}" style="${element.styles?.inputStyle}" />`;
             } else {
-              this.combinedHtml += `<input type="text" id="${element.id}" name="${element.name}" placeholder="${element.placeholder}" style="${element.styles?.inputStyle}" />`;
+              this.combinedHtml += `<input type="text" value="`+"${data."+`${element.id}`+` || ''}"`+`id="${element.id}" name="${element.name}" placeholder="${element.placeholder}" style="${element.styles?.inputStyle}" />`;
             }
           } else if (element.type === 'email') {
             if (element.hasRule) {
-              this.combinedHtml += `<input type="email" id="${element.id}" oninput="toggleInputFields(${element.id})" name="${element.name}" placeholder="${element.placeholder}" style="${element.styles?.inputStyle}" required />`;
+              this.combinedHtml += `<input type="email" value="`+"${data."+`${element.id}`+` || ''}"`+`id="${element.id}" oninput="toggleInputFields(${element.id})" name="${element.name}" placeholder="${element.placeholder}" style="${element.styles?.inputStyle}" required />`;
             } else {
-              this.combinedHtml += `<input type="email" id="${element.id}" name="${element.name}" placeholder="${element.placeholder}" style="${element.styles?.inputStyle}" required />`;
+              this.combinedHtml += `<input type="email" value="`+"${data."+`${element.id}`+` || ''}"`+`id="${element.id}" name="${element.name}" placeholder="${element.placeholder}" style="${element.styles?.inputStyle}" required />`;
             }
           } else if (element.type === 'textbox') {
             if (element.hasRule) {
-              this.combinedHtml += `<textarea id="${element.id}"  oninput="toggleInputFields(${element.id})" name="${element.name}" placeholder="${element.placeholder}" style="${element.styles?.inputStyle}" required></textarea>`;
+              this.combinedHtml += `<textarea  value="`+"${data."+`${element.id}`+` || ''}"`+`  id="${element.id}"  oninput="toggleInputFields(${element.id})" name="${element.name}" placeholder="${element.placeholder}" style="${element.styles?.inputStyle}" required></textarea>`;
             } else {
-              this.combinedHtml += `<textarea id="${element.id}" name="${element.name}" placeholder="${element.placeholder}" style="${element.styles?.inputStyle}" required></textarea>`;
+              this.combinedHtml += `<textarea  value="`+"${data."+`${element.id}`+` || ''}"`+`  id="${element.id}" name="${element.name}" placeholder="${element.placeholder}" style="${element.styles?.inputStyle}" required></textarea>`;
             }
           } else if (element.type === 'radio') {
             this.combinedHtml += ` <div id="${element.id}"  style="display: flex; flex-direction: column; margin-top: 10px;">`;
@@ -102,7 +173,7 @@ export class DownloadComponent {
                         type="radio"
                         id="${option.id}"
                         name="${element.name}"
-                        value="${option.value}"
+                        value="${option.value}" `+"${data."+`${option.value}`+` === '${option.value}' ? 'checked' : ''}`+`
                         style="margin-right: 8px;" />
                       ${option.label}
                     </label>`;
@@ -116,7 +187,7 @@ export class DownloadComponent {
                         type="checkbox"
                         id="${option.id}"
                         name="${element.name}"
-                        value="${option.value}"
+                        value="${option.value}" `+"${data."+`${option.value}`+` === '${option.value}' ? 'checked' : ''}`+`
                         style="margin-right: 8px;" />
                       ${option.label}
                     </label>`;
@@ -132,6 +203,7 @@ export class DownloadComponent {
             style="${element.styles?.inputStyle}"
             required="${element.validation?.required}" 
             type="tel"
+            value="`+"${data."+`${element.id}`+` || ''}"`+`
             style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 4px;" />`;
             } else {
               this.combinedHtml += `<input  
@@ -141,6 +213,7 @@ export class DownloadComponent {
                   style="${element.styles?.inputStyle}"
                   required="${element.validation?.required}" 
                   type="tel"
+                  value="`+"${data."+`${element.id}`+` || ''}"`+`
                   style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 4px;" />`;
             }
           } else if (element.type === 'dropdown') {
@@ -150,6 +223,7 @@ export class DownloadComponent {
                     name="${element.name}"
                     style="${element.styles?.selectStyle}"
                     style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 4px;">`;
+                    
             //   element.options?.forEach((option:Option) =>{
             //     this.combinedHtml += `
             //               <option   id="${option.id}" value="${option.value}">
@@ -158,19 +232,51 @@ export class DownloadComponent {
             // });
             this.combinedHtml += `</select> </div>`;
           }
-          this.combinedHtml += `</div></div>`;
         });
+        this.combinedHtml += ` <button type="submit">Submit</button>
+        </form>`
+         this.combinedHtml += "`,";
       }
     });
-    this.combinedHtml += `
-      <button type="submit" style="padding: 10px 20px; font-size: 16px; background-color: #007bff; color: #fff; border: none; border-radius: 5px; cursor: pointer; margin-top: 15px;">
-        Submit
-      </button>`;
-    this.combinedHtml += `
-        </form>
-      </div>`;
-    this.combinedHtml += `
-     <script>
+    this.combinedHtml += ` };
+      function loadForm(formId) {
+      let prefillData = JSON.parse(localStorage.getItem(formId));
+      if(prefillData === null){
+      prefillData = {};
+      }
+      console.log('Retrieved data:', prefillData);
+      const mainContent = document.getElementById('mainContent');
+      if (forms[formId]) {
+        mainContent.innerHTML = forms[formId](prefillData);
+      } else {
+        mainContent.innerHTML = '<p>Form not found.</p>';
+      }
+    }
+
+    function submitForm(event, formId) {
+      event.preventDefault(); // Prevent default form submission
+      let formData = {};
+      let selectedFormId = null;
+      `
+    this.selectionList.forEach((section: Section) => {
+      if (section.elements != null && section.elements != undefined) {
+      this.combinedHtml += `
+      if (formId === '${section.sectionId}') {
+      selectedFormId = '${section.sectionId}';
+        formData = {`
+        section.elements.forEach((element: Element) => {
+         this.combinedHtml += `
+          ${element.id}: document.getElementById('${element.id}').value,`
+        });
+         this.combinedHtml += `};}`
+      }});
+       this.combinedHtml += `
+       
+      // Send formData to server or handle it as needed
+       localStorage.setItem(selectedFormId, JSON.stringify(formData));
+      console.log('Form submitted with data:', formData);
+      alert('Form submitted with data: ' + JSON.stringify(formData));
+    }
     function toggleInputFields(id) {
       console.log(id);
       `;

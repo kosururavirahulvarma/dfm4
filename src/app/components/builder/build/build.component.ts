@@ -197,7 +197,7 @@ export class BuildComponent implements OnDestroy{
       const indexNumber : number  = this.getIndexOfSelection(this.sectionList);
         console.log('indexNumber');
         console.log(indexNumber)
-        draggedItem.id= Math.random().toString(36);
+        draggedItem.id= "element"+Math.random().toString(36).substring(2, 2 + 10);
       this.sectionList[indexNumber].elements.splice(draggedIndex, 0, { ...draggedItem }); // Insert the item at the dragged index
       // Optionally, remove the default first item if it is a placeholder
       const index = this.mainContentItems.findIndex(item => item.label === 'Drag Here or Click from the Sidenav to add Elements');
@@ -232,7 +232,7 @@ export class BuildComponent implements OnDestroy{
         console.log(indexNumber);
         if (indexNumber >= 0) {
           console.log(indexNumber)
-          navItem.id= Math.random().toString(36);
+          navItem.id= "element"+Math.random().toString(36).substring(2, 2 + 10);
           console.log(this.sectionList)
           // Ensure that the selected section has an 'elements' array
           this.sectionList[indexNumber].elements.push({ ...navItem });
