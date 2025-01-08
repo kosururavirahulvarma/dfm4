@@ -154,6 +154,8 @@ export class BuildComponent implements OnDestroy{
         "index": 8,
         "type": "Name&Title",
         "label": "Name & Title",
+        "namelabel": "Name",
+        "titlelable": "Title",
         "name": "Name&Title",
       },
       {
@@ -181,7 +183,7 @@ export class BuildComponent implements OnDestroy{
         "name": "Degree&PersonalType",
       },
       {
-        "index": 12,
+        "index": 13,
         "type": "YesOrNoButton",
         "label": "Yes Or No Button",
         "name": "YesOrNoButton",

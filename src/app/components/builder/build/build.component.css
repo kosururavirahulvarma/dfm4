@@ -108,3 +108,37 @@ top:7px;
 .righsidenavwidth {
   --mat-sidenav-container-width: 25rem;
 }
+
+.section-name-container{
+  display: flex;
+  align-items: center;
+  width: 37.6%;
+  background-color: #c1c1c1;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  padding: 2px;
+  margin-top: 10px;
+}
+
+.section-name{
+  margin-left: 10px;
+  font-weight: 500;
+}
+
+.maindiv{
+  width: 100%;
+}
+.name-title-container{
+  display: flex;
+  width: 100%;
+}
+
+.name-title{
+  width: 480px;
+  border: 1px solid grey;
+  height: 20px;
+}
+
+.label{
+  height: 20px;
+}

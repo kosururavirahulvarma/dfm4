@@ -1,0 +1,110 @@
+<div [style]="element.styles?.divStyle" id="maindiv"  >
+                      
+    @if (element.label) {
+      <label
+        [for]="element.name"
+        [style]="element.styles?.labelStyle">
+        {{ element.label }}
+      </label>
+    }
+
+    <!-- Input Element -->
+    @if (element.type === 'input') {
+      <input
+        type="text"
+        id="element.id"
+        [name]="element.name"
+        [placeholder]="element.placeholder"
+        [style]="element.styles?.inputStyle" oninput="formInput()" />
+    }
+
+    <!-- Textbox element -->
+    @if (element.type === 'textbox') {
+      <textarea rows="5" cols="200"
+        id="element.id.Text"
+        [name]="element.name"
+        [placeholder]="element.placeholder"
+        [style]="element.styles?.inputStyle"
+        ></textarea>
+    }
+
+    <!-- Number Element -->
+    @if (element.type === 'number') {
+      <input
+        type="number"
+        [id]="element.id"
+        [name]="element.name"
+        [placeholder]="element.placeholder"
+        [style]="element.styles?.inputStyle" />
+    }
+
+    <!-- Email element -->
+    @if (element.type === 'email') {
+      <input  
+        [id]="element.id"
+        [name]="element.name"
+        [placeholder]="element.placeholder"
+        [style]="element.styles?.inputStyle"
+        [required]="element.validation?.required" 
+        type="email"
+         />
+    }
+    
+    <!-- Phone number element -->
+    @if (element.type === 'phone') {
+      <input  
+        [id]="element.id"
+        [name]="element.name"
+        [placeholder]="element.placeholder"
+        [style]="element.styles?.inputStyle"
+        [required]="element.validation?.required" 
+        type="tel"
+         />
+    }
+
+    <!-- Radio button element -->
+    @if (element.type === 'radio') {
+      <div [style]="element.innerDivStyle">
+        @for (option of element.options; track $index) {
+          <label [style]="element.innerLabelStyle">
+            <input
+              type="radio"
+              [name]="element.name"
+              value="no"
+              [style]="option.style" />
+            {{ option.label }}
+          </label>
+        }
+      </div>
+    }
+
+    <!-- Checkbox Element -->
+    @if (element.type === 'checkbox') {
+      <div [style]="element.innerDivStyle">
+        @for (option of element.options; track $index) {
+          <label [style]="element.innerLabelStyle">
+            <input
+              type="checkbox"
+              [name]="element.name"
+              [value]="option.value"
+              [style]="option.style" />
+            {{ option.label }}
+          </label>
+        }
+      </div>
+    }
+
+    <!-- Dropdown Element -->
+    @if (element.type === 'dropdown') {
+      <select
+        [id]="element.id"
+        [name]="element.name"
+        [style]="element.styles?.selectStyle">
+        @for (option of element.options; track $index) {
+          <option [value]="option.value">
+            {{ option.label }}
+          </option>
+        }
+      </select>
+    }
+</div>

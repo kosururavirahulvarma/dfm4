@@ -60,12 +60,14 @@ cdkDropListGroup>
   
   <mat-sidenav-content>
     <div class="main-content">
-      <h3>Section Name : {{selectedSection}}</h3> 
       <section>
         <div class="example-button-row">
           <button mat-flat-button class="primary-bg-color" (click)="addAnotherSection()"><span>Add Section Here</span><mat-icon>add_circle_outline</mat-icon></button>
         </div>
       </section>
+      <div class="section-name-container">
+       <div class="section-name">{{selectedSection}}</div>
+      </div>
       <!-- Drop Zone for Items Dragged from Sidenav -->
        @for (element of sectionList ; track $index) {
         @if (element.selectionName === selectedSection ) {
@@ -104,20 +106,18 @@ cdkDropListGroup>
                       <button class="button" (click)="onDelete(element)" matTooltip="delete" matTooltipPosition="right"><mat-icon>delete</mat-icon></button>
                       <button class="button" (click)="onDuplicate(element)" matTooltip="duplicate" matTooltipPosition="right"><mat-icon>cached</mat-icon></button>
                     </div>
-                    <div [style]="element.styles?.divStyle" id="maindiv"  >
+                
                       <!-- <h6>{{element.styles?.divStyle}}</h6>
                       <h6>{{element.type}}</h6> -->
                       <!-- Label -->
-                      @if (element.label) {
-                        <label
-                          [for]="element.name"
-                          [style]="element.styles?.labelStyle">
-                          {{ element.label }}
-                        </label>
-                      }
               
                       <!-- Input Element -->
                       @if (element.type === 'input') {
+                        <label
+                        [for]="element.name"
+                        [style]="element.styles?.labelStyle">
+                        {{ element.label }}
+                      </label>
                         <input
                           type="text"
                           id="element.id"
@@ -129,6 +129,11 @@ cdkDropListGroup>
   
                       <!-- Textbox element -->
                       @if (element.type === 'textbox') {
+                        <label
+                        [for]="element.name"
+                        [style]="element.styles?.labelStyle">
+                        {{ element.label }}
+                      </label>
                         <textarea rows="5" cols="200"
                           id="element.id.Text"
                           [name]="element.name"
@@ -139,6 +144,11 @@ cdkDropListGroup>
               
                       <!-- Number Element -->
                       @if (element.type === 'number') {
+                        <label
+                        [for]="element.name"
+                        [style]="element.styles?.labelStyle">
+                        {{ element.label }}
+                      </label>
                         <input
                           type="number"
                           [id]="element.id"
@@ -149,6 +159,11 @@ cdkDropListGroup>
   
                       <!-- Email element -->
                       @if (element.type === 'email') {
+                        <label
+                        [for]="element.name"
+                        [style]="element.styles?.labelStyle">
+                        {{ element.label }}
+                      </label>
                         <input  
                           [id]="element.id"
                           [name]="element.name"
@@ -161,6 +176,11 @@ cdkDropListGroup>
                       
                       <!-- Phone number element -->
                       @if (element.type === 'phone') {
+                        <label
+                        [for]="element.name"
+                        [style]="element.styles?.labelStyle">
+                        {{ element.label }}
+                      </label>
                         <input  
                           [id]="element.id"
                           [name]="element.name"
@@ -173,6 +193,11 @@ cdkDropListGroup>
   
                       <!-- Radio button element -->
                       @if (element.type === 'radio') {
+                        <label
+                        [for]="element.name"
+                        [style]="element.styles?.labelStyle">
+                        {{ element.label }}
+                      </label>
                         <div [style]="element.innerDivStyle">
                           @for (option of element.options; track $index) {
                             <label [style]="element.innerLabelStyle">
@@ -189,6 +214,11 @@ cdkDropListGroup>
               
                       <!-- Checkbox Element -->
                       @if (element.type === 'checkbox') {
+                        <label
+                        [for]="element.name"
+                        [style]="element.styles?.labelStyle">
+                        {{ element.label }}
+                      </label>
                         <div [style]="element.innerDivStyle">
                           @for (option of element.options; track $index) {
                             <label [style]="element.innerLabelStyle">
@@ -205,6 +235,11 @@ cdkDropListGroup>
               
                       <!-- Dropdown Element -->
                       @if (element.type === 'dropdown') {
+                        <label
+                        [for]="element.name"
+                        [style]="element.styles?.labelStyle">
+                        {{ element.label }}
+                      </label>
                         <select
                           [id]="element.id"
                           [name]="element.name"
@@ -216,118 +251,30 @@ cdkDropListGroup>
                           }
                         </select>
                       }
-                      @if (element.type === 'rowitems') {
-                        <div cdkDropList [cdkDropListData]="element.rowItems" class="rowitems-drop"
-                          (cdkDropListDropped)="dropRowItems($event)">
-                          <form  >
-                            @for (item of element.rowItems  ; track $index) {
-                             
-                                @if (item.label === 'Drag Here or Click from the Sidenav to add Elements') {
-                                  <div  [ngStyle]="$index === 0 ? {'border-radius': '15px'} : {}"class="example-box" style="padding-left: 160px;" cdkDrag>
-                                    <div [innerHTML]="sanitizeHtml(item.value)"></div>
-                                  </div>
-                                }@else{
-                                  <!-- <div class="example-box"   [ngStyle]="{
-                                    'border-top-left-radius': $index === 0 ? '15px' : '',
-                                    'border-top-right-radius': $index === 0 ? '15px' : '',
-                                    'border-bottom-left-radius': $index === mainContentItems.length - 1 ? '15px' : '',
-                                    'border-bottom-right-radius': $index === mainContentItems.length - 1 ? '15px' : ''
-                                  }" cdkDrag>
-                    
-                                    <div [innerHTML]="sanitizeHtml(item.value)"></div>
-                                  <div class="buttons-container">
-                                    <button class="button" (click)="onRightSidenavToggle(item)"   matTooltip="edit" matTooltipPosition="right"><mat-icon>edit</mat-icon></button>
-                                    <button class="button" (click)="onDelete(item)" matTooltip="delete" matTooltipPosition="right"><mat-icon>delete</mat-icon></button>
-                                    <button class="button" (click)="onDuplicate(item)" matTooltip="duplicate" matTooltipPosition="right"><mat-icon>cached</mat-icon></button>
-                                  </div>
-                                </div> -->
-                                
-                                  <div >
-                                    <div style="width:100%; " cdkDrag class="example-box">
-                                      <!-- radio   divstyle == > style="display: flex; margin-bottom: 8px; font-size: 14px; color: #333; justify-content: start;"-->
-                                  
-                                      <div [style]="item.styles?.divStyle" id="maindiv"  >
-                                        <!-- <h6>{{element.styles?.divStyle}}</h6>
-                                        <h6>{{element.type}}</h6> -->
-                                        <!-- Label -->
-                                        @if (item.label) {
-                                          <label
-                                            [for]="item.name"
-                                            [style]="item.styles?.labelStyle">
-                                            {{ item.label }}
-                                          </label>
-                                        }
-                                
-                                        <!-- Input Element -->
-                                        @if (item.type === 'input') {
-                                          <input
-                                            type="text"
-                                            id="item.id"
-                                            [name]="item.name"
-                                            [placeholder]="item.placeholder"
-                                            [style]="item.styles?.inputStyle" oninput="formInput()" />
-                                        }
-                    
-                                        <!-- Textbox element -->
-                                        @if (item.type === 'textbox') {
-                                          <textarea rows="5" cols="200"
-                                            id="item.id.Text"
-                                            [name]="item.name"
-                                            [placeholder]="item.placeholder"
-                                            [style]="item.styles?.inputStyle"
-                                            ></textarea>
-                                        }
-                                
-                                        <!-- Number Element -->
-                                        @if (item.type === 'number') {
-                                          <input
-                                            type="number"
-                                            [id]="item.id"
-                                            [name]="item.name"
-                                            [placeholder]="item.placeholder"
-                                            [style]="item.styles?.inputStyle" />
-                                        }
-                    
-                                        <!-- Email element -->
-                                        @if (item.type === 'email') {
-                                          <input  
-                                            [id]="item.id"
-                                            [name]="item.name"
-                                            [placeholder]="item.placeholder"
-                                            [style]="item.styles?.inputStyle"
-                                            [required]="item.validation?.required" 
-                                            type="email"
-                                             />
-                                        }
-                                        
-                                        <!-- Phone number element -->
-                                        @if (item.type === 'phone') {
-                                          <input  
-                                            [id]="item.id"
-                                            [name]="item.name"
-                                            [placeholder]="item.placeholder"
-                                            [style]="item.styles?.inputStyle"
-                                            [required]="item.validation?.required" 
-                                            type="tel"
-                                             />
-                                        }
-                    
-                                      </div>
-                                      
-                                    </div>
-                                    
-                                  </div>
-                               
-                                
-                    
-                                }
-                              
-                            }
-                           </form>
-                  
+                      @if (element.type === 'Name&Title') {
+                        <div class="name-title-container">
+                          <div class="name-title">
+                            <div class="label"> 
+                              <label>
+                              {{ element.namelabel }}
+                              </label>
+                            </div>
+                            <div>
+
+                            </div>
                           </div>
+                          <div class="name-title">
+                            <div class="label">
+                              <label>
+                                {{ element.titlelable }}
+                              </label>
+                            </div>
+                            <div>
+
+                            </div>
+                          </div>
+                        </div>
                       }
-                    </div>
                     
                   </div>
                   
