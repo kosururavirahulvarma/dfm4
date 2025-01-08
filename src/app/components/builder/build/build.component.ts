@@ -152,38 +152,39 @@ export class BuildComponent implements OnDestroy{
       },
       {
         "index": 8,
-        "type": "rowitems",
-        "label": "RowItems",
-        "name": "rowitems",
-        "hasRule": false,
-        "styles": {
-          "class": "main-content-drop"
-        },
-        "rowItems":[{
-          "index": 1,
-          "type": "phone",
-          "label": "Phone Number",
-          "placeholder": "please fill this field",
-          "name": "phoneNumber",
-          "hasRule": false,
-          "styles": {
-            "inputStyle": "width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 4px;",
-            "labelStyle": "margin-bottom: 5px; font-size: 14px;",
-            "divStyle": "display: flex; flex-direction: column; width: 100%; max-width: 400px; margin-bottom: 15px;"
-          }
-        },{
-          "index": 1,
-          "type": "phone",
-          "label": "Number",
-          "placeholder": "please fill this field",
-          "name": "phoneNumber",
-          "hasRule": false,
-          "styles": {
-            "inputStyle": "width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 4px;",
-            "labelStyle": "margin-bottom: 5px; font-size: 14px;",
-            "divStyle": "display: flex; flex-direction: column; width: 100%; max-width: 400px; margin-bottom: 15px;"
-          }
-        }]
+        "type": "Name&Title",
+        "label": "Name & Title",
+        "name": "Name&Title",
+      },
+      {
+        "index": 9,
+        "type": "Email&OfficePhone",
+        "label": "Email & Office Phone",
+        "name": "Email&OfficePhone",
+      },
+      {
+        "index": 10,
+        "type": "Lab Phone&Cell Phone",
+        "label": "LabPhone & CellPhone",
+        "name": "Lab Phone&Cell Phone",
+      },
+      {
+        "index": 11,
+        "type": "Department&EmergencyPhone",
+        "label": "Department & EmergencyPhone",
+        "name": "Department&EmergencyPhone",
+      },
+      {
+        "index": 12,
+        "type": "Degree&PersonalType",
+        "label": "Degree & PersonalType",
+        "name": "Degree&PersonalType",
+      },
+      {
+        "index": 12,
+        "type": "YesOrNoButton",
+        "label": "Yes Or No Button",
+        "name": "YesOrNoButton",
       }
     ]
   }
@@ -221,6 +222,8 @@ export class BuildComponent implements OnDestroy{
 
   // Drop event handler to move a single item to the main content area
   drop(event: CdkDragDrop<any[]>) {
+    console.log('event')
+    console.log(event)
     if (event.previousContainer !== event.container) {
       // Get the dragged item from the previous container
       const draggedItem = event.previousContainer.data[event.previousIndex];

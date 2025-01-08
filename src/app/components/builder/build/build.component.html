@@ -41,7 +41,7 @@ cdkDropListGroup>
      <mat-nav-list class="nav-list" cdkDropList [cdkDropListData]="elementsMain.elements">
       @for (nav of elementsMain.elements; track $index ) {
       <div cdkDrag (click)="onItemClick(nav)">
-        <a mat-list-item>{{ nav.type }}</a>
+        <a mat-list-item>{{ nav.label }}</a>
       </div>
       }
     </mat-nav-list>
@@ -125,6 +125,7 @@ cdkDropListGroup>
                           [placeholder]="element.placeholder"
                           [style]="element.styles?.inputStyle" oninput="formInput()" />
                       }
+                      
   
                       <!-- Textbox element -->
                       @if (element.type === 'textbox') {
