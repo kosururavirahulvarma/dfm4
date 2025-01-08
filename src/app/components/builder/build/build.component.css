@@ -58,6 +58,14 @@ top:7px;
   padding: 16px;
   box-sizing: border-box;
 }
+.rowitems-drop{
+  display: flex;
+  justify-content: flex-start;; /* Horizontally centers the content */
+  align-items: center; /* Vertically centers the content */
+  flex-direction: row;
+  padding: 16px;
+  box-sizing: border-box;
+}
 /* new changes */
 
 .example-box {

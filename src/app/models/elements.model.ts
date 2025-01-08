@@ -23,6 +23,7 @@ export interface Element {
   options?: Option[];
   innerLabelStyle: string;
   innerDivStyle: string;
+  rowItems?:any;
 }
   
   export interface Styles {
@@ -30,6 +31,7 @@ export interface Element {
     labelStyle: string
     divStyle: string
     inputStyle?: string
+    class?:string
   }
   
   export interface Validation {

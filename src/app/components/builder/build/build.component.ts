@@ -149,6 +149,41 @@ export class BuildComponent implements OnDestroy{
           "labelStyle": "margin-bottom: 5px; font-size: 14px;",
           "divStyle": "display: flex; flex-direction: column; width: 100%; max-width: 400px; margin-bottom: 15px;"
         }
+      },
+      {
+        "index": 8,
+        "type": "rowitems",
+        "label": "RowItems",
+        "name": "rowitems",
+        "hasRule": false,
+        "styles": {
+          "class": "main-content-drop"
+        },
+        "rowItems":[{
+          "index": 1,
+          "type": "phone",
+          "label": "Phone Number",
+          "placeholder": "please fill this field",
+          "name": "phoneNumber",
+          "hasRule": false,
+          "styles": {
+            "inputStyle": "width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 4px;",
+            "labelStyle": "margin-bottom: 5px; font-size: 14px;",
+            "divStyle": "display: flex; flex-direction: column; width: 100%; max-width: 400px; margin-bottom: 15px;"
+          }
+        },{
+          "index": 1,
+          "type": "phone",
+          "label": "Number",
+          "placeholder": "please fill this field",
+          "name": "phoneNumber",
+          "hasRule": false,
+          "styles": {
+            "inputStyle": "width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 4px;",
+            "labelStyle": "margin-bottom: 5px; font-size: 14px;",
+            "divStyle": "display: flex; flex-direction: column; width: 100%; max-width: 400px; margin-bottom: 15px;"
+          }
+        }]
       }
     ]
   }
@@ -213,6 +248,9 @@ export class BuildComponent implements OnDestroy{
       );
     }
     localStorage.setItem("selectionList",JSON.stringify(this.sectionList));
+  }
+  dropRowItems(event: CdkDragDrop<any[]>) {
+    console.log("log");
   }
   onItemClick(navItem: any) {
     if (this.mainContentItems && this.mainContentItems.length > 0) {
@@ -308,7 +346,8 @@ export class BuildComponent implements OnDestroy{
         },
         options: [],
         innerLabelStyle : '',
-        innerDivStyle : ''
+        innerDivStyle : '',
+        rowItems: null
       }
     
  
