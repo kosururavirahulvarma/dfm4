@@ -22,7 +22,7 @@ export class SectionsComponent {
 
   sections: string[] = [];
 
-
+  sectionId:any ;
 
   sectionList: SectionList = {
     selectionList : []
@@ -46,7 +46,7 @@ export class SectionsComponent {
           sectionId: "section"+Math.random().toString(36).substring(2, 2 + 10),
         };
 
-
+        this.sectionId = newSection.sectionId;
         // Push the new section to the `selectionList`
         // this.sectionList.selectionList.push(newSection);
       
@@ -66,7 +66,7 @@ export class SectionsComponent {
   }
 
   navigateToSectionElements(selection: string) {
-    this.router.navigate(['/home/build'], { queryParams: { selectedSection: selection } });
+    this.router.navigate(['/home/build'], { queryParams: { selectedSection: selection, selectionId: this.sectionId } });
     console.log('Navigated with selection:', selection);
   }
 
@@ -78,9 +78,10 @@ export class SectionsComponent {
       this.allSections  = localStorage.getItem("selectionList") 
     ? JSON.parse(localStorage.getItem("selectionList") as string)
     : [{ label: 'Drag Here or Click from the Sidenav to add Elements',value:`<div style="display: flex; flex-direction: column; width: 100%; max-width: 400px; margin-bottom: 15px;"><label for="dropdown" style=" margin-bottom: 5px; font-size: 14px;">Drop elements here or click from the Sidenav to add!</label></div>`}];
-
+    console.log(this.allSections)
+    console.log(this.sections)
     this.sections = this.allSections.map((section: any) => section.selectionName || '');
-
+    console.log(this.sections)
     }
 
     getAllSection(){

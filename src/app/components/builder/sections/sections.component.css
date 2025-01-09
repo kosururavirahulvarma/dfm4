@@ -1,0 +1,110 @@
+.main-container {
+    padding-left: 38px !important;
+}
+/* General styling for the container */
+div {
+    font-family: Arial, sans-serif;
+    margin: 20px auto;
+    max-width: 400px; /* Reduced width */
+  }
+  
+  /* Styling for the heading */
+  h2 {
+    font-size: 24px; /* Reduced font size */
+    
+    margin-bottom: 16px;
+   
+    
+    text-align: center;
+   
+    padding: 8px; /* Reduced padding */
+    border-radius: 6px; /* Reduced border radius */
+    
+  }
+  
+  /* Buttons container layout */
+  .buttons-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 8px 12px; /* Reduced padding */
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 4px; /* Reduced border radius */
+    margin-bottom: 10px; /* Reduced margin */
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1); /* Reduced shadow */
+  }
+  
+  /* Button styling */
+  .button {
+    display: flex;
+    align-items: center;
+    justify-content: space-between; /* Align icon to the end */
+    padding: 8px; /* Reduced padding */
+    font-size: 14px; /* Reduced font size */
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    color: #555;
+    transition: color 0.3s ease;
+    width: 100%; /* Ensure the button spans the container */
+  }
+  
+  .button mat-icon {
+    margin-left: auto; /* Push the icon to the end */
+    font-size: 18px; /* Reduced icon size */
+  }
+  
+  .button:hover {
+    color: #f76c5e;
+  }
+  
+  /* Add Section button styling */
+  .example-button-row {
+    display: flex;
+    justify-content: center;
+    margin-top: 16px; /* Reduced margin */
+  }
+  
+  .primary-bg-color {
+    background-color: #f76c5e; /* Updated primary color */
+    color: white;
+    font-size: 16px; /* Reduced font size */
+    padding: 10px 20px; /* Reduced padding */
+    border-radius: 6px; /* Reduced border radius */
+    box-shadow: 0 3px 5px rgba(0, 0, 0, 0.2); /* Reduced shadow */
+    display: flex;
+    align-items: center;
+    gap: 8px; /* Reduced gap */
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+  
+  .primary-bg-color:hover {
+    transform: translateY(-2px); /* Reduced hover effect */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    background-color: #d95a4a;
+  }
+  
+  /* Material icon alignment */
+  mat-icon {
+    vertical-align: middle;
+    font-size: 18px; /* Reduced icon size */
+  }
+  
+  /* Responsive design */
+  @media (max-width: 768px) {
+    div {
+      max-width: 90%;
+    }
+  
+    .buttons-container {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 8px;
+    }
+  
+    .button {
+      width: 100%;
+    }
+  }
+  
