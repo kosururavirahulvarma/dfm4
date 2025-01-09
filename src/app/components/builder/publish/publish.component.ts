@@ -15,5 +15,5 @@ import { RouterOutlet } from '@angular/router';
 })
 export class PublishComponent {
 
-publishSideNavList:any = [{label: "QuickShare",routerLink: "quickshare"},{label:"Download",routerLink: "download"},{label:"Assign Form", routerLink: "assignforms"}];
+publishSideNavList:any = [{label: "QuickShare",routerLink: "quickshare"},{label:"Download",routerLink: "download"},{label:"IACUC Form", routerLink: "iacucform"}];
 }

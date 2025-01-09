@@ -66,7 +66,7 @@ export const routes: Routes = [
                     }
                     ,
                     {
-                        path:"assignforms",
+                        path:"iacucform",
                         component:AssignformsComponent
                     }
                 ]

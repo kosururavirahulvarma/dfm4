@@ -30,7 +30,7 @@ cdkDropListGroup>
   </mat-sidenav-content>
 </mat-sidenav-container> -->
 <mat-sidenav-container class="example-sidenav-container" cdkDropListGroup>
-  <mat-sidenav mode="side" opened [ngClass]="{ 'sidenav1': opened }">
+  <mat-sidenav class="leftsidenav" mode="side" opened [ngClass]="{ 'sidenav1': opened }">
     @if(!opened){
       <mat-button-toggle style="padding: 3px;"  (click)="onSidenavToggle()"><span style="margin-right: 5px;">Add Element</span><mat-icon aria-hidden="false" aria-label="add_circle" fontIcon="add_circle"></mat-icon></mat-button-toggle> 
       }
@@ -48,34 +48,116 @@ cdkDropListGroup>
   }
   </mat-sidenav>
   <mat-sidenav mode="over" position="end" [opened]="rightSideNavOpened">
-    <div>
-      <label>Change Label:</label>
+    <!-- Information Note -->
+    <div class="note">
+      <p><strong>Note: </strong>Changes are temporary until saved.</p>
+    </div>
+  
+    <!-- Label Field -->
+    <div class="input-container">
+      <label for="changeLabel">Change Label:</label>
       <input
         type="text"
-        [(ngModel)]="selectedItem.label"  
-        name="changeLabel"
+        id="changeLabel"
+        [(ngModel)]="selectedItem.label"
+        name="label"
       />
     </div>
+
+     <!-- Place Holder Field -->
+     <div class="input-container">
+      <label for="changeLabel">Change Place Holder:</label>
+      <input
+        type="text"
+        id="changeLabel"
+        [(ngModel)]="selectedItem.placeholder"
+        name="label"
+      />
+    </div>
+  
+    <!-- Size Field (Number Input) -->
+    <div *ngIf="selectedItem.validation" class="input-container">
+      <div>
+        <label for="changeMinSize">Minimum Length:</label>
+        <input
+          type="number"
+          id="changeMinSize"
+          [(ngModel)]="selectedItem.validation.minLength"
+          name="minSize"
+        />
+      </div>
+  
+      <div>
+        <label for="changeMaxSize">Maximum Length:</label>
+        <input
+          type="number"
+          id="changeMaxSize"
+          [(ngModel)]="selectedItem.validation.maxLength"
+          name="maxSize"
+        />
+      </div>
+
+      <div class="input-container">
+        <label for="changeMaxSize">Required:</label>
+        <div class="radio-group">
+          <label>
+            <input
+              type="radio"
+              name="required"
+              [(ngModel)]="selectedItem.validation.required"
+              value="true"
+            />
+            Yes
+          </label>
+          <label>
+            <input
+              type="radio"
+              name="required"
+              [(ngModel)]="selectedItem.validation.required"
+              value="false"
+            />
+            No
+          </label>
+        </div>
+      </div>
+    </div>
+  
+    <!-- Save and Cancel Buttons -->
+    <div class="button-container">
+      <button type="button" mat-button color="warn" (click)="cancel()" class="cancel-btn">
+        Cancel
+      </button>
+      <button type="submit" mat-raised-button color="primary" (click)="saveProperties()" class="save-btn">
+        Save
+      </button>
+    </div>
+     <!-- Save Message -->
+  <div *ngIf="saveMessageVisible" class="save-message">
+    Changes have been successfully saved!
+  </div>
   </mat-sidenav>
   
   <mat-sidenav-content>
     <div class="main-content">
       <section>
         <div class="example-button-row">
-          <button mat-flat-button class="primary-bg-color" (click)="addAnotherSection()"><span>Add Section Here</span><mat-icon>add_circle_outline</mat-icon></button>
+          <button mat-flat-button class="add-section-btn" (click)="addAnotherSection()">
+            <mat-icon>add_circle_outline</mat-icon>
+            <span>Add Section Here</span>
+          </button>
         </div>
       </section>
       <div class="section-name-container">
        <div class="section-name">{{selectedSection}}</div>
       </div>
       <!-- Drop Zone for Items Dragged from Sidenav -->
-       @for (element of sectionList ; track $index) {
-        @if (element.selectionName === selectedSection ) {
+      @for (elementList of sectionList ; track $index) {
+        @if (elementList.selectionName === selectedSection ) {
          
-          <div cdkDropList [cdkDropListData]="element.elements" class="main-content-drop"
+          <div cdkDropList [cdkDropListData]="elementList.elements" class="main-content-drop"
           (cdkDropListDropped)="drop($event)">
           <form  >
-          @for (element of element.elements  ; track $index) {
+            @for (element of elementList.elements  ; track $index) {
            
               @if (element.label === 'Drag Here or Click from the Sidenav to add Elements') {
                 <div  [ngStyle]="$index === 0 ? {'border-radius': '15px'} : {}"class="example-box" style="padding-left: 160px;" cdkDrag>
@@ -102,9 +184,9 @@ cdkDropListGroup>
                     <!-- radio   divstyle == > style="display: flex; margin-bottom: 8px; font-size: 14px; color: #333; justify-content: start;"-->
                 
                     <div class="buttons-container">
-                      <button class="button" (click)="onRightSidenavToggle(element)"   matTooltip="edit" matTooltipPosition="right"><mat-icon>edit</mat-icon></button>
-                      <button class="button" (click)="onDelete(element)" matTooltip="delete" matTooltipPosition="right"><mat-icon>delete</mat-icon></button>
-                      <button class="button" (click)="onDuplicate(element)" matTooltip="duplicate" matTooltipPosition="right"><mat-icon>cached</mat-icon></button>
+                      <button class="button" (click)="onRightSidenavToggle(element.id ,elementList.sectionId)"   matTooltip="edit" matTooltipPosition="right"><mat-icon>edit</mat-icon></button>
+                      <button class="button" (click)="onDelete(element.id ,elementList.sectionId)" matTooltip="delete" matTooltipPosition="right"><mat-icon>delete</mat-icon></button>
+                      <button class="button" (click)="onDuplicate(element , element.id ,elementList.sectionId)" matTooltip="duplicate" matTooltipPosition="right"><mat-icon>cached</mat-icon></button>
                     </div>
                 
                       <!-- <h6>{{element.styles?.divStyle}}</h6>
@@ -113,17 +195,16 @@ cdkDropListGroup>
               
                       <!-- Input Element -->
                       @if (element.type === 'input') {
-                        <label
-                        [for]="element.name"
-                        [style]="element.styles?.labelStyle">
-                        {{ element.label }}
-                      </label>
-                        <input
-                          type="text"
-                          id="element.id"
-                          [name]="element.name"
-                          [placeholder]="element.placeholder"
-                          [style]="element.styles?.inputStyle" oninput="formInput()" />
+                        <div class="input-container">
+                          <div class="lable-field"> 
+                            <p>
+                              {{ element.label }}
+                            </p>
+                          </div>
+                          <div class="input-field">
+                            <input class="input" type="text" id="userInput" name="userInput" />
+                          </div>
+                        </div>
                       }
                       
   
@@ -256,23 +337,159 @@ cdkDropListGroup>
                           <div class="name-title">
                             <div class="label"> 
                               <label>
-                              {{ element.namelabel }}
+                              {{ element.rowItems[0].label }}
                               </label>
                             </div>
-                            <div>
-
+                            <div class="name">
+                              <input class="name-input" type="text" id="userInput" name="userInput" value="Michael, Atherton"/>
                             </div>
                           </div>
                           <div class="name-title">
                             <div class="label">
                               <label>
-                                {{ element.titlelable }}
+                                {{ element.rowItems[1].label }}
                               </label>
                             </div>
-                            <div>
-
+                            <div class="title">
+                              <input class="title-input" type="text" id="userInput" name="userInput"/>
                             </div>
                           </div>
+                        </div>
+                      }
+                      @if (element.type === 'Email&OfficePhone') {
+                        <div class="name-title-container">
+                          <div class="name-title">
+                            <div class="label"> 
+                              <label>
+                                {{ element.rowItems[0].label }}
+                              </label>
+                            </div>
+                            <div class="name">
+                              <input class="title-input" type="email" id="userInput" name="userInput" value="eprotocol1@keyusa.com"/>
+                            </div>
+                          </div>
+                          <div class="name-title">
+                            <div class="label">
+                              <label>
+                                {{ element.rowItems[1].label }}
+                              </label>
+                            </div>
+                            <div class="title">
+                              <input class="title-input" type="tel" id="userInput" name="userInput" value="5104564500"/>
+                            </div>
+                          </div>
+                        </div>
+                      }
+                      @if (element.type === 'Lab Phone&Cell Phone') {
+                        <div class="name-title-container">
+                          <div class="name-title">
+                            <div class="label"> 
+                              <label>
+                                {{ element.rowItems[0].label }}
+                              </label>
+                            </div>
+                            <div class="name">
+                              <input class="phone-input" type="tel" id="userInput" name="userInput" />
+                            </div>
+                          </div>
+                          <div class="name-title">
+                            <div class="label">
+                              <label>
+                                {{ element.rowItems[1].label }}
+                              </label>
+                            </div>
+                            <div class="title">
+                              <input class="phone-input" type="tel" id="userInput" name="userInput" />
+                            </div>
+                          </div>
+                        </div>
+                      }
+                      @if (element.type === 'Department&EmergencyPhone') {
+                        <div class="name-title-container">
+                          <div class="name-title">
+                            <div class="label"> 
+                              <label>
+                                {{ element.rowItems[0].label }}
+                              </label>
+                            </div>
+                            <div class="name">
+                              <select
+                                id="element"
+                                name="department" class="dropdown">
+                          @for (option of element.rowItems[0].options; track $index) {
+                            <option [value]="option.value">
+                              {{ option.label }}
+                            </option>
+                          }
+                        </select>
+                            </div>
+                          </div>
+                          <div class="name-title">
+                            <div class="label">
+                              <label>
+                                {{ element.rowItems[1].label }}
+                              </label>
+                            </div>
+                            <div class="title">
+                              <input class="phone-input" type="tel" id="userInput" name="userInput" />
+                            </div>
+                          </div>
+                        </div>
+                      }
+                      @if (element.type === 'Degree&PersonalType') {
+                        <div class="name-title-container">
+                          <div class="name-title">
+                            <div class="label"> 
+                              <label>
+                                {{ element.rowItems[0].label }}
+                              </label>
+                            </div>
+                            <div class="name">
+                              <input class="phone-input" type="text" id="userInput" name="userInput" />
+                            </div>
+                          </div>
+                          <div class="name-title">
+                            <div class="label">
+                              <label>
+                                {{ element.rowItems[1].label }}
+                              </label>
+                            </div>
+                            <div class="title">
+                              <input class="personaltype-input" type="text" id="userInput" name="userInput" />
+                            </div>
+                          </div>
+                        </div>
+                      }
+                      @if (element.type === 'YesOrNoButton') {
+                        <div class="YesOrNoButton-container">
+                        
+                            <div class="YesOrNo-label"> 
+                              <label>
+                                {{ element.label }}
+                              </label>
+                            </div>
+                            <div class="YesOrNo">
+                              <div class="toggle-container">
+                                <button
+                                  class="toggle-button"
+                                  [class.active]="selectedOption === 'Yes'"
+                                  (click)="selectOption('Yes')"
+                                >
+                                  <span class="tick-mark" *ngIf="selectedOption === 'Yes'">✔</span>
+                                  Yes
+                                </button>
+                              
+                                <button
+                                  class="toggle-button"
+                                  [class.active]="selectedOption === 'No'"
+                                  (click)="selectOption('No')"
+                                >
+                                  <span class="tick-mark" *ngIf="selectedOption === 'No'">✔</span>
+                                  No
+                                </button>
+                              </div>
+                              
+                            </div>
                         </div>
                       }
                     

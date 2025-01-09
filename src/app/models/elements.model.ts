@@ -23,7 +23,7 @@ export interface Element {
   options?: Option[];
   innerLabelStyle: string;
   innerDivStyle: string;
-  rowItems?:any;
+  rowItems?: Element[];
 }
   
   export interface Styles {

@@ -23,7 +23,7 @@
 }
 
 .example-box {
-  padding: 20px 10px;
+  padding: 10px 10px;
   color: rgba(0, 0, 0, 0.87);
   display: flex;
   flex-direction: row;
@@ -112,7 +112,7 @@ top:7px;
 .section-name-container{
   display: flex;
   align-items: center;
-  width: 37.6%;
+  width: 938px;
   background-color: #c1c1c1;
   border-top-left-radius: 5px;
   border-top-right-radius: 5px;
@@ -132,13 +132,278 @@ top:7px;
   display: flex;
   width: 100%;
 }
+mat-sidenav {
+  background-color: #fff;
+  padding: 16px;
+  width: 300px;
+}
+
+mat-sidenav .note {
+  margin-bottom: 16px;
+  padding: 8px;
+  background-color: #f5f5f5;
+  border-left: 4px solid #ff9800;
+  font-size: 14px;
+  color: #555;
+}
+
+mat-sidenav .input-container {
+  margin-bottom: 16px;
+}
+
+mat-sidenav .input-container label {
+  font-size: 14px;
+  font-weight: 500;
+  margin-bottom: 8px;
+  display: inline-block;
+}
+
+mat-sidenav .input-container input {
+  width: 100%;
+  padding: 8px;
+  font-size: 14px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  box-sizing: border-box;
+  margin-top: 4px;
+}
+
+mat-sidenav .input-container input:focus {
+  border-color: #3f51b5;
+}
+
+mat-sidenav .input-container input:invalid {
+  border-color: #e53935;
+}
+
+mat-sidenav .input-container .radio-group {
+  display: flex;
+  gap: 10px;
+}
+
+mat-sidenav .input-container .radio-group label {
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+mat-sidenav .button-container {
+  display: flex;
+  justify-content: space-between;
+}
+
+mat-sidenav .button-container button {
+  width: 48%;
+}
+
+button[disabled] {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+
+section {
+  .example-button-row {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px; /* Space between the button and surrounding content */
+  }
+
+  .add-section-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background-color:  #F98866!important; /* Primary vibrant purple color */
+    color: white;
+    font-size: 16px;
+    font-weight: 550; /* Clean and slightly lighter font weight */
+    padding: 12px 24px;
+    border-radius: 50px; /* Fully rounded button */
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+  }
+
+  .add-section-btn mat-icon {
+    margin-right: 10px;
+    font-size: 20px; /* Adjust icon size */
+  }
+
+  
+}
+
+.save-message {
+  margin-top: 16px;
+  padding: 12px;
+  background-color: #4caf50; /* Success green */
+  color: white;
+  font-size: 14px;
+  text-align: center;
+  border-radius: 4px;
+  animation: fadeInOut 3s ease-in-out;
+}
+
+@keyframes fadeInOut {
+  0%, 90% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
 
 .name-title{
-  width: 480px;
-  border: 1px solid grey;
-  height: 20px;
+ min-width: 50%;
 }
 
 .label{
   height: 20px;
+  FONT-SIZE: 12px;
+  COLOR: #204f7f;
+  font-weight:bold ;
+  FONT-FAMILY: ARIAL, Verdana, TAHOMA, 'TIMES NEW ROMAN';
+  border: 1px solid grey;
+}
+.name{
+display: flex;
+align-items: center;
+min-width: 99%;
+height: 26px;
+border: 1px solid grey;
+margin: 2px 0px;
+
+}
+
+.title{
+  height: 26px;
+  border: 1px solid grey;
+  margin: 2px 0px;
+}
+label{
+  margin: 0px 2px;
+}
+.name-input{
+  background-color: #D4D4D4;
+  height: 20px;
+  border: 1px solid #cccccc;
+  border-radius: 5px;
+  padding: 0px;
+  margin: 2px;
+}
+
+.title-input{
+  background-color: #D4D4D4;
+  height: 20px;
+  width: 99%;
+  border: 1px solid #cccccc;
+  border-radius: 5px;
+  padding: 0px;
+  margin: 2px;
+}
+
+.phone-input{
+  height: 20px;
+  width: 99%;
+  border: 1px solid #cccccc;
+  border-radius: 5px;
+  padding: 0px;
+  margin: 2px;
+}
+
+.dropdown{
+  width: 50%;
+  background-color: #D4D4D4;
+  margin: 0px 2px;
+}
+
+.personaltype-input{
+  background-color: #D4D4D4;
+  height: 20px;
+  width: 40%;
+  border: 1px solid #cccccc;
+  border-radius: 5px;
+  padding: 0px;
+  margin: 2px;
+}
+
+.YesOrNoButton-container{
+  display: flex;
+  width: 99.5%;
+}
+.YesOrNo-label{
+  min-width: 65%;
+  height: 30px;
+  FONT-SIZE: 12px;
+  COLOR: #204f7f;
+  font-weight:bold ;
+  FONT-FAMILY: ARIAL, Verdana, TAHOMA, 'TIMES NEW ROMAN';
+  border: 1px solid grey;
+}
+.YesOrNo{
+  min-width: 35%;
+  height: 30px;
+  FONT-SIZE: 12px;
+  COLOR: #204f7f;
+  font-weight:bold ;
+  FONT-FAMILY: ARIAL, Verdana, TAHOMA, 'TIMES NEW ROMAN';
+  border: 1px solid grey;
+}
+
+.toggle-container {
+  display: flex;
+  margin-top: 1px;
+}
+
+.toggle-button {
+  padding: 3px;
+  margin: 2px;
+  border: 1px solid #ccc;
+  color: #000000;
+  border-radius: 5px;
+  background-color: #DDDDDD;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.toggle-button.active {
+  background-color: #000000;
+  color: white;
+}
+
+.tick-mark {
+  color: white;
+}
+
+.input-container{
+  display: flex;
+  min-height: 40px;
+  padding: 3px;
+  width: 100%;
+}
+
+.lable-field{
+  FONT-SIZE: 12px;
+  COLOR: #204f7f;
+  font-weight:bold ;
+  FONT-FAMILY: ARIAL, Verdana, TAHOMA, 'TIMES NEW ROMAN';
+  border: 1px solid grey;
+  width: 50%;
+  max-width: 50%;
+}
+.input-field{
+  width: 50%;
+  border: 1px solid grey;
+}
+.input{
+  height: 31px;
+  border: 1px solid #cccccc;
+  border-radius: 5px;
+  padding: 0px;
+  margin: 2px;
+  width: 98.5%;
 }
