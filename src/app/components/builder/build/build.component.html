@@ -47,43 +47,45 @@ cdkDropListGroup>
     </mat-nav-list>
   }
   </mat-sidenav>
-  <mat-sidenav mode="over" position="end" [opened]="rightSideNavOpened">
+  <mat-sidenav mode="over" position="end" [opened]="rightSideNavOpened" class="custom-sidenav">
     <!-- Information Note -->
     <div class="note">
       <p><strong>Note: </strong>Changes are temporary until saved.</p>
     </div>
-  
-    <!-- Label Field -->
+
+  @for (selected of selectedItem; track $index) {
+    <!-- Input Fields -->
     <div class="input-container">
       <label for="changeLabel">Change Label:</label>
       <input
         type="text"
         id="changeLabel"
-        [(ngModel)]="selectedItem.label"
-        name="label"
-      />
-    </div>
-
-     <!-- Place Holder Field -->
-     <div class="input-container">
-      <label for="changeLabel">Change Place Holder:</label>
-      <input
-        type="text"
-        id="changeLabel"
-        [(ngModel)]="selectedItem.placeholder"
-        name="label"
+        [(ngModel)]="selected.label"
+        placeholder="Enter label"
+        class="text-input"
       />
     </div>
   
-    <!-- Size Field (Number Input) -->
-    <div *ngIf="selectedItem.validation" class="input-container">
+    <div class="input-container">
+      <label for="changePlaceholder">Change Placeholder:</label>
+      <input
+        type="text"
+        id="changePlaceholder"
+        [(ngModel)]="selected.placeholder"
+        placeholder="Enter placeholder"
+        class="text-input"
+      />
+    </div>
+  
+    <!-- Validation Fields -->
+    <div *ngIf="selected.validation" class="input-container validation-container">
       <div>
         <label for="changeMinSize">Minimum Length:</label>
         <input
           type="number"
           id="changeMinSize"
-          [(ngModel)]="selectedItem.validation.minLength"
-          name="minSize"
+          [(ngModel)]="selected.validation.minLength"
+          class="number-input"
         />
       </div>
   
@@ -92,19 +94,19 @@ cdkDropListGroup>
         <input
           type="number"
           id="changeMaxSize"
-          [(ngModel)]="selectedItem.validation.maxLength"
-          name="maxSize"
+          [(ngModel)]="selected.validation.maxLength"
+          class="number-input"
         />
       </div>
-
-      <div class="input-container">
-        <label for="changeMaxSize">Required:</label>
+  
+      <div>
+        <label>Required:</label>
         <div class="radio-group">
           <label>
             <input
               type="radio"
               name="required"
-              [(ngModel)]="selectedItem.validation.required"
+              [(ngModel)]="selected.validation.required"
               value="true"
             />
             Yes
@@ -113,7 +115,7 @@ cdkDropListGroup>
             <input
               type="radio"
               name="required"
-              [(ngModel)]="selectedItem.validation.required"
+              [(ngModel)]="selected.validation.required"
               value="false"
             />
             No
@@ -121,7 +123,12 @@ cdkDropListGroup>
         </div>
       </div>
     </div>
-  
+    @if (selectedItem.length > 1 && $index != selectedItem.length-1){
+    <div class="partition-divider">
+      <p></p>
+    </div>
+  }
+  }
     <!-- Save and Cancel Buttons -->
     <div class="button-container">
       <button type="button" mat-button color="warn" (click)="cancel()" class="cancel-btn">
@@ -131,11 +138,13 @@ cdkDropListGroup>
         Save
       </button>
     </div>
-     <!-- Save Message -->
-  <div *ngIf="saveMessageVisible" class="save-message">
-    Changes have been successfully saved!
-  </div>
+  
+    <!-- Save Message -->
+    <div *ngIf="saveMessageVisible" class="save-message">
+      Changes have been successfully saved!
+    </div>
   </mat-sidenav>
+  
   
   <mat-sidenav-content>
     <div class="main-content">
@@ -195,7 +204,7 @@ cdkDropListGroup>
               
                       <!-- Input Element -->
                       @if (element.type === 'input') {
-                        <div class="input-container">
+                        <div class="input-container-main">
                           <div class="lable-field"> 
                             <p>
                               {{ element.label }}

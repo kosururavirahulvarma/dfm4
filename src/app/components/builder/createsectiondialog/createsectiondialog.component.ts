@@ -39,7 +39,7 @@ export class CreatesectiondialogComponent {
     public dialogRef: MatDialogRef<CreatesectiondialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any
   ) {
-    
+    this.sectionName = data.section;
   }
 
   onClose(): void {

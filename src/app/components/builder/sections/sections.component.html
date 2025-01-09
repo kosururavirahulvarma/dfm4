@@ -1,13 +1,21 @@
 <div class="main-container">
 <div>
-  <h2>Selection List</h2>
+
+  @if (sections.length > 1) {
+    <h2>Selection List</h2>
+  }
+  
   
   <div *ngFor="let section of sections; let i = index">
     @if (section != '') {
       <div class="buttons-container">
-          <button class="button" (click)="navigateToSectionElements(section)" matTooltip="edit" matTooltipPosition="right">
-              {{section}} <mat-icon>edit</mat-icon>
+          <button class="button" (click)="navigateToSectionElements(section)" >
+              {{section}} 
           </button>
+          <div class="buttons-container-edit">
+            <button class="button-icon" (click)="onEdit(section)" matTooltip="edit" matTooltipPosition="right"><mat-icon>edit</mat-icon></button>
+            <button class="button-icon" (click)="onDelete(section)" matTooltip="delete" matTooltipPosition="right"><mat-icon>delete</mat-icon></button>
+          </div>
       </div>
     }
   </div>
@@ -15,8 +23,8 @@
 
 <section>
   <div class="example-button-row">
-      <button mat-flat-button class="primary-bg-color" (click)="addSection()">
-          <span>Add Section Here</span> <mat-icon>add_circle_outline</mat-icon>
+      <button mat-flat-button class="primary-bg-color" (click)="addSection('')">
+          <span>Add Section Here</span> <mat-icon style="color: white;">add_circle_outline</mat-icon>
       </button>
   </div>
 </section>

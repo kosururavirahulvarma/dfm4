@@ -6,11 +6,12 @@ import { MatDialog } from '@angular/material/dialog';
 import {MatIconModule} from '@angular/material/icon';
 import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
+import { MatTooltipModule } from '@angular/material/tooltip';
 
 @Component({
   selector: 'app-sections',
   standalone: true,
-  imports: [MatButtonModule,MatIconModule,CommonModule],
+  imports: [MatButtonModule,MatIconModule,CommonModule,MatTooltipModule],
   templateUrl: './sections.component.html',
   styleUrl: './sections.component.css'
 })
@@ -28,14 +29,17 @@ export class SectionsComponent {
     selectionList : []
   };
 
-  addSection(): void {
+  addSection(section: string) {
     const dialogRef = this.dialog.open(CreatesectiondialogComponent, {
       width: '400px',
-    
-      data: {title :'Add New Section'}
+      data: {title :'Add New Section', section : section}
     });
 
     dialogRef.afterClosed().subscribe((result) => {
+      console.log('result')
+      console.log(result)
+      console.log(section)
+      if(section === ''){
       if (result) {
         this.sections.push(result);
         console.log('Section added:', result);
@@ -49,19 +53,34 @@ export class SectionsComponent {
         this.sectionId = newSection.sectionId;
         // Push the new section to the `selectionList`
         // this.sectionList.selectionList.push(newSection);
-      
-    
-
         this.allSections.push({...newSection})
-
         // Optionally save the `selectionList` to local storage for persistence
         localStorage.setItem(
           'selectionList',
           JSON.stringify(this.allSections)
         );
-
-        
       }
+    }else if(result != undefined && result != null){
+      console.log("bjh")
+      this.allSections.forEach((element:any) => {
+        if(element.selectionName === section){
+          element.selectionName = result;
+          this.sections.forEach((element,index )=> {
+            if(element === section){
+                console.log(index)
+                this.sections[index] =  result;
+                localStorage.setItem(
+                  'selectionList',
+                  JSON.stringify(this.allSections)
+                );
+            }
+          });
+        }
+    
+      });
+    }
+
+    
     });
   }
 
@@ -91,5 +110,38 @@ export class SectionsComponent {
 
    
 
+    }
+
+    onDelete(section: any) {
+      this.allSections.forEach((element: any, index: any) => {
+        if (element.selectionName === section) {
+          console.log('Found section at index:', index);
+          
+          this.allSections.splice(index, 1);
+          localStorage.setItem(
+            'selectionList',
+            JSON.stringify(this.allSections)
+          );
+          this.sections.forEach((element,index )=> {
+            if(element === section){
+                console.log(index)
+                this.sections.splice(index, 1);
+            }
+          });
+         
+          console.log('Updated allSections:', this.allSections);
+        }
+      });
+    }
+    
+    onEdit(section : any){
+      console.log(section)
+      console.log(this.allSections)
+      this.allSections.forEach((element:any) => {
+        if(element.selectionName === section){
+          this.addSection(section)
+        }
+        
+      });
     }
 }

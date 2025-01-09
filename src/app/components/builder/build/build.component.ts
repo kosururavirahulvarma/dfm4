@@ -607,7 +607,7 @@ export class BuildComponent implements OnDestroy {
 
   rightSideNavOpened: boolean = false;
 
-  selectedItem: Element = {
+  selectedItem: any = [{
     index: 0,
     type: '',
     label: '',
@@ -627,7 +627,7 @@ export class BuildComponent implements OnDestroy {
     innerLabelStyle: '',
     innerDivStyle: '',
     rowItems: [],
-  };
+  }];
 
   // Method to handle right-side navigation toggle and selection
   onRightSidenavToggle(elementId: any, selectionId: any) {
@@ -643,7 +643,15 @@ export class BuildComponent implements OnDestroy {
         this.selectedItem = element.elements.find(
           (el: any) => el.id === elementId
         );
-      }
+        if(this.selectedItem.rowItems != undefined && this.selectedItem.rowItems != null && this.selectedItem.rowItems.length > 0){
+          this.selectedItem = this.selectedItem.rowItems;
+        }else{
+          this.selectedItem= [this.selectedItem];
+        }
+        console.log('this.selectedItem')
+        console.log(typeof this.selectedItem)
+        console.log( this.selectedItem.length)
+        console.log(Array.isArray(this.selectedItem));      }
     });
   }
 

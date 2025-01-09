@@ -132,75 +132,6 @@ top:7px;
   display: flex;
   width: 100%;
 }
-mat-sidenav {
-  background-color: #fff;
-  padding: 16px;
-  width: 300px;
-}
-
-mat-sidenav .note {
-  margin-bottom: 16px;
-  padding: 8px;
-  background-color: #f5f5f5;
-  border-left: 4px solid #ff9800;
-  font-size: 14px;
-  color: #555;
-}
-
-mat-sidenav .input-container {
-  margin-bottom: 16px;
-}
-
-mat-sidenav .input-container label {
-  font-size: 14px;
-  font-weight: 500;
-  margin-bottom: 8px;
-  display: inline-block;
-}
-
-mat-sidenav .input-container input {
-  width: 100%;
-  padding: 8px;
-  font-size: 14px;
-  border: 1px solid #ddd;
-  border-radius: 4px;
-  box-sizing: border-box;
-  margin-top: 4px;
-}
-
-mat-sidenav .input-container input:focus {
-  border-color: #3f51b5;
-}
-
-mat-sidenav .input-container input:invalid {
-  border-color: #e53935;
-}
-
-mat-sidenav .input-container .radio-group {
-  display: flex;
-  gap: 10px;
-}
-
-mat-sidenav .input-container .radio-group label {
-  font-size: 14px;
-  display: flex;
-  align-items: center;
-  gap: 5px;
-}
-
-mat-sidenav .button-container {
-  display: flex;
-  justify-content: space-between;
-}
-
-mat-sidenav .button-container button {
-  width: 48%;
-}
-
-button[disabled] {
-  background-color: #ccc;
-  cursor: not-allowed;
-}
 
 
 section {
@@ -379,7 +310,7 @@ label{
   color: white;
 }
 
-.input-container{
+.input-container-main{
   display: flex;
   min-height: 40px;
   padding: 3px;
@@ -406,4 +337,135 @@ label{
   padding: 0px;
   margin: 2px;
   width: 98.5%;
+}
+
+
+/* side nav  */
+
+.custom-sidenav {
+  background-color: #ffffff;
+  padding: 21px;
+  width: 400px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+
+}
+
+.note {
+  margin-bottom: 20px;
+  padding: 10px;
+  background-color: #f9f9f9;
+  border-left: 5px solid #ff9800;
+  font-size: 14px;
+  color: #555;
+  border-radius: 4px;
+}
+
+.input-container {
+  margin-bottom: 20px;
+}
+
+.input-container {
+  display: flex;
+  flex-direction: column; /* Ensures the elements stack vertically */
+  margin-bottom: 20px;
+}
+
+.input-container label {
+  font-size: 14px;
+  font-weight: 500;
+  margin-bottom: 6px; /* Spacing between label and input */
+  color: #333;
+}
+
+.validation-container {
+  display: flex;
+  flex-direction: column; /* Stack fields vertically */
+  gap: 10px; /* Add spacing between fields */
+}
+
+.text-input,
+.number-input {
+  width: 100%;
+  padding: 8px 10px;
+  font-size: 14px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  box-sizing: border-box;
+  transition: border-color 0.3s ease-in-out;
+  margin-bottom: 10px; /* Space between input fields */
+}
+
+.radio-group {
+  display: flex;
+  gap: 15px;
+  margin-top: 10px;
+}
+
+.radio-group label {
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.button-container {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+  padding: 10px;
+}
+
+.cancel-btn,
+.save-btn {
+  width: 48%;
+  padding: 10px 15px;
+  font-size: 14px;
+  border-radius: 4px;
+  transition: background-color 0.3s ease-in-out;
+}
+
+.cancel-btn:hover {
+  background-color: #f44336;
+  color: white;
+}
+
+.save-btn:hover {
+  background-color: #3f51b5;
+  color: white;
+}
+
+.save-message {
+  margin-top: 20px;
+  padding: 12px;
+  background-color: #4caf50;
+  color: white;
+  font-size: 14px;
+  text-align: center;
+  border-radius: 4px;
+  animation: fadeInOut 3s ease-in-out;
+}
+
+@keyframes fadeInOut {
+  0%, 90% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+
+/* Partition Divider */
+.partition-divider {
+  text-align: center;
+  margin: 20px 0;
+  color: #999;
+  font-weight: bold;
+}
+
+.partition-divider p {
+  display: inline-block;
+  width: 100%;
+  border-top: 2px dotted #f44336; /* Optional: Adds a line instead of dashes */
+  padding-top: 10px;
 }
