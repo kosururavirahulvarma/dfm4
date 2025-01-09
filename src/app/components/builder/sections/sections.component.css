@@ -12,12 +12,17 @@ div {
 
 /* Styling for the heading */
 h2 {
-    font-size: 24px; /* Reduced font size */
-    margin-bottom: 16px;
-    text-align: center;
-    padding: 8px; /* Reduced padding */
-    border-radius: 6px; /* Reduced border radius */
-}
+    font-size: 24px; /* Set the font size */
+    color: #d95a4a; /* Use your primary color */
+    text-align: center; /* Center-align the text */
+    margin-bottom: 20px; /* Add spacing below the heading */
+    text-transform: uppercase; /* Make the text uppercase */
+    letter-spacing: 1.5px; /* Add some spacing between letters */
+    font-weight: 500; /* Make the text bold */
+  }
+  
+
+  
 
 /* Buttons container layout */
 .buttons-container {
