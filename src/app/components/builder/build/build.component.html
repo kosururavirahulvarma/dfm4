@@ -165,12 +165,17 @@ cdkDropListGroup>
          
           <div cdkDropList [cdkDropListData]="elementList.elements" class="main-content-drop"
           (cdkDropListDropped)="drop($event)">
+          @if (elementList.elements.length === 0) {
+            <div  [ngStyle]="$index === 0 ? {'border-radius': '15px'} : {}"class="example-box" style="padding-left: 286px;" cdkDrag>
+              <div [innerHTML]="sanitizeHtml(sectionList[0].label)"></div>                 
+            </div>
+          }
           <form  >
             @for (element of elementList.elements  ; track $index) {
            
               @if (element.label === 'Drag Here or Click from the Sidenav to add Elements') {
-                <div  [ngStyle]="$index === 0 ? {'border-radius': '15px'} : {}"class="example-box" style="padding-left: 160px;" cdkDrag>
-                  <div [innerHTML]="sanitizeHtml(element.value)"></div>
+                <div  [ngStyle]="$index === 0 ? {'border-radius': '15px'} : {}"class="example-box" style="padding-left: 10px;" cdkDrag>
+                  <div [innerHTML]="sanitizeHtml(element.value)"></div>                 
                 </div>
               }@else{
                 <!-- <div class="example-box"   [ngStyle]="{
