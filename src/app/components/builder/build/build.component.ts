@@ -62,9 +62,10 @@ export class BuildComponent implements OnDestroy {
         type: 'input',
         label: 'Name',
         name: 'name',
-        placeholder: 'please fill this field',
+        placeholder: '',
         hasRule: false,
         validation: {
+          hidden: false,
           required: true,
           minLength: 3,
           maxLength: 10,
@@ -85,6 +86,7 @@ export class BuildComponent implements OnDestroy {
             'display: flex; flex-direction: column; width: 100%; max-width: 400px; margin-bottom: 15px;',
         },
         validation: {
+          hidden: false,
           required: true,
           minLength: 3,
           maxLength: 10,
@@ -111,6 +113,7 @@ export class BuildComponent implements OnDestroy {
           innerLabelStyle: 'margin-bottom: 5px;',
         },
         validation: {
+          hidden: false,
           required: true,
           minLength: 3,
           maxLength: 10,
@@ -137,6 +140,7 @@ export class BuildComponent implements OnDestroy {
           innerLabelStyle: 'margin-bottom: 5px; font-size: 14px; color: #555;',
         },
         validation: {
+          hidden: false,
           required: true,
           minLength: 3,
           maxLength: 10,
@@ -157,6 +161,7 @@ export class BuildComponent implements OnDestroy {
             'display: flex; flex-direction: column; width: 100%; max-width: 400px; margin-bottom: 15px;',
         },
         validation: {
+          hidden: false,
           required: true,
           minLength: 3,
           maxLength: 10,
@@ -177,6 +182,7 @@ export class BuildComponent implements OnDestroy {
             'display: flex; flex-direction: column; width: 100%; max-width: 400px; margin-bottom: 15px;',
         },
         validation: {
+          hidden: false,
           required: true,
           minLength: 3,
           maxLength: 10,
@@ -201,6 +207,7 @@ export class BuildComponent implements OnDestroy {
             'display: flex; flex-direction: column; width: 100%; max-width: 400px; margin-bottom: 15px;',
         },
         validation: {
+          hidden: false,
           required: true,
           minLength: 3,
           maxLength: 10,
@@ -217,9 +224,10 @@ export class BuildComponent implements OnDestroy {
             type: 'text',
             label: 'Name',
             name: 'name',
-            placeholder: 'please fill this field',
+            placeholder: '',
             hasRule: false,
             validation: {
+              hidden: false,
               required: true,
               minLength: 3,
               maxLength: 10,
@@ -230,9 +238,10 @@ export class BuildComponent implements OnDestroy {
             type: 'text',
             label: 'Title',
             name: 'title',
-            placeholder: 'please fill this field',
+            placeholder: '',
             hasRule: false,
             validation: {
+              hidden: false,
               required: true,
               minLength: 3,
               maxLength: 10,
@@ -254,6 +263,7 @@ export class BuildComponent implements OnDestroy {
             placeholder: '',
             hasRule: false,
             validation: {
+              hidden: false,
               required: true,
               minLength: 3,
               maxLength: 10,
@@ -267,6 +277,7 @@ export class BuildComponent implements OnDestroy {
             placeholder: '',
             hasRule: false,
             validation: {
+              hidden: false,
               required: true,
               minLength: 3,
               maxLength: 10,
@@ -288,6 +299,7 @@ export class BuildComponent implements OnDestroy {
             placeholder: '',
             hasRule: false,
             validation: {
+              hidden: false,
               required: true,
               minLength: 3,
               maxLength: 10,
@@ -301,6 +313,7 @@ export class BuildComponent implements OnDestroy {
             placeholder: '',
             hasRule: false,
             validation: {
+              hidden: false,
               required: true,
               minLength: 3,
               maxLength: 10,
@@ -324,10 +337,11 @@ export class BuildComponent implements OnDestroy {
             hasRule: false,
             options: [
               { value: 'Admisions Office', label: 'Admisions Office' },
-              { value: 'option2', label: 'Option 2' },
-              { value: 'option3', label: 'Option 3' },
+              { value: 'Alumni & Parents Admission Program', label: 'Alumni & Parents Admission Program' },
+              { value: 'Athletics - Recreation', label: 'Athletics - Recreation' },
             ],
             validation: {
+              hidden: false,
               required: true,
               minLength: 3,
               maxLength: 10,
@@ -341,6 +355,7 @@ export class BuildComponent implements OnDestroy {
             placeholder: '',
             hasRule: false,
             validation: {
+              hidden: false,
               required: true,
               minLength: 3,
               maxLength: 10,
@@ -362,6 +377,7 @@ export class BuildComponent implements OnDestroy {
             placeholder: '',
             hasRule: false,
             validation: {
+              hidden: false,
               required: true,
               minLength: 3,
               maxLength: 10,
@@ -375,6 +391,7 @@ export class BuildComponent implements OnDestroy {
             placeholder: '',
             hasRule: false,
             validation: {
+              hidden: false,
               required: true,
               minLength: 3,
               maxLength: 10,
@@ -619,7 +636,8 @@ export class BuildComponent implements OnDestroy {
       inputStyle: '',
     },
     validation: {
-      required: false,
+      hidden: false,
+      required: true,
       minLength: 0,
       maxLength: 0,
     },
@@ -655,6 +673,10 @@ export class BuildComponent implements OnDestroy {
     });
   }
 
+  trackByIndex(index: number, item: any): number {
+    return index;
+  }
+  
   // Navigate to add another section
   addAnotherSection() {
     this.router.navigate(['/home/section']);

@@ -53,82 +53,105 @@ cdkDropListGroup>
       <p><strong>Note: </strong>Changes are temporary until saved.</p>
     </div>
 
-  @for (selected of selectedItem; track $index) {
-    <!-- Input Fields -->
-    <div class="input-container">
-      <label for="changeLabel">Change Label:</label>
-      <input
-        type="text"
-        id="changeLabel"
-        [(ngModel)]="selected.label"
-        placeholder="Enter label"
-        class="text-input"
-      />
-    </div>
-  
-    <div class="input-container">
-      <label for="changePlaceholder">Change Placeholder:</label>
-      <input
-        type="text"
-        id="changePlaceholder"
-        [(ngModel)]="selected.placeholder"
-        placeholder="Enter placeholder"
-        class="text-input"
-      />
-    </div>
-  
-    <!-- Validation Fields -->
-    <div *ngIf="selected.validation" class="input-container validation-container">
-      <div>
-        <label for="changeMinSize">Minimum Length:</label>
+    <div *ngFor="let selected of selectedItem; let i = index; trackBy: trackByIndex">
+      <!-- Input Fields -->
+      <div class="input-container">
+        <label for="changeLabel-{{ i }}">Change Label:</label>
         <input
-          type="number"
-          id="changeMinSize"
-          [(ngModel)]="selected.validation.minLength"
-          class="number-input"
+          type="text"
+          id="changeLabel-{{ i }}"
+          [(ngModel)]="selected.label"
+          placeholder="Enter label"
+          class="text-input"
         />
       </div>
-  
-      <div>
-        <label for="changeMaxSize">Maximum Length:</label>
+    
+      <div class="input-container">
+        <label for="changePlaceholder-{{ i }}">Change Placeholder:</label>
         <input
-          type="number"
-          id="changeMaxSize"
-          [(ngModel)]="selected.validation.maxLength"
-          class="number-input"
+          type="text"
+          id="changePlaceholder-{{ i }}"
+          [(ngModel)]="selected.placeholder"
+          placeholder="Enter placeholder"
+          class="text-input"
         />
       </div>
-  
-      <div>
-        <label>Required:</label>
-        <div class="radio-group">
-          <label>
-            <input
-              type="radio"
-              name="required"
-              [(ngModel)]="selected.validation.required"
-              value="true"
-            />
-            Yes
-          </label>
-          <label>
-            <input
-              type="radio"
-              name="required"
-              [(ngModel)]="selected.validation.required"
-              value="false"
-            />
-            No
-          </label>
+    
+      <!-- Validation Fields -->
+      <div *ngIf="selected.validation" class="input-container validation-container">
+        <div>
+          <label for="changeMinSize-{{ i }}">Minimum Length:</label>
+          <input
+            type="number"
+            id="changeMinSize-{{ i }}"
+            [(ngModel)]="selected.validation.minLength"
+            class="number-input"
+          />
+        </div>
+    
+        <div>
+          <label for="changeMaxSize-{{ i }}">Maximum Length:</label>
+          <input
+            type="number"
+            id="changeMaxSize-{{ i }}"
+            [(ngModel)]="selected.validation.maxLength"
+            class="number-input"
+          />
+        </div>
+    
+        <div>
+          <label>Required:</label>
+          <div class="radio-group">
+            <label>
+              <input
+                type="radio"
+                [name]="'required-' + i"
+                [(ngModel)]="selected.validation.required"
+                [value]="true"
+              />
+              Yes
+            </label>
+            <label>
+              <input
+                type="radio"
+                [name]="'required-' + i"
+                [(ngModel)]="selected.validation.required"
+                [value]="false"
+              />
+              No
+            </label>
+          </div>
+        </div>
+        <div>
+          <label>hide:</label>
+          <div class="radio-group">
+            <label>
+              <input
+                type="radio"
+                [name]="'hidden-' + i"
+                [(ngModel)]="selected.validation.hidden"
+                [value]="true"
+              />
+              Yes
+            </label>
+            <label>
+              <input
+                type="radio"
+                [name]="'hidden-' + i"
+                [(ngModel)]="selected.validation.hidden"
+                [value]="false"
+              />
+              No
+            </label>
+          </div>
         </div>
       </div>
+    
+      <div *ngIf="selectedItem.length > 1 && i !== selectedItem.length - 1" class="partition-divider">
+        <p></p>
+      </div>
     </div>
-    @if (selectedItem.length > 1 && $index != selectedItem.length-1){
-    <div class="partition-divider">
-      <p></p>
-    </div>
-  }
-  }
+    
     <!-- Save and Cancel Buttons -->
     <div class="button-container">
       <button type="button" mat-button color="warn" (click)="cancel()" class="cancel-btn">
@@ -355,7 +378,7 @@ cdkDropListGroup>
                               </label>
                             </div>
                             <div class="name">
-                              <input class="name-input" type="text" id="userInput" name="userInput" value="Michael, Atherton"/>
+                              <input class="name-input" type="text" id="userInput" name="userInput" value=""/>
                             </div>
                           </div>
                           <div class="name-title">
@@ -379,7 +402,7 @@ cdkDropListGroup>
                               </label>
                             </div>
                             <div class="name">
-                              <input class="title-input" type="email" id="userInput" name="userInput" value="eprotocol1@keyusa.com"/>
+                              <input class="title-input" type="email" id="userInput" name="userInput" value=""/>
                             </div>
                           </div>
                           <div class="name-title">
@@ -389,7 +412,7 @@ cdkDropListGroup>
                               </label>
                             </div>
                             <div class="title">
-                              <input class="title-input" type="tel" id="userInput" name="userInput" value="5104564500"/>
+                              <input class="title-input" type="tel" id="userInput" name="userInput" value=""/>
                             </div>
                           </div>
                         </div>
@@ -431,9 +454,9 @@ cdkDropListGroup>
                                 id="element"
                                 name="department" class="dropdown">
                           @for (option of element.rowItems[0].options; track $index) {
-                            <option [value]="option.value">
+                            <!-- <option [value]="option.value">
                               {{ option.label }}
-                            </option>
+                            </option> -->
                           }
                         </select>
                             </div>

@@ -1,0 +1,233 @@
+[
+    {
+        "label": "Drag Here or Click from the Sidenav to add Elements",
+        "value": "<div style=\"display: flex; flex-direction: column; width: 100%; max-width: 400px; margin-bottom: 15px;\"><label for=\"dropdown\" style=\" margin-bottom: 5px; font-size: 14px;\">Drop elements here or click from the Sidenav to add!</label></div>"
+    },
+    {
+        "elements": [
+            {
+                "index": 8,
+                "type": "Name&Title",
+                "label": "Name & Title",
+                "name": "Name&Title",
+                "rowItems": [
+                    {
+                        "index": 0,
+                        "type": "text",
+                        "label": "Name",
+                        "name": "name",
+                        "placeholder": "please fill this field",
+                        "hasRule": false,
+                        "validation": {
+                            "required": true,
+                            "minLength": 3,
+                            "maxLength": 10
+                        },
+                        "id": "itemf3s0sgn75d"
+                    },
+                    {
+                        "index": 1,
+                        "type": "text",
+                        "label": "Title",
+                        "name": "title",
+                        "placeholder": "please fill this field",
+                        "hasRule": false,
+                        "validation": {
+                            "required": true,
+                            "minLength": 3,
+                            "maxLength": 10
+                        },
+                        "id": "item8rl6j1j3xt"
+                    }
+                ],
+                "id": "elementagqtxk0931"
+            },
+            {
+                "index": 9,
+                "type": "Email&OfficePhone",
+                "label": "Email & Office Phone",
+                "name": "Email&OfficePhone",
+                "rowItems": [
+                    {
+                        "index": 0,
+                        "type": "email",
+                        "label": "Email",
+                        "name": "email",
+                        "placeholder": "",
+                        "hasRule": false,
+                        "validation": {
+                            "required": true,
+                            "minLength": 3,
+                            "maxLength": 10
+                        },
+                        "id": "itemttyvg8nof5"
+                    },
+                    {
+                        "index": 1,
+                        "type": "tel",
+                        "label": "Office Phone",
+                        "name": "officephone",
+                        "placeholder": "",
+                        "hasRule": false,
+                        "validation": {
+                            "required": true,
+                            "minLength": 3,
+                            "maxLength": 10
+                        },
+                        "id": "itemvxnf90jxyq"
+                    }
+                ],
+                "id": "elementx0mvetyqto"
+            },
+            {
+                "index": 10,
+                "type": "Lab Phone&Cell Phone",
+                "label": "LabPhone & CellPhone",
+                "name": "Lab Phone&Cell Phone",
+                "rowItems": [
+                    {
+                        "index": 0,
+                        "type": "tel",
+                        "label": "Lab Phone",
+                        "name": "labphone",
+                        "placeholder": "",
+                        "hasRule": false,
+                        "validation": {
+                            "required": true,
+                            "minLength": 3,
+                            "maxLength": 10
+                        },
+                        "id": "itemyujtcr8pc3"
+                    },
+                    {
+                        "index": 1,
+                        "type": "tel",
+                        "label": "Cell Phone",
+                        "name": "cellphone",
+                        "placeholder": "",
+                        "hasRule": false,
+                        "validation": {
+                            "required": true,
+                            "minLength": 3,
+                            "maxLength": 10
+                        },
+                        "id": "item2x14dm7uzj"
+                    }
+                ],
+                "id": "elementmwmfw4lt15"
+            },
+            {
+                "index": 11,
+                "type": "Department&EmergencyPhone",
+                "label": "Department & EmergencyPhone",
+                "departmentlabel": "Department",
+                "emergencyphonelable": "Emergency Phone",
+                "name": "Department&EmergencyPhone",
+                "rowItems": [
+                    {
+                        "index": 0,
+                        "type": "dropdown",
+                        "label": "Department",
+                        "name": "department",
+                        "hasRule": false,
+                        "options": [
+                            {
+                                "value": "option1",
+                                "label": "Option 1"
+                            },
+                            {
+                                "value": "option2",
+                                "label": "Option 2"
+                            },
+                            {
+                                "value": "option3",
+                                "label": "Option 3"
+                            }
+                        ],
+                        "validation": {
+                            "required": true,
+                            "minLength": 3,
+                            "maxLength": 10
+                        },
+                        "id": "itemrxg111i44k"
+                    },
+                    {
+                        "index": 1,
+                        "type": "tel",
+                        "label": "Emergency Phone",
+                        "name": "emergencyphone",
+                        "placeholder": "",
+                        "hasRule": false,
+                        "validation": {
+                            "required": true,
+                            "minLength": 3,
+                            "maxLength": 10
+                        },
+                        "id": "item798e60tzrw"
+                    }
+                ],
+                "id": "elementefwguye061"
+            },
+            {
+                "index": 12,
+                "type": "Degree&PersonalType",
+                "label": "Degree & PersonalType",
+                "name": "Degree&PersonalType",
+                "rowItems": [
+                    {
+                        "index": 0,
+                        "type": "text",
+                        "label": "Degree",
+                        "name": "degree",
+                        "placeholder": "",
+                        "hasRule": false,
+                        "validation": {
+                            "required": true,
+                            "minLength": 3,
+                            "maxLength": 10
+                        },
+                        "id": "itembzbxuidq7f"
+                    },
+                    {
+                        "index": 1,
+                        "type": "text",
+                        "label": "Personal Type",
+                        "name": "personaltype",
+                        "placeholder": "",
+                        "hasRule": false,
+                        "validation": {
+                            "required": true,
+                            "minLength": 3,
+                            "maxLength": 10
+                        },
+                        "id": "itemdxc1c1kzl5"
+                    }
+                ],
+                "id": "elementonbnaoay7i"
+            },
+            {
+                "index": 13,
+                "type": "YesOrNoButton",
+                "label": "Yes Or No Button",
+                "name": "YesOrNoButton",
+                "id": "elementnoog8seimg"
+            },
+            {
+                "index": 0,
+                "type": "input",
+                "label": "What Species is the PI handling on this protocol?",
+                "name": "name",
+                "placeholder": "please fill this field",
+                "hasRule": false,
+                "validation": {
+                    "required": "true",
+                    "minLength": 3,
+                    "maxLength": 10
+                },
+                "id": "elementwvt02pe3u9"
+            }
+        ],
+        "selectionName": "Principal Investigator*",
+        "sectionId": "sectionjj7nz1o4cn"
+    }
+]

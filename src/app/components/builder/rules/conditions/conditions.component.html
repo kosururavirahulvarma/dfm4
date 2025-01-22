@@ -33,48 +33,48 @@
 
 <div class="grid-container" *ngIf="showConditionTypes && currentConditionType === 'SHOW/HIDE FIELD' ">
     <div *ngFor="let condition of rule.conditions; let i = index" class="grid-box">
-        <div>
+        <div class="grids">
           <label>If:</label>
           <select [(ngModel)]="condition.selectedIf">
             <option value="" disabled selected>Select Field</option> 
             <option *ngFor="let option of condition.if" [value]="option.value">{{ option.label}}</option>
           </select>
         </div>
-        <div>
+        <div class="grids">
           <label>State:</label>
           <select  [(ngModel)]="condition.selectedState">
             <option value="" disabled selected>Select Field State</option> 
             <option *ngFor="let state of condition.state" [value]="state">{{ state }}</option>
           </select>
         </div>
-        <div>
+        <div class="grids">
           <label>Target:</label>
           <select  [(ngModel)]="condition.selectedTarget">
             <option *ngFor="let target of condition.target" [value]="target">{{ target }}</option>
           </select>
         </div>
-        <div *ngIf="condition.selectedTarget === 'Another Field'">
+        <div class="grids" *ngIf="condition.selectedTarget === 'Another Field'">
           <label>Field:</label>
           <select  [(ngModel)]="condition.selectedAnotherField">
             <option value="" disabled selected>Select Field</option>
             <option *ngFor="let anotherField of condition.anotherField" [value]="anotherField.value">{{ anotherField.label }}</option>
           </select>
         </div>
-        <div *ngIf="condition.selectedTarget === 'Value'">
+        <div class="grids" *ngIf="condition.selectedTarget === 'Value'">
           <label>Value:</label>
           <input type="text" [(ngModel)]="condition.value" placeholder="Enter value" />
         </div>
       </div>
       
       <div *ngFor="let action of rule.dos; let i = index" class="grid-box">
-        <div>
+        <div class="grids">
           <label>Do:</label>
           <select  [(ngModel)]="action.selectedDo">
             <option value="" disabled selected>Select Condition</option> 
             <option *ngFor="let doOption of action.do" [value]="doOption">{{ doOption }}</option>
           </select>
         </div>
-        <div>
+        <div class="grids">
           <label>Field:</label>
           <select  [(ngModel)]="action.selectedField">
             <option value="" disabled selected>Select Field</option> 

@@ -31,20 +31,34 @@ export class ConditionsComponent implements OnInit {
 
     this.selectionList.forEach((section: Section) => {
       console.log(section);
+      let conditionIf: IF;
       if (section.elements != null && section.elements != undefined) {
         section.elements.forEach((element: Element) => {
-          let conditionIf: IF = {
+          if(element.rowItems?.length === 0 || element.rowItems === undefined ){
+          conditionIf= {
             label: section.selectionName + ' : ' + element.label,
             value: element.id,
           };
           this.condition.if.push(conditionIf);
           this.condition.anotherField.push(conditionIf);
           this.Do.field.push(conditionIf);
+          }else{
+            element.rowItems?.forEach((item: Element) => {
+              conditionIf={
+                label: section.selectionName + ' : ' + item.label,
+                value: item.id,
+              }
+              this.condition.if.push(conditionIf);
+              this.condition.anotherField.push(conditionIf);
+              this.Do.field.push(conditionIf);
+            });
+          }
         });
       }
     });
     this.rule.conditions.push(this.condition);
     this.rule.dos.push(this.Do);
+    console.log(this.condition);
   }
   formConditionTypes: any = [
     'SHOW/HIDE FIELD',

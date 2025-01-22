@@ -75,6 +75,19 @@
     background-color: #dddde3;
   }
 
+  .grids{
+    display: flex;
+    gap:3px;
+    max-width: 80%;
+  }
+  label{
+    min-width: 60px;
+  }
+
+  select{
+    min-width: 200px;
+  }
+  
   .list-icon{
     justify-self: end;
   }

@@ -1,1 +1,330 @@
-<p>IACUC Form Works!</p>
+<div class="iacuc">
+  <div></div>
+  <div *ngIf="!openForm" class="open-form-container">
+    <div class="open-form">
+        <img src="assets/images/questionmark.jpg">
+        <div>
+        Do you want to open IACUC Form for Editing?
+        </div>
+    </div>
+    <div>
+      <button class="button" type="button" (click)="editForm()"  >Edit</button>
+      <button class="button" type="button" (click)="viewForm()" >view</button>
+    </div>
+  </div>
+</div>
+<form *ngIf="openForm"  #nativeForm="ngForm" (ngSubmit)="onSubmit(nativeForm)">
+    <!-- Iterate through fields -->
+     <div class="form-container"> 
+        <div class="section-name-container">
+            <div class="section-name">{{sectionList[1].selectionName}}</div>
+         </div>
+        <div class="fields-container">
+          <div *ngFor="let field of formFields; let i = index; trackBy: trackByIndex">
+                @if (field.type === 'input') {
+                    <div class="input-container">
+                    <div class="lable-field"> 
+                        <p>
+                        {{ field.label }}
+                        <span *ngIf="field.validation?.required" class="required-star">*</span>
+                        </p>
+                    </div>
+                    <div class="input-field">
+                        <input
+                        class="input"
+                        type="text"  
+                        [disabled]="viewMode"
+                        [id]="field.id"
+                        [name]="field.id"
+                        [placeholder]="field.placeholder"
+                        [(ngModel)]="formData[i][field.id]"
+                        [required]="field.validation?.required"
+                        [minlength]="field.validation?.minLength"
+                        [maxlength]="field.validation?.maxLength" />
+                    </div>
+                    </div>
+                }
+                @if (field.type === 'Name&Title') {
+                    <div class="name-title-container">
+                      <div class="name-title">
+                        <div class="label"> 
+                          <label>
+                          {{ field.rowItems[0].label }}
+                          <span *ngIf="field.rowItems[0].validation?.required" class="required-star">*</span>
+                          </label>
+                        </div>
+                        <div class="name">
+                            <input
+                            class="name-input"
+                            type="text"  
+                            [disabled]="viewMode"
+                            [id]="field.rowItems[0].id"
+                            [name]="field.rowItems[0].id"
+                            [placeholder]="field.rowItems[0].placeholder"
+                            [(ngModel)]="formData[i][field.id][0][field.rowItems[0].id]"
+                            [required]="field.rowItems[0].validation?.required"
+                            [minlength]="field.rowItems[0].validation?.minLength"
+                            [maxlength]="field.rowItems[0].validation?.maxLength" />
+                        </div>
+                      </div>
+                      <div class="name-title">
+                        <div class="label">
+                          <label>
+                            {{ field.rowItems[1].label }}
+                            <span *ngIf="field.rowItems[1].validation?.required" class="required-star">*</span>
+                          </label>
+                        </div>
+                        <div class="title">
+                            <input
+                            class="title-input"
+                            type="text" 
+                            [disabled]="viewMode" 
+                            [id]="field.rowItems[1].id"
+                            [name]="field.rowItems[1].name"
+                            [placeholder]="field.rowItems[1].placeholder"
+                            [(ngModel)]="formData[i][field.id][1][field.rowItems[1].id]"
+                            [required]="field.rowItems[1].validation?.required"
+                            [minlength]="field.rowItems[1].validation?.minLength"
+                            [maxlength]="field.rowItems[1].validation?.maxLength" />
+                        </div>
+                      </div>
+                    </div>
+                }
+                @if (field.type === 'Email&OfficePhone') {
+                  <div class="name-title-container">
+                    <div class="name-title">
+                      <div class="label"> 
+                        <label>
+                          {{ field.rowItems[0].label }}
+                          <span *ngIf="field.rowItems[0].validation?.required" class="required-star">*</span>
+                        </label>
+                      </div>
+                      <div class="name">
+                        <input 
+                        class="title-input" 
+                        type="email" 
+                        [disabled]="viewMode"
+                        [id]="field.rowItems[0].id"
+                        [name]="field.rowItems[0].name"
+                        [placeholder]="field.rowItems[0].placeholder"
+                        [(ngModel)]="formData[i][field.id][0][field.rowItems[0].id]"
+                        [required]="field.rowItems[0].validation?.required"
+                        [minlength]="field.rowItems[0].validation?.minLength"
+                        [maxlength]="field.rowItems[0].validation?.maxLength"
+                        pattern="^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$"
+                        />
+                      </div>
+                    </div>
+                    <div class="name-title">
+                      <div class="label">
+                        <label>
+                          {{ field.rowItems[1].label }}
+                          <span *ngIf="field.rowItems[1].validation?.required" class="required-star">*</span>
+                        </label>
+                      </div>
+                      <div class="title">
+                        <input
+                        class="title-input" 
+                        type="tel"
+                        [disabled]="viewMode"
+                        [id]="field.rowItems[1].id"
+                        [name]="field.rowItems[1].name"
+                        [placeholder]="field.rowItems[1].placeholder"
+                        [(ngModel)]="formData[i][field.id][1][field.rowItems[1].id]"
+                        [required]="field.rowItems[1].validation?.required"
+                        [minlength]="field.rowItems[1].validation?.minLength"
+                        [maxlength]="field.rowItems[1].validation?.maxLength" 
+                        pattern="^[0-9]{10}$"
+                        />
+                      </div>
+                    </div>
+                  </div>
+                }
+                @if (field.type === 'Lab Phone&Cell Phone') {
+                  <div class="name-title-container">
+                    <div class="name-title">
+                      <div class="label"> 
+                        <label>
+                          {{ field.rowItems[0].label }}
+                          <span *ngIf="field.rowItems[0].validation?.required" class="required-star">*</span>
+                        </label>
+                      </div>
+                      <div class="name">
+                        <input
+                         class="phone-input"
+                         type="tel"
+                         [disabled]="viewMode"
+                         [id]="field.rowItems[0].id"
+                         [name]="field.rowItems[0].name"
+                         [placeholder]="field.rowItems[0].placeholder"
+                         [(ngModel)]="formData[i][field.id][0][field.rowItems[0].id]"
+                         [required]="field.rowItems[0].validation?.required"
+                         [minlength]="field.rowItems[0].validation?.minLength"
+                         [maxlength]="field.rowItems[0].validation?.maxLength"
+                         pattern="^[0-9]{10}$" 
+                         />
+                      </div>
+                    </div>
+                    <div class="name-title">
+                      <div class="label">
+                        <label>
+                          {{ field.rowItems[1].label }}
+                          <span *ngIf="field.rowItems[1].validation?.required" class="required-star">*</span>
+                        </label>
+                      </div>
+                      <div class="title">
+                        <input 
+                        class="phone-input" 
+                        type="tel" 
+                        [disabled]="viewMode"
+                        [id]="field.rowItems[1].id"
+                        [name]="field.rowItems[1].name"
+                        [placeholder]="field.rowItems[1].placeholder"
+                        [(ngModel)]="formData[i][field.id][1][field.rowItems[1].id]"
+                        [required]="field.rowItems[1].validation?.required"
+                        [minlength]="field.rowItems[1].validation?.minLength"
+                        [maxlength]="field.rowItems[1].validation?.maxLength"
+                         pattern="^[0-9]{10}$"  />
+                      </div>
+                    </div>
+                  </div>
+                }
+                @if (field.type === 'Department&EmergencyPhone') {
+                  <div class="name-title-container">
+                    <div class="name-title">
+                      <div class="label"> 
+                        <label>
+                          {{ field.rowItems[0].label }}
+                          <span *ngIf="field.rowItems[0].validation?.required" class="required-star">*</span>
+                        </label>
+                      </div>
+                      <div class="name">
+                        <select
+                        [disabled]="viewMode"
+                        [id]="field.rowItems[0].id"
+                        [name]="field.rowItems[0].name"
+                        [(ngModel)]="formData[i][field.id][0][field.rowItems[0].id]"
+                        class="dropdown"
+                        [required]="field.rowItems[0].validation?.required"
+                      >
+                      <option value="" disabled selected>Select Department</option>
+                        <option *ngFor="let option of field.rowItems[0].options" [value]="option.value">
+                          {{ option.label }}
+                        </option>
+                      </select>
+                      </div>
+                    </div>
+                    <div class="name-title">
+                      <div class="label">
+                        <label>
+                          {{ field.rowItems[1].label }}
+                          <span *ngIf="field.rowItems[1].validation?.required" class="required-star">*</span>
+                        </label>
+                      </div>
+                      <div class="title">
+                        <input class="phone-input" 
+                        type="tel" 
+                        [disabled]="viewMode"
+                        [id]="field.rowItems[1].id"
+                        [name]="field.rowItems[1].name"
+                        [placeholder]="field.rowItems[1].placeholder"
+                        [(ngModel)]="formData[i][field.id][1][field.rowItems[1].id]"
+                        [required]="field.rowItems[1].validation?.required"
+                        [minlength]="field.rowItems[1].validation?.minLength"
+                        [maxlength]="field.rowItems[1].validation?.maxLength"  />
+                      </div>
+                    </div>
+                  </div>
+                }
+                @if (field.type === 'Degree&PersonalType') {
+                  <div class="name-title-container">
+                    <div class="name-title">
+                      <div class="label"> 
+                        <label>
+                          {{ field.rowItems[0].label }}
+                          <span *ngIf="field.rowItems[0].validation?.required" class="required-star">*</span>
+                        </label>
+                      </div>
+                      <div class="name">
+                        <input
+                        class="phone-input" 
+                        type="text" 
+                        [disabled]="viewMode"
+                        [id]="field.rowItems[0].id"
+                        [name]="field.rowItems[0].name"
+                        [placeholder]="field.rowItems[0].placeholder"
+                        [(ngModel)]="formData[i][field.id][0][field.rowItems[0].id]"
+                        [required]="field.rowItems[0].validation?.required"
+                        [minlength]="field.rowItems[0].validation?.minLength"
+                        [maxlength]="field.rowItems[0].validation?.maxLength" 
+                         />
+                      </div>
+                    </div>
+                    <div class="name-title">
+                      <div class="label">
+                        <label>
+                          {{ field.rowItems[1].label }}
+                          <span *ngIf="field.rowItems[1].validation?.required" class="required-star">*</span>
+                        </label>
+                      </div>
+                      <div class="title">
+                        <input 
+                        class="personaltype-input" 
+                        type="text"
+                        [disabled]="viewMode"
+                        [id]="field.rowItems[1].id"
+                        [name]="field.rowItems[1].name"
+                        [placeholder]="field.rowItems[1].placeholder"
+                        [(ngModel)]="formData[i][field.id][1][field.rowItems[1].id]"
+                        [required]="field.rowItems[1].validation?.required"
+                        [minlength]="field.rowItems[1].validation?.minLength"
+                        [maxlength]="field.rowItems[1].validation?.maxLength"
+                        />
+                      </div>
+                    </div>
+                  </div>
+                }
+                @if (field.type === 'YesOrNoButton') {
+                  <div class="YesOrNoButton-container">
+                    <div class="YesOrNo-label">
+                      <label>{{ field.label }}</label>
+                      <span *ngIf="field.validation?.required" class="required-star">*</span>
+                    </div>
+                    <div class="YesOrNo">
+                      <div class="toggle-container">
+                        <button
+                          [disabled]="viewMode"
+                          type="button"
+                          class="toggle-button"
+                          [class.active]="formData[i][field.id] === 'Yes'"
+                          (click)="formData[i][field.id] = 'Yes'"
+                        >
+                          <span class="tick-mark" *ngIf="formData[i][field.id] === 'Yes'">✔</span>
+                          Yes
+                        </button>
+                  
+                        <button
+                          [disabled]="viewMode"
+                          type="button"
+                          class="toggle-button"
+                          [class.active]="formData[i][field.id] === 'No'"
+                          (click)="formData[i][field.id] = 'No'"
+                        >
+                          <span class="tick-mark" *ngIf="formData[i][field.id] === 'No'">✔</span>
+                          No
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                  
+                }
+            </div>
+            <div class="button-container">
+              <button [disabled]="viewMode" class="button" type="reset" >Reset</button>
+              <button [disabled]="viewMode" class="button" type="submit" [disabled]="nativeForm.invalid">Submit</button>
+            </div>
+        </div>    
+    </div>
+  
+  </form>
+  
