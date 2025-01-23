@@ -132,6 +132,16 @@ export class ConditionsComponent implements OnInit {
               element.hasRule = true;
               console.log(element.hasRule);
             }
+            element.rowItems?.forEach((item: Element) => {
+              if (
+                item.id === condition.selectedIf ||
+                item.id === condition.selectedAnotherField
+              ) {
+                console.log(element.hasRule);
+                item.hasRule = true;
+                console.log(element.hasRule);
+              }
+            });
           });
         }
       });

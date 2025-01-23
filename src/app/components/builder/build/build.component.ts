@@ -62,6 +62,7 @@ export class BuildComponent implements OnDestroy {
         type: 'input',
         label: 'Name',
         name: 'name',
+        value: null,
         placeholder: '',
         hasRule: false,
         validation: {
@@ -77,6 +78,7 @@ export class BuildComponent implements OnDestroy {
         label: 'Text Box',
         placeholder: 'please fill this field',
         name: 'textBox',
+        value: null,
         hasRule: false,
         styles: {
           inputStyle:
@@ -97,6 +99,7 @@ export class BuildComponent implements OnDestroy {
         type: 'radio',
         label: 'Radio Button',
         name: 'radioChoice',
+        value: null,
         hasRule: false,
         options: [
           { value: 'yes', label: 'Yes', style: 'margin-right: 8px;' },
@@ -124,6 +127,7 @@ export class BuildComponent implements OnDestroy {
         type: 'checkbox',
         label: 'Check Box',
         name: 'checkboxOptions',
+        value: null,
         hasRule: false,
         options: [
           { value: 'option1', label: 'Option 1', style: 'margin-right: 8px;' },
@@ -152,6 +156,7 @@ export class BuildComponent implements OnDestroy {
         label: 'Email',
         placeholder: 'please fill this field',
         name: 'email',
+        value: null,
         hasRule: false,
         styles: {
           inputStyle:
@@ -173,6 +178,7 @@ export class BuildComponent implements OnDestroy {
         label: 'Phone Number',
         placeholder: 'please fill this field',
         name: 'phoneNumber',
+        value: null,
         hasRule: false,
         styles: {
           inputStyle:
@@ -193,6 +199,7 @@ export class BuildComponent implements OnDestroy {
         type: 'dropdown',
         label: 'Dropdown',
         name: 'dropdown',
+        value: null,
         hasRule: false,
         options: [
           { value: 'option1', label: 'Option 1' },
@@ -224,6 +231,7 @@ export class BuildComponent implements OnDestroy {
             type: 'text',
             label: 'Name',
             name: 'name',
+            value: null,
             placeholder: '',
             hasRule: false,
             validation: {
@@ -238,6 +246,7 @@ export class BuildComponent implements OnDestroy {
             type: 'text',
             label: 'Title',
             name: 'title',
+            value: null,
             placeholder: '',
             hasRule: false,
             validation: {
@@ -260,6 +269,7 @@ export class BuildComponent implements OnDestroy {
             type: 'email',
             label: 'Email',
             name: 'email',
+            value: null,
             placeholder: '',
             hasRule: false,
             validation: {
@@ -274,6 +284,7 @@ export class BuildComponent implements OnDestroy {
             type: 'tel',
             label: 'Office Phone',
             name: 'officephone',
+            value: null,
             placeholder: '',
             hasRule: false,
             validation: {
@@ -296,6 +307,7 @@ export class BuildComponent implements OnDestroy {
             type: 'tel',
             label: 'Lab Phone',
             name: 'labphone',
+            value: null,
             placeholder: '',
             hasRule: false,
             validation: {
@@ -310,6 +322,7 @@ export class BuildComponent implements OnDestroy {
             type: 'tel',
             label: 'Cell Phone',
             name: 'cellphone',
+            value: null,
             placeholder: '',
             hasRule: false,
             validation: {
@@ -334,6 +347,7 @@ export class BuildComponent implements OnDestroy {
             type: 'dropdown',
             label: 'Department',
             name: 'department',
+            value: null,
             hasRule: false,
             options: [
               { value: 'Admisions Office', label: 'Admisions Office' },
@@ -352,6 +366,7 @@ export class BuildComponent implements OnDestroy {
             type: 'tel',
             label: 'Emergency Phone',
             name: 'emergencyphone',
+            value: null,
             placeholder: '',
             hasRule: false,
             validation: {
@@ -374,6 +389,7 @@ export class BuildComponent implements OnDestroy {
             type: 'text',
             label: 'Degree',
             name: 'degree',
+            value: null,
             placeholder: '',
             hasRule: false,
             validation: {
@@ -388,6 +404,7 @@ export class BuildComponent implements OnDestroy {
             type: 'text',
             label: 'Personal Type',
             name: 'personaltype',
+            value: null,
             placeholder: '',
             hasRule: false,
             validation: {
@@ -629,6 +646,7 @@ export class BuildComponent implements OnDestroy {
     type: '',
     label: '',
     name: '',
+    value: '',
     hasRule: false,
     styles: {
       labelStyle: '',

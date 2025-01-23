@@ -15,11 +15,11 @@ export interface Element {
   label: string;
   name: string;
   id?: string;
-  value?: any;
+  value: any;
   placeholder?: string;
   hasRule: Boolean;
   styles?: Styles;
-  validation?: Validation;
+  validation: Validation;
   options?: Option[];
   innerLabelStyle: string;
   innerDivStyle: string;
@@ -35,6 +35,7 @@ export interface Element {
   }
   
   export interface Validation {
+    hidden: boolean
     required: boolean
     minLength: number
     maxLength: number

@@ -33,7 +33,8 @@
                         <input
                         class="input"
                         type="text"  
-                        [disabled]="viewMode"
+                        [disabled]="viewMode || field.validation?.hidden"
+                        (input)="onFieldChange(field, $event)"
                         [id]="field.id"
                         [name]="field.id"
                         [placeholder]="field.placeholder"
@@ -57,7 +58,8 @@
                             <input
                             class="name-input"
                             type="text"  
-                            [disabled]="viewMode"
+                            [disabled]="viewMode || field.rowItems[0].validation?.hidden"
+                            (input)="onFieldChange(field, $event)"
                             [id]="field.rowItems[0].id"
                             [name]="field.rowItems[0].id"
                             [placeholder]="field.rowItems[0].placeholder"
@@ -78,7 +80,8 @@
                             <input
                             class="title-input"
                             type="text" 
-                            [disabled]="viewMode" 
+                            [disabled]="viewMode || field.rowItems[1].validation?.hidden" 
+                            (input)="onFieldChange(field, $event)"
                             [id]="field.rowItems[1].id"
                             [name]="field.rowItems[1].name"
                             [placeholder]="field.rowItems[1].placeholder"
@@ -103,7 +106,8 @@
                         <input 
                         class="title-input" 
                         type="email" 
-                        [disabled]="viewMode"
+                        [disabled]="viewMode || field.rowItems[0].validation?.hidden"
+                        (input)="onFieldChange(field, $event)"
                         [id]="field.rowItems[0].id"
                         [name]="field.rowItems[0].name"
                         [placeholder]="field.rowItems[0].placeholder"
@@ -126,7 +130,8 @@
                         <input
                         class="title-input" 
                         type="tel"
-                        [disabled]="viewMode"
+                        [disabled]="viewMode || field.rowItems[1].validation?.hidden"
+                        (input)="onFieldChange(field, $event)"
                         [id]="field.rowItems[1].id"
                         [name]="field.rowItems[1].name"
                         [placeholder]="field.rowItems[1].placeholder"
@@ -153,7 +158,8 @@
                         <input
                          class="phone-input"
                          type="tel"
-                         [disabled]="viewMode"
+                         [disabled]="viewMode || field.rowItems[0].validation?.hidden"
+                         (input)="onFieldChange(field, $event)"
                          [id]="field.rowItems[0].id"
                          [name]="field.rowItems[0].name"
                          [placeholder]="field.rowItems[0].placeholder"
@@ -176,7 +182,8 @@
                         <input 
                         class="phone-input" 
                         type="tel" 
-                        [disabled]="viewMode"
+                        [disabled]="viewMode || field.rowItems[1].validation?.hidden"
+                        (input)="onFieldChange(field, $event)"
                         [id]="field.rowItems[1].id"
                         [name]="field.rowItems[1].name"
                         [placeholder]="field.rowItems[1].placeholder"
@@ -200,7 +207,8 @@
                       </div>
                       <div class="name">
                         <select
-                        [disabled]="viewMode"
+                        [disabled]="viewMode || field.rowItems[0].validation?.hidden"
+                        (input)="onFieldChange(field, $event)"
                         [id]="field.rowItems[0].id"
                         [name]="field.rowItems[0].name"
                         [(ngModel)]="formData[i][field.id][0][field.rowItems[0].id]"
@@ -224,7 +232,8 @@
                       <div class="title">
                         <input class="phone-input" 
                         type="tel" 
-                        [disabled]="viewMode"
+                        [disabled]="viewMode || field.rowItems[1].validation?.hidden"
+                        (input)="onFieldChange(field, $event)"
                         [id]="field.rowItems[1].id"
                         [name]="field.rowItems[1].name"
                         [placeholder]="field.rowItems[1].placeholder"
@@ -249,7 +258,8 @@
                         <input
                         class="phone-input" 
                         type="text" 
-                        [disabled]="viewMode"
+                        (input)="onFieldChange(field, $event)"
+                        [disabled]="viewMode || field.rowItems[0].validation?.hidden"
                         [id]="field.rowItems[0].id"
                         [name]="field.rowItems[0].name"
                         [placeholder]="field.rowItems[0].placeholder"
@@ -271,7 +281,8 @@
                         <input 
                         class="personaltype-input" 
                         type="text"
-                        [disabled]="viewMode"
+                        (input)="onFieldChange(field, $event)"
+                        [disabled]="viewMode || field.rowItems[1].validation?.hidden"
                         [id]="field.rowItems[1].id"
                         [name]="field.rowItems[1].name"
                         [placeholder]="field.rowItems[1].placeholder"
@@ -297,7 +308,7 @@
                           type="button"
                           class="toggle-button"
                           [class.active]="formData[i][field.id] === 'Yes'"
-                          (click)="formData[i][field.id] = 'Yes'"
+                          (click)="formData[i][field.id] = 'Yes'; onFieldChange(field, $event)"
                         >
                           <span class="tick-mark" *ngIf="formData[i][field.id] === 'Yes'">✔</span>
                           Yes
@@ -308,7 +319,7 @@
                           type="button"
                           class="toggle-button"
                           [class.active]="formData[i][field.id] === 'No'"
-                          (click)="formData[i][field.id] = 'No'"
+                          (click)="formData[i][field.id] = 'No'; onFieldChange(field, $event)"
                         >
                           <span class="tick-mark" *ngIf="formData[i][field.id] === 'No'">✔</span>
                           No
